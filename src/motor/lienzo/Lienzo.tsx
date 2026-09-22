@@ -27,7 +27,7 @@ export function Lienzo({ children }: { children: ReactNode }): ReactNode {
 
   return (
     <div ref={refMarco} className={estilos.marco}>
-      <div className={estilos.lienzo} style={{ transform: `scale(${escala})` }}>
+      <div className={estilos.lienzo} style={{ transform: `translate(-50%, -50%) scale(${escala})` }}>
         {children}
       </div>
     </div>

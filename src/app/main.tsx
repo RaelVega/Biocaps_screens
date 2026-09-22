@@ -6,7 +6,8 @@ import { endurecerKiosco } from '../motor/kiosco/endurecer';
 import { Lienzo } from '../motor/lienzo/Lienzo';
 import { PruebaHumo } from '../humo/PruebaHumo';
 
-if (new URLSearchParams(window.location.search).has('cursor')) document.documentElement.dataset['cursor'] = '';
+// En desarrollo el cursor se ve siempre; en el kiosco, solo con ?cursor=1.
+if (import.meta.env.DEV || new URLSearchParams(window.location.search).has('cursor')) document.documentElement.dataset['cursor'] = '';
 endurecerKiosco();
 
 const raiz = document.getElementById('raiz');

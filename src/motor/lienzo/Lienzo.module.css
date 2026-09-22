@@ -1,15 +1,17 @@
 .marco {
   position: fixed;
   inset: 0;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   background: #000;
 }
 
+/* Centrado absoluto y escalado desde el centro. No usar grid/flex para centrar:
+   el lienzo mide más que la ventana y la pista crece con él, así que el
+   centro queda por debajo de la ventana y la imagen sale desplazada. */
 .lienzo {
-  position: relative;
-  flex: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 1080px;
   height: 1920px;
   overflow: hidden;
