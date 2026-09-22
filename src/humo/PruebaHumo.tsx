@@ -45,7 +45,7 @@ export function PruebaHumo(): ReactNode {
       registrar(resultado);
       if (datos) {
         setManifiesto(datos);
-        const imagen = datos.imagenes['frasco-azul'];
+        const imagen = datos.imagenes['frasco-color-azul'];
         const video = datos.videos['portada'];
         const fuente = datos.fuentes['etiqueta-farmaceutico'];
         if (imagen) registrar(await chequearImagen(imagen.archivo));
@@ -86,7 +86,7 @@ export function PruebaHumo(): ReactNode {
     };
   }, []);
 
-  const imagen = manifiesto?.imagenes['frasco-azul'];
+  const imagen = manifiesto?.imagenes['frasco-color-azul'];
   const video = manifiesto?.videos['portada'];
 
   return (

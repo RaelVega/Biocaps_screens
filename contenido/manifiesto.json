@@ -1,12 +1,272 @@
 {
   "version": 1,
+  "generado": "ingesta/ingerir.mjs — no editar a mano",
   "imagenes": {
-    "frasco-azul": { "archivo": "img/biocaps_frasco_azul_base_v1.webp", "ancho": 360, "alto": 407 }
+    "logo-azul": {
+      "archivo": "img/biocaps_logo_azul_v1.webp",
+      "ancho": 250,
+      "alto": 55
+    },
+    "logo-blanco": {
+      "archivo": "img/biocaps_logo_blanco_v1.webp",
+      "ancho": 422,
+      "alto": 87
+    },
+    "fondo-qr": {
+      "archivo": "img/biocaps_fondo_qr_v1.webp",
+      "ancho": 1080,
+      "alto": 1920
+    },
+    "capsula-oblonga": {
+      "archivo": "img/biocaps_capsula_oblonga_v1.webp",
+      "ancho": 380,
+      "alto": 296
+    },
+    "capsula-oval": {
+      "archivo": "img/biocaps_capsula_oval_v1.webp",
+      "ancho": 380,
+      "alto": 296
+    },
+    "capsula-redonda": {
+      "archivo": "img/biocaps_capsula_redonda_v1.webp",
+      "ancho": 380,
+      "alto": 307
+    },
+    "capsula-twist-off": {
+      "archivo": "img/biocaps_capsula_twist_off_v1.webp",
+      "ancho": 380,
+      "alto": 297
+    },
+    "cantidad-30": {
+      "archivo": "img/biocaps_cantidad_30_v1.webp",
+      "ancho": 715,
+      "alto": 227
+    },
+    "cantidad-60": {
+      "archivo": "img/biocaps_cantidad_60_v1.webp",
+      "ancho": 715,
+      "alto": 227
+    },
+    "cantidad-120": {
+      "archivo": "img/biocaps_cantidad_120_v1.webp",
+      "ancho": 715,
+      "alto": 244
+    },
+    "frasco-color-transparente": {
+      "archivo": "img/biocaps_frasco_color_transparente_v1.webp",
+      "ancho": 347,
+      "alto": 391
+    },
+    "frasco-color-negro": {
+      "archivo": "img/biocaps_frasco_color_negro_v1.webp",
+      "ancho": 347,
+      "alto": 394
+    },
+    "frasco-color-azul": {
+      "archivo": "img/biocaps_frasco_color_azul_v1.webp",
+      "ancho": 347,
+      "alto": 392
+    },
+    "frasco-color-blanco": {
+      "archivo": "img/biocaps_frasco_color_blanco_v1.webp",
+      "ancho": 347,
+      "alto": 390
+    },
+    "frasco-color-rosa": {
+      "archivo": "img/biocaps_frasco_color_rosa_v1.webp",
+      "ancho": 347,
+      "alto": 391
+    },
+    "frasco-color-gris": {
+      "archivo": "img/biocaps_frasco_color_gris_v1.webp",
+      "ancho": 347,
+      "alto": 391
+    },
+    "etiqueta-plana-farmaceutico": {
+      "archivo": "img/biocaps_etiqueta_plana_farmaceutico_v1.webp",
+      "ancho": 1015,
+      "alto": 399
+    },
+    "etiqueta-plana-naturista": {
+      "archivo": "img/biocaps_etiqueta_plana_naturista_v1.webp",
+      "ancho": 1015,
+      "alto": 399
+    },
+    "etiqueta-plana-femenino": {
+      "archivo": "img/biocaps_etiqueta_plana_femenino_v1.webp",
+      "ancho": 1015,
+      "alto": 399
+    },
+    "etiqueta-plana-moderno": {
+      "archivo": "img/biocaps_etiqueta_plana_moderno_v1.webp",
+      "ancho": 1015,
+      "alto": 403
+    },
+    "etiqueta-plana-deportivo": {
+      "archivo": "img/biocaps_etiqueta_plana_deportivo_v1.webp",
+      "ancho": 1015,
+      "alto": 398
+    },
+    "frasco-final-farmaceutico-transparente": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_transparente_v1.webp",
+      "ancho": 485,
+      "alto": 900
+    },
+    "frasco-final-farmaceutico-negro": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_negro_v1.webp",
+      "ancho": 483,
+      "alto": 900
+    },
+    "frasco-final-farmaceutico-azul": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_azul_v1.webp",
+      "ancho": 486,
+      "alto": 900
+    },
+    "frasco-final-farmaceutico-blanco": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_blanco_v1.webp",
+      "ancho": 486,
+      "alto": 900
+    },
+    "frasco-final-farmaceutico-rosa": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_rosa_v1.webp",
+      "ancho": 485,
+      "alto": 900
+    },
+    "frasco-final-farmaceutico-gris": {
+      "archivo": "img/biocaps_frasco_final_farmaceutico_gris_v1.webp",
+      "ancho": 484,
+      "alto": 900
+    },
+    "frasco-final-naturista-transparente": {
+      "archivo": "img/biocaps_frasco_final_naturista_transparente_v1.webp",
+      "ancho": 463,
+      "alto": 900
+    },
+    "frasco-final-naturista-negro": {
+      "archivo": "img/biocaps_frasco_final_naturista_negro_v1.webp",
+      "ancho": 463,
+      "alto": 900
+    },
+    "frasco-final-naturista-azul": {
+      "archivo": "img/biocaps_frasco_final_naturista_azul_v1.webp",
+      "ancho": 463,
+      "alto": 900
+    },
+    "frasco-final-naturista-blanco": {
+      "archivo": "img/biocaps_frasco_final_naturista_blanco_v1.webp",
+      "ancho": 466,
+      "alto": 900
+    },
+    "frasco-final-naturista-rosa": {
+      "archivo": "img/biocaps_frasco_final_naturista_rosa_v1.webp",
+      "ancho": 457,
+      "alto": 900
+    },
+    "frasco-final-naturista-gris": {
+      "archivo": "img/biocaps_frasco_final_naturista_gris_v1.webp",
+      "ancho": 469,
+      "alto": 900
+    },
+    "frasco-final-femenino-transparente": {
+      "archivo": "img/biocaps_frasco_final_femenino_transparente_v1.webp",
+      "ancho": 457,
+      "alto": 900
+    },
+    "frasco-final-femenino-negro": {
+      "archivo": "img/biocaps_frasco_final_femenino_negro_v1.webp",
+      "ancho": 484,
+      "alto": 900
+    },
+    "frasco-final-femenino-azul": {
+      "archivo": "img/biocaps_frasco_final_femenino_azul_v1.webp",
+      "ancho": 483,
+      "alto": 900
+    },
+    "frasco-final-femenino-blanco": {
+      "archivo": "img/biocaps_frasco_final_femenino_blanco_v1.webp",
+      "ancho": 487,
+      "alto": 900
+    },
+    "frasco-final-femenino-rosa": {
+      "archivo": "img/biocaps_frasco_final_femenino_rosa_v1.webp",
+      "ancho": 484,
+      "alto": 900
+    },
+    "frasco-final-femenino-gris": {
+      "archivo": "img/biocaps_frasco_final_femenino_gris_v1.webp",
+      "ancho": 485,
+      "alto": 900
+    },
+    "frasco-final-moderno-transparente": {
+      "archivo": "img/biocaps_frasco_final_moderno_transparente_v1.webp",
+      "ancho": 475,
+      "alto": 900
+    },
+    "frasco-final-moderno-negro": {
+      "archivo": "img/biocaps_frasco_final_moderno_negro_v1.webp",
+      "ancho": 474,
+      "alto": 900
+    },
+    "frasco-final-moderno-azul": {
+      "archivo": "img/biocaps_frasco_final_moderno_azul_v1.webp",
+      "ancho": 476,
+      "alto": 900
+    },
+    "frasco-final-moderno-blanco": {
+      "archivo": "img/biocaps_frasco_final_moderno_blanco_v1.webp",
+      "ancho": 474,
+      "alto": 900
+    },
+    "frasco-final-moderno-rosa": {
+      "archivo": "img/biocaps_frasco_final_moderno_rosa_v1.webp",
+      "ancho": 474,
+      "alto": 900
+    },
+    "frasco-final-moderno-gris": {
+      "archivo": "img/biocaps_frasco_final_moderno_gris_v1.webp",
+      "ancho": 475,
+      "alto": 900
+    },
+    "frasco-final-deportivo-transparente": {
+      "archivo": "img/biocaps_frasco_final_deportivo_transparente_v1.webp",
+      "ancho": 443,
+      "alto": 900
+    },
+    "frasco-final-deportivo-negro": {
+      "archivo": "img/biocaps_frasco_final_deportivo_negro_v1.webp",
+      "ancho": 459,
+      "alto": 900
+    },
+    "frasco-final-deportivo-azul": {
+      "archivo": "img/biocaps_frasco_final_deportivo_azul_v1.webp",
+      "ancho": 461,
+      "alto": 900
+    },
+    "frasco-final-deportivo-blanco": {
+      "archivo": "img/biocaps_frasco_final_deportivo_blanco_v1.webp",
+      "ancho": 459,
+      "alto": 900
+    },
+    "frasco-final-deportivo-rosa": {
+      "archivo": "img/biocaps_frasco_final_deportivo_rosa_v1.webp",
+      "ancho": 459,
+      "alto": 900
+    },
+    "frasco-final-deportivo-gris": {
+      "archivo": "img/biocaps_frasco_final_deportivo_gris_v1.webp",
+      "ancho": 459,
+      "alto": 900
+    }
   },
   "videos": {
-    "portada": { "archivo": "video/biocaps_portada_relleno_v1.mp4" }
+    "portada": {
+      "archivo": "video/biocaps_portada_relleno_v1.mp4"
+    }
   },
   "fuentes": {
-    "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Montserrat-Variable.ttf", "familia": "Etiqueta Farmacéutico" }
+    "etiqueta-farmaceutico": {
+      "archivo": "fuentes-etiqueta/Montserrat-Variable.ttf",
+      "familia": "Etiqueta Farmacéutico"
+    }
   }
 }

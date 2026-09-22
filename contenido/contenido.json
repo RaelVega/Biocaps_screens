@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "_pendientes": [
+    "formaPorSuplemento.multivitaminico-a1-a4: sin forma en el documento de combinaciones (Grupo AB). Mientras falte, el visitante ve las 4 formas activas.",
+    "nombreProducto.maxCaracteres: máximo de líneas y regla si se excede (marketing). null = sin límite de contenido.",
+    "qr.url: URL del catálogo (Grupo AB)."
+  ],
+  "marco": {
+    "pie": "Cada elección da forma a tu producto",
+    "botonSiguiente": "SIGUIENTE",
+    "botonFinalizar": "FINALIZAR",
+    "logo": "logo-azul"
+  },
+  "pantallas": {
+    "ingrediente": { "titulo": ["SELECCIONA EL", "INGREDIENTE"] },
+    "suplemento": { "titulo": ["SELECCIONA EL", "TIPO DE SUPLEMENTO"] },
+    "capsula": { "titulo": ["ELIGE EL TIPO", "DE CÁPSULA"] },
+    "cantidad": { "titulo": ["ELIGE LA CANTIDAD", "DE CÁPSULAS"] },
+    "etiqueta": { "titulo": ["SELECCIONA", "EL TIPO DE ETIQUETA"] },
+    "nombre": { "titulo": ["NOMBRA TU", "PRODUCTO"] },
+    "color": { "titulo": ["ELIGE EL COLOR", "DE TU FRASCO"] },
+    "fabricacion": { "texto": "Se está fabricando tu producto" },
+    "terminado": { "titulo": ["CONOCE TU", "PRODUCTO TERMINADO"] },
+    "qr": {
+      "escanea": "ESCANEA AQUÍ",
+      "catalogo": ["¿QUIERES CONOCER", "TODO NUESTRO CATÁLOGO?"],
+      "logo": "logo-blanco",
+      "fondo": "fondo-qr",
+      "url": null
+    }
+  },
+  "categorias": [
+    { "id": "omegas", "nombre": "OMEGAS" },
+    { "id": "multivitaminicos", "nombre": "MULTIVITAMÍNICOS Y MINERALES" },
+    { "id": "vitaminicos", "nombre": "VITAMÍNICOS" },
+    { "id": "naturales", "nombre": "INGREDIENTES NATURALES" },
+    { "id": "marinos", "nombre": "MARINOS" },
+    { "id": "twist-off", "nombre": "FACIALES TWIST OFF" }
+  ],
+  "suplementos": [
+    { "id": "omega-3-n", "categoria": "omegas", "nombre": "OMEGA 3 (N)" },
+    { "id": "omega-3-6-9", "categoria": "omegas", "nombre": "OMEGA 3, 6 Y 9" },
+    { "id": "omega-3-salmon", "categoria": "omegas", "nombre": "OMEGA 3 DE SALMÓN" },
+    { "id": "omega-3-linaza-citricos", "categoria": "omegas", "nombre": "OMEGA 3, LINAZA Y CÍTRICOS" },
+    { "id": "omega-3-bacalao-salmon", "categoria": "omegas", "nombre": "OMEGA 3, BACALAO Y SALMÓN" },
+
+    { "id": "multivitaminico-a1-a4", "categoria": "multivitaminicos", "nombre": "MULTIVITAMÍNICO A-1 / A-4" },
+    { "id": "multivitaminico-d-rojo", "categoria": "multivitaminicos", "nombre": "MULTIVITAMÍNICO D ROJO" },
+    { "id": "complejo-b", "categoria": "multivitaminicos", "nombre": "COMPLEJO B" },
+    { "id": "complejo-vitaminico-verde", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO VERDE" },
+    { "id": "complejo-q10-a1", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y COENZIMA Q-10 A-1" },
+    { "id": "complejo-q10-a2", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y COENZIMA Q-10 A-2" },
+    { "id": "zinc", "categoria": "multivitaminicos", "nombre": "ZINC" },
+
+    { "id": "vitamina-e-500", "categoria": "vitaminicos", "nombre": "VITAMINA E - 500" },
+    { "id": "vitamina-e-1000", "categoria": "vitaminicos", "nombre": "VITAMINA E - 1000" },
+    { "id": "vitamina-d3", "categoria": "vitaminicos", "nombre": "VITAMINA D₃" },
+
+    { "id": "lecitina-soya", "categoria": "naturales", "nombre": "LECITINA DE SOYA A-1" },
+    { "id": "ajo-vitamina-e", "categoria": "naturales", "nombre": "AJO CON VITAMINA E" },
+    { "id": "germen-trigo", "categoria": "naturales", "nombre": "GERMEN DE TRIGO CON VITAMINA E A-1" },
+    { "id": "jalea-real", "categoria": "naturales", "nombre": "JALEA REAL CON TIAMINA" },
+    { "id": "aceite-ajo-perejil", "categoria": "naturales", "nombre": "ACEITE DE AJO CON PEREJIL" },
+    { "id": "semilla-uva", "categoria": "naturales", "nombre": "SEMILLA DE UVA" },
+    { "id": "uva-ajo", "categoria": "naturales", "nombre": "UVA Y AJO" },
+
+    { "id": "higado-bacalao", "categoria": "marinos", "nombre": "HÍGADO DE BACALAO" },
+    { "id": "aceite-pescados", "categoria": "marinos", "nombre": "ACEITE DE PESCADOS" },
+    { "id": "alga-espirulina", "categoria": "marinos", "nombre": "ALGA ESPIRULINA A-2" },
+
+    { "id": "biotina", "categoria": "twist-off", "nombre": "BIOTINA" },
+    { "id": "vitamina-c", "categoria": "twist-off", "nombre": "VITAMINA C" },
+    { "id": "acido-hialuronico", "categoria": "twist-off", "nombre": "ÁCIDO HIALURÓNICO" },
+    { "id": "vitamina-e-facial", "categoria": "twist-off", "nombre": "VITAMINA E" },
+    { "id": "retinol", "categoria": "twist-off", "nombre": "RETINOL" },
+    { "id": "colageno-biotina", "categoria": "twist-off", "nombre": "COLÁGENO & BIOTINA" },
+    { "id": "hidrolizado-perla", "categoria": "twist-off", "nombre": "HIDROLIZADO DE PERLA" }
+  ],
+  "formas": [
+    { "id": "oblonga", "nombre": "OBLONGA", "tamanos": "(8, 16, 20)", "imagen": "capsula-oblonga" },
+    { "id": "oval", "nombre": "OVAL", "tamanos": "(7 ½ y 10)", "imagen": "capsula-oval" },
+    { "id": "redonda", "nombre": "REDONDA", "tamanos": "(5)", "imagen": "capsula-redonda" },
+    { "id": "twist-off", "nombre": "TWIST-OFF", "tamanos": "(4, 5)", "imagen": "capsula-twist-off" }
+  ],
+  "_formaPorSuplemento": "Del documento COMBINACIÓN CÁPSULAS, normalizado contra los nombres del PDF. La forma la decide el suplemento, no el visitante.",
+  "formaPorSuplemento": {
+    "omega-3-n": ["oval"],
+    "omega-3-6-9": ["oblonga"],
+    "omega-3-salmon": ["oblonga"],
+    "omega-3-linaza-citricos": ["oblonga"],
+    "omega-3-bacalao-salmon": ["oblonga"],
+    "multivitaminico-a1-a4": [],
+    "multivitaminico-d-rojo": ["oblonga"],
+    "complejo-b": ["oval"],
+    "complejo-vitaminico-verde": ["oblonga"],
+    "complejo-q10-a1": ["oblonga"],
+    "complejo-q10-a2": ["oblonga"],
+    "zinc": ["oval"],
+    "vitamina-e-500": ["oval"],
+    "vitamina-e-1000": ["oblonga"],
+    "vitamina-d3": ["oval"],
+    "lecitina-soya": ["oblonga"],
+    "ajo-vitamina-e": ["oval"],
+    "germen-trigo": ["oval"],
+    "jalea-real": ["oval"],
+    "aceite-ajo-perejil": ["oval"],
+    "semilla-uva": ["oval"],
+    "uva-ajo": ["oval"],
+    "higado-bacalao": ["redonda"],
+    "aceite-pescados": ["redonda"],
+    "alga-espirulina": ["oval"],
+    "biotina": ["twist-off"],
+    "vitamina-c": ["twist-off"],
+    "acido-hialuronico": ["twist-off"],
+    "vitamina-e-facial": ["twist-off"],
+    "retinol": ["twist-off"],
+    "colageno-biotina": ["twist-off"],
+    "hidrolizado-perla": ["twist-off"]
+  },
+  "presentaciones": [
+    { "id": "30", "rotulo": "FRASCO", "nombre": "30 CÁPSULAS", "imagen": "cantidad-30" },
+    { "id": "60", "rotulo": "FRASCO", "nombre": "60 CÁPSULAS", "imagen": "cantidad-60" },
+    { "id": "120", "rotulo": "FRASCO", "nombre": "120 CÁPSULAS", "imagen": "cantidad-120" }
+  ],
+  "estilos": [
+    { "id": "naturista", "nombre": "NATURISTA", "etiquetaPlana": "etiqueta-plana-naturista" },
+    { "id": "farmaceutico", "nombre": "FARMACÉUTICO", "etiquetaPlana": "etiqueta-plana-farmaceutico" },
+    { "id": "moderno", "nombre": "MODERNO", "etiquetaPlana": "etiqueta-plana-moderno" },
+    { "id": "deportivo", "nombre": "DEPORTIVO", "etiquetaPlana": "etiqueta-plana-deportivo" },
+    { "id": "femenino", "nombre": "FEMENINO", "etiquetaPlana": "etiqueta-plana-femenino" }
+  ],
+  "colores": [
+    { "id": "transparente", "nombre": "TRANSPARENTE", "imagen": "frasco-color-transparente" },
+    { "id": "negro", "nombre": "NEGRO", "imagen": "frasco-color-negro" },
+    { "id": "azul", "nombre": "AZUL", "imagen": "frasco-color-azul" },
+    { "id": "blanco", "nombre": "BLANCO", "imagen": "frasco-color-blanco" },
+    { "id": "rosa", "nombre": "ROSA", "imagen": "frasco-color-rosa" },
+    { "id": "gris", "nombre": "GRIS", "imagen": "frasco-color-gris" }
+  ],
+  "_frascoFinal": "Id de manifiesto del frasco terminado: se sustituyen {estilo} y {color}.",
+  "frascoFinal": "frasco-final-{estilo}-{color}",
+  "nombreProducto": {
+    "maxCaracteres": null
+  }
+}

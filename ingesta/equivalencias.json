@@ -1,0 +1,91 @@
+{
+  "_nota": "Tabla de equivalencias: archivo del cliente (espejo en assets-fuente/, nunca se renombra) → pieza de contenido. Medidas en píxeles del archivo de origen. Ver ingesta/README.md.",
+  "imagenes": [
+    { "id": "logo-azul", "origen": "PAG 02 INGREDIENTE/página completa selecciona el ingrediente.png", "recorte": [1725, 413, 1044, 231], "colorAAlfa": "#FFFFFF", "ancho": 250, "nota": "Recortado del mockup mientras no llega el logo suelto en SVG" },
+    { "id": "logo-blanco", "origen": "PAG 11 CÓDIGO QR/logo blanco biocaps.png", "ancho": 422 },
+    { "id": "fondo-qr", "origen": "PAG 11 CÓDIGO QR/fondo.png", "ancho": 1080 },
+
+    { "id": "capsula-oblonga", "origen": "PAG 04 TIPO DE CÁPSULA/oblonga.png", "borrarTexto": [[407, 602, 747, 316]], "ancho": 380 },
+    { "id": "capsula-oval", "origen": "PAG 04 TIPO DE CÁPSULA/oval.png", "borrarTexto": [[434, 585, 656, 356]], "ancho": 380 },
+    { "id": "capsula-redonda", "origen": "PAG 04 TIPO DE CÁPSULA/redonda.png", "borrarTexto": [[384, 668, 739, 333]], "ancho": 380 },
+    { "id": "capsula-twist-off", "origen": "PAG 04 TIPO DE CÁPSULA/twist off.png", "borrarTexto": [[357, 628, 808, 333]], "ancho": 380 },
+
+    { "id": "cantidad-30", "origen": "PAG 05 CANT CAPSULAS/30 cápsulas.png", "borrarTexto": [[261, 362, 1302, 310]], "recolorear": [[254, 275, 235, 45, "#505050"]], "ancho": 715, "nota": "La pieza suelta trae la barrita azul; en la página completa del PDF es gris y el PDF manda" },
+    { "id": "cantidad-60", "origen": "PAG 05 CANT CAPSULAS/fraasco 60 caps.png", "borrarTexto": [[261, 362, 1307, 310]], "ancho": 715 },
+    { "id": "cantidad-120", "origen": "PAG 05 CANT CAPSULAS/frasco 120 caps.png", "borrarTexto": [[261, 430, 1378, 310]], "ancho": 715 },
+
+    { "id": "frasco-color-transparente", "origen": "PAG 08 COLOR DEL FRASCO/frasco transparente.png", "ancho": 347 },
+    { "id": "frasco-color-negro", "origen": "PAG 08 COLOR DEL FRASCO/frasco negro.png", "ancho": 347 },
+    { "id": "frasco-color-azul", "origen": "PAG 08 COLOR DEL FRASCO/frasco azul.png", "ancho": 347 },
+    { "id": "frasco-color-blanco", "origen": "PAG 08 COLOR DEL FRASCO/frasco blanco.png", "ancho": 347 },
+    { "id": "frasco-color-rosa", "origen": "PAG 08 COLOR DEL FRASCO/frasco rosa.png", "ancho": 347 },
+    { "id": "frasco-color-gris", "origen": "PAG 08 COLOR DEL FRASCO/frasco gris.png", "ancho": 347 },
+
+    { "id": "etiqueta-plana-farmaceutico", "origen": "PAG 6.1 FARMACÉUTICO/etiqueta farmacéutica f.png", "ancho": 1015 },
+    { "id": "etiqueta-plana-naturista", "origen": "PÁG 6.2 NATURISTA/etiqueta narustista.png", "ancho": 1015 },
+    { "id": "etiqueta-plana-femenino", "origen": "PÁG 6.3 FEMENINO/etiqueta femenina.png", "ancho": 1015 },
+    { "id": "etiqueta-plana-moderno", "origen": "PAG 6.4 MODERNO/etiqueta moderna.png", "ancho": 1015 },
+    { "id": "etiqueta-plana-deportivo", "origen": "PAG 6.5 DEPORTIVO/etiqueta deportiva.png", "ancho": 1015 }
+  ],
+
+  "frascosFinales": {
+    "_nota": "Las 30 combinaciones estilo × color ya renderizadas. Se recortan al contorno y se llevan a la misma altura para que todas se vean del mismo tamaño en PAG 10.",
+    "alto": 900,
+    "estilos": {
+      "farmaceutico": {
+        "carpeta": "PAG 6.1 FARMACÉUTICO/FARMACÉUTICO",
+        "archivos": {
+          "azul": "naturista azul_1.png",
+          "blanco": "farmacéutico blanco.png",
+          "gris": "naturista gris_1.png",
+          "negro": "farmacéutico negro.png",
+          "rosa": "farmacéutico rosa.png",
+          "transparente": "naturista transparente_1.png"
+        },
+        "nota": "azul, gris y transparente vienen con nombre de naturista pero son frascos farmacéuticos (confirmado)"
+      },
+      "naturista": { "carpeta": "PÁG 6.2 NATURISTA/NATURISTA", "patron": "naturista {color}.png" },
+      "femenino": {
+        "carpeta": "PÁG 6.3 FEMENINO/FEMENINO",
+        "patron": "femenino {color}.png",
+        "archivos": { "transparente": "Femenino transparente.png" }
+      },
+      "moderno": { "carpeta": "PAG 6.4 MODERNO/MODERNO", "patron": "moderno {color}.png" },
+      "deportivo": { "carpeta": "PAG 6.5 DEPORTIVO/DEPORTIVO", "patron": "deportivo {color}.png" }
+    },
+    "colores": ["transparente", "negro", "azul", "blanco", "rosa", "gris"]
+  },
+
+  "referencias": {
+    "_nota": "Mockups para comparar el resultado (superposición). Nunca se cargan en la app.",
+    "pag02": "PAG 02 INGREDIENTE/página completa selecciona el ingrediente.png",
+    "pag03-omegas": "PAG 3.1 OMEGAS/página completa omegas.png",
+    "pag03-multivitaminicos": "PAG 3.2 MULTIVITAMÍNICOS Y MINERALES/página completa multivitamínicos y minerales.png",
+    "pag03-vitaminicos": "PAG 3.3 VITAMÍNICOS/página completa vitamínicos.png",
+    "pag03-naturales": "PAG 3.4 INGREDIENTES NATURALES/página completa ingredientes naturales.png",
+    "pag03-marinos": "PAG 3.5 MARINOS/página completa marinos.png",
+    "pag03-twist-off": "PÁG 3.6 TWIST OFF/pág completa twist off.png",
+    "pag04": "PAG 04 TIPO DE CÁPSULA/página completa.png",
+    "pag05": "PAG 05 CANT CAPSULAS/página completa cantiad de caps.png",
+    "pag06": "PAG 06 TIPO DE ETIQUETA/página completa tipo de etiqueta.png",
+    "pag06-farmaceutico": "PAG 6.1 FARMACÉUTICO/página completa etiqueta farmacéutica.png",
+    "pag06-naturista": "PÁG 6.2 NATURISTA/página completa etiqueta naturista.png",
+    "pag06-femenino": "PÁG 6.3 FEMENINO/página completa etiqueta femenina.png",
+    "pag06-moderno": "PAG 6.4 MODERNO/página completa etiqueta moderna.png",
+    "pag06-deportivo": "PAG 6.5 DEPORTIVO/Recurso 135.png",
+    "pag07": "PAG 07 NOMBRA TU PRODUCTO/página completa nombra tu producto.png",
+    "pag08": "PAG 08 COLOR DEL FRASCO/página completa color del frasco.png",
+    "pag09": "PAG 09 TRANSICIÓN/página transición final.png",
+    "pag10": "PAG 10 PRODUCTO TERMINADO/página completa producto terminado.png",
+    "pag11": "PAG 11 CÓDIGO QR/página completa código QR.png",
+    "ejemplo-deportiva": "EJEMPLOS_FRASCOS_TERMINADOS/ejemplo_deportiva.jpeg",
+    "ejemplo-moderna": "EJEMPLOS_FRASCOS_TERMINADOS/ejemplo_moderna.jpeg",
+    "ejemplo-naturista": "EJEMPLOS_FRASCOS_TERMINADOS/ejemplo_naturista.jpeg"
+  },
+
+  "estaticos": {
+    "_nota": "Piezas que ya viven en contenido/ y no salen del espejo (relleno o descargadas). Solo se registran en el manifiesto.",
+    "videos": { "portada": "video/biocaps_portada_relleno_v1.mp4" },
+    "fuentes": { "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Montserrat-Variable.ttf", "familia": "Etiqueta Farmacéutico" } }
+  }
+}

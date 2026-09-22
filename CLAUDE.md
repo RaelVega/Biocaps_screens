@@ -9,14 +9,16 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 - **El PDF de flujo (`assets-fuente/FLUJO DIAPOSITIVAS…pdf`) es diseño final aprobado por marketing.** Se replica tal cual, interactivo y con animación. No se proponen cambios de diseño (contraste, tamaños, posición del botón, estados nuevos), aunque choquen con los mínimos de `03 §9`.
 - Jerarquía si algo se contradice: PDF → `contexto/03` → prototipo.
 - Los valores de `04` salen medidos del PDF. Si una pantalla no coincide con su «página completa», se corrige el código, nunca el valor.
-- Donde el PDF no dibuja algo (teclado de PAG 07, aviso de inactividad, error, comportamiento de PAG 04 y de `SIGUIENTE`), **se pregunta, no se inventa**. Lista viva: `03 §17`.
+- Donde el PDF no dibuja algo (teclado de PAG 07, aviso de inactividad, error), **se pregunta, no se inventa**. Lista viva: `03 §17` y `_pendientes` en `contenido/contenido.json`.
+- Ya decidido con Rael (22-09): tocar una tarjeta **la marca** y `SIGUIENTE`/`FINALIZAR` avanza solo si hay elección (sin elección es un no-op). En PAG 04 se ven las 4 formas y solo la del suplemento queda activa y ya elegida. No hay botón de volver: el PDF no lo tiene.
 - `prototipos/` es solo de lectura (hay regla de deny) y está fuera de git. Nunca se importa código de ahí. La carpeta se llama `biocaps-kiosco`, con c.
 
 ## Rutas y archivos
 
 - La ruta del proyecto tiene espacios y los assets tienen acentos: **entrecomillar siempre**, y probar cada script contra un nombre con acento. Ya rompió el `Caddyfile` una vez (`root * "{$RAIZ_WEB:web}"` va entre comillas por eso).
 - El espejo de Drive está en `assets-fuente/`, dentro del repo pero **sin versionar**. `03 §1` dice `~/Desktop/…`: manda la carpeta real.
-- **Nunca renombrar el espejo.** Los nombres se normalizan en la ingesta (`marca_categoria_identificador_variante_version.ext`, en minúsculas) con una tabla de equivalencias versionada. Las erratas conocidas están en `03 §16`. Ojo con estas:
+- **macOS guarda los acentos en NFD**: un nombre leído del disco (`PÁG 6.2`) no es igual, byte a byte, al mismo nombre escrito en el código. Toda comparación de rutas o nombres de archivo se hace con `.normalize('NFC')` por tramo, como en `ingesta/ingerir.mjs`.
+- **Nunca renombrar el espejo.** Los nombres se normalizan en la ingesta (`npm run ingesta`, ver `ingesta/README.md`) con la tabla `ingesta/equivalencias.json`. `contenido/img/` y `contenido/manifiesto.json` los genera ese script: **no se editan a mano**. Las erratas conocidas están en `03 §16`. Ojo con estas:
   - En `PAG 6.1 FARMACÉUTICO/FARMACÉUTICO/`, `naturista {azul,gris,transparente}_1.png` **son frascos farmacéuticos**.
   - `PAG 3.2/tipo de suplemento .png` tiene un espacio antes de la extensión.
   - Los nombres de archivo no coinciden con las etiquetas del PDF: **manda el texto del PDF**.
@@ -67,16 +69,18 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 
 ## Máquina de estados
 
-- Una función pura `transicion(estado, evento)` y un único punto de entrada: `avanzar`, `retroceder`, `reiniciar`. Nada de `set` sueltos en los componentes.
-- Una transición inválida es un no-op registrado, nunca una excepción.
+- El motor (`src/motor/maquina/maquina.ts`) es una función pura `transicion(estado, evento)`; el flujo de Biocaps y sus reglas están en `src/marca/flujo.ts`. Los componentes solo llaman a `despachar(evento)` del almacén. Nada de `set` sueltos.
+- Una transición inválida es un no-op con motivo, que queda en `almacen.historial()`. Nunca una excepción.
+- Los avances de la animación de PAG 09 van con `origen: 'sistema'`. La máquina ignora los del visitante en un paso automático y los del sistema en cualquier otro paso: así el fin de la animación y el respaldo nunca avanzan dos pantallas.
 - Inactividad: aviso a los 45 s y reinicio a los 55 s. **Se pausa en PAG 09.** Los temporizadores usan un reloj inyectable (para las pruebas con relojes falsos).
 - Reiniciar deja el estado **idéntico al del arranque**: el siguiente visitante no puede ver el nombre que escribió el anterior.
 - El error boundary global vuelve a la portada y limpia la sesión.
 
 ## Reglas de negocio que no se ven en el PDF
 
-- **La forma de la cápsula depende del suplemento elegido.** PAG 04 parece una elección libre y no lo es. La matriz suplemento → forma vive en el JSON. El documento de combinaciones trae nombres con erratas: se normalizan contra la lista del PDF.
-- **Multivitamínico A-1 / A-4 no tiene forma en la matriz.** La prueba «ningún suplemento sin forma válida» debe fallar hasta que Grupo AB dé el dato. No se rellena inventando.
+- **La forma de la cápsula depende del suplemento elegido.** PAG 04 parece una elección libre y no lo es. La matriz `formaPorSuplemento` vive en `contenido.json`, normalizada contra los nombres del PDF (el documento original trae erratas). La regla está en `catalogo.formasValidas()`, no en las pantallas.
+- **Multivitamínico A-1 / A-4 no tiene forma en la matriz** y no se rellena inventando. Mientras falte, `formasValidas()` devuelve las 4 para no dejar al visitante sin salida. Cuando llegue el dato, se quita de `SIN_FORMA_PENDIENTE` en `src/marca/flujo.test.ts`; esa prueba falla si aparece otro suplemento sin forma.
+- Las tarjetas de PAG 04 y PAG 05 son las imágenes del cliente **con el texto borrado** en la ingesta: el nombre y los tamaños se escriben en vivo encima, desde el JSON.
 - PAG 10 no compone capas: usa uno de los 30 renders `{estilo} {color}` y solo dibuja el nombre encima. Los frascos sin etiqueta de PAG 08 son para elegir el color y para PAG 09. `frasco transición.png` solo existe en azul.
 - **El nombre se ajusta por ancho medido, no por número de caracteres.** El límite de caracteres solo aplica al campo de PAG 07 (duro y visible). La caja de cada estilo va en el JSON y admite rotación (en Moderno el nombre va vertical).
 - La fuente del nombre la decide el estilo de etiqueta y se declara en su JSON, nunca en el CSS. Las carpetas `TIPOGRAFÍAS/` siguen vacías.
@@ -104,6 +108,7 @@ npm run dev                    # http://localhost:5173, recarga en caliente (con
 npm run build                  # tsc estricto + vite → dist/
 npm test                       # Vitest
 npm run lint                   # oxlint
+npm run ingesta                # assets-fuente/ → contenido/img + manifiesto + referencias
 npm run electron:dev           # build + Electron en ventana (KIOSCO=1 para kiosco)
 npm run armar:usb              # paquetes/Biocaps-USB con las vías A, B y B′ + LEEME
 npm run humo:navegador -- <url>  # prueba de humo en Chrome contra cualquier vía

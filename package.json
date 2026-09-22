@@ -18,7 +18,8 @@
     "empaquetar:mac": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --mac --dir",
     "empaquetar:win-portable": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --win portable --x64",
     "armar:usb": "npm run empaquetar:win && node cascaras/usb/armar-usb.mjs",
-    "humo:navegador": "node pruebas/humo/navegador.mjs"
+    "humo:navegador": "node pruebas/humo/navegador.mjs",
+    "ingesta": "node ingesta/ingerir.mjs"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.3",
