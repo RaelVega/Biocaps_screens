@@ -1,0 +1,32 @@
+# Vía A: ejecutable portable. Sin instalador, sin permisos de administrador.
+appId: mx.xestionintelixente.biocaps
+productName: Biocaps
+copyright: Xestión Intelixente
+directories:
+  output: paquetes
+files:
+  - dist/**/*
+  - "!dist/contenido/**/*"
+  - dist-electron/**/*
+  - package.json
+# El contenido va fuera del asar, junto al ejecutable: se sustituye sin recompilar.
+extraResources:
+  - from: contenido
+    to: contenido
+asar: true
+compression: normal
+electronLanguages: [es, es-419, en-US]
+win:
+  # `dir` es la vía principal. El .exe portable de un solo archivo se genera
+  # aparte (`npm run empaquetar:win-portable`): su NSIS necesita Windows o
+  # Rosetta en un Mac con Apple Silicon.
+  target:
+    - target: dir
+      arch: [x64]
+  # Sin firma de código: evita depender de wine/rcedit al construir desde macOS.
+  signAndEditExecutable: false
+portable:
+  artifactName: Biocaps-${version}-portable.exe
+mac:
+  target: dir
+  identity: null

@@ -1,0 +1,5 @@
+# Vía C: link para revisiones con el cliente. Nunca es la vía principal del evento.
+# Netlify exige este archivo en la raíz del repo; las cabeceras viven en cascaras/web/_headers.
+[build]
+  command = "npm run build"
+  publish = "dist"

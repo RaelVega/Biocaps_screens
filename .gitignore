@@ -5,3 +5,8 @@ dist/
 *.ai
 *.indd
 assets-fuente/
+prototipos/
+dist-electron/
+paquetes/
+datos-kiosco/
+telemetria/

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "imagenes": {
+    "frasco-azul": { "archivo": "img/biocaps_frasco_azul_base_v1.webp", "ancho": 360, "alto": 407 }
+  },
+  "videos": {
+    "portada": { "archivo": "video/biocaps_portada_relleno_v1.mp4" }
+  },
+  "fuentes": {
+    "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Montserrat-Variable.ttf", "familia": "Etiqueta Farmacéutico" }
+  }
+}

@@ -1,0 +1,8 @@
+/* Sustituta libre de Acumin (ver contexto/04-plan-design-tokens.md §3.1). */
+@font-face {
+  font-family: 'Interfaz';
+  src: url('../fuentes-ui/Archivo-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-display: block;
+}
