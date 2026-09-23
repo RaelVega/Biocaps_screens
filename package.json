@@ -25,6 +25,7 @@
     "empaquetar:win-portable": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --win portable --x64",
     "armar:usb": "npm run empaquetar:win && node cascaras/usb/armar-usb.mjs",
     "humo:navegador": "node pruebas/humo/navegador.mjs",
+    "publicar:cloudflare": "node cascaras/web/publicar-cloudflare.mjs",
     "ingesta": "node ingesta/ingerir.mjs",
     "icono": "node ingesta/icono.mjs",
     "visual": "node pruebas/visual/recorrido.mjs",
