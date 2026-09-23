@@ -1,0 +1,40 @@
+/* Pastilla con el degradado de los botones, centrada sobre el pie y por encima de cualquier pantalla. */
+.aviso {
+  position: absolute;
+  top: 1660px;
+  left: 190px;
+  width: 700px;
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  border-radius: var(--radio-pastilla);
+  background: var(--degradado-primario);
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-sobre-primario);
+  pointer-events: none;
+}
+
+/* Si falla, contorno en lugar de degradado: se distingue sin inventar un color. */
+.fallo {
+  background: var(--fondo-boton-secundario);
+  color: var(--color-boton-secundario);
+  box-shadow:
+    var(--sombra-tarjeta),
+    inset 0 0 0 var(--grosor-boton-secundario) var(--color-boton-secundario);
+}
+
+.titulo {
+  font-size: var(--cuerpo-tarjeta);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+.detalle {
+  font-size: var(--cuerpo-boton);
+  font-weight: var(--peso-regular);
+  white-space: nowrap;
+}

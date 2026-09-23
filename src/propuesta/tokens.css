@@ -1,0 +1,24 @@
+/*
+ * Tokens que solo usa la propuesta. Todos salen de la paleta y los cuerpos
+ * medidos del PDF (primitivos.css): la propuesta cambia el flujo, no el diseño.
+ */
+:root {
+  /* ATRÁS: misma pastilla que SIGUIENTE, en contorno con el azul de la selección. */
+  --fondo-boton-secundario: var(--p-blanco);
+  --color-boton-secundario: var(--p-azul-profundo);
+  --grosor-boton-secundario: var(--grosor-seleccion);
+
+  /* VOLVER AL INICIO sobre el fondo invertido de PAG 11. */
+  --fondo-boton-invertido: var(--p-blanco);
+  --color-boton-invertido: var(--p-azul-profundo);
+
+  /* PAG 04: «PUEDE CONTENER». */
+  --cuerpo-panel-contenido: var(--p-cuerpo-25);
+  --cuerpo-encabezado-panel: var(--p-cuerpo-31);
+  --color-panel-contenido: var(--p-gris-800);
+
+  /* Leads */
+  --cuerpo-etiqueta-campo: var(--p-cuerpo-25);
+  --cuerpo-valor-campo: var(--p-cuerpo-35);
+  --cuerpo-consentimiento: var(--p-cuerpo-25);
+}

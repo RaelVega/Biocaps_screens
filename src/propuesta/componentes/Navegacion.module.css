@@ -1,0 +1,64 @@
+/*
+ * Dos pastillas del tamaño del botón del PDF (377×56) en su misma línea
+ * (y = 381), centradas como pareja con 16 px entre ellas.
+ */
+.boton {
+  position: absolute;
+  top: 381px;
+  width: 377px;
+  height: 56px;
+  border-radius: var(--radio-pastilla);
+}
+
+.siguiente {
+  left: 548px;
+  background: var(--degradado-primario);
+  color: var(--color-sobre-primario);
+}
+
+/* El contorno va por dentro (sombra interior): la pastilla mide lo mismo que SIGUIENTE. */
+.atras {
+  left: 155px;
+  background: var(--fondo-boton-secundario);
+  color: var(--color-boton-secundario);
+  box-shadow: inset 0 0 0 var(--grosor-boton-secundario) var(--color-boton-secundario);
+}
+
+.texto {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--cuerpo-boton);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+/* Como en el PDF: texto centrado en x = 182 y flecha en x = 336; en ATRÁS, en espejo. */
+.siguiente .texto {
+  left: 182px;
+}
+
+.atras .texto {
+  left: 195px;
+}
+
+.flecha {
+  position: absolute;
+  top: 20px;
+  width: 26px;
+  height: 16px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.siguiente .flecha {
+  left: 336px;
+}
+
+.atras .flecha {
+  left: 15px;
+}

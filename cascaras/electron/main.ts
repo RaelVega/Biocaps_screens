@@ -1,4 +1,4 @@
-import { accessSync, appendFileSync, constants, createReadStream, mkdirSync, statSync } from 'node:fs';
+import { accessSync, appendFileSync, constants, createReadStream, existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { Readable } from 'node:stream';
 import { app, BrowserWindow, ipcMain, powerSaveBlocker, protocol } from 'electron';
@@ -20,8 +20,15 @@ const EMPAQUETADO = app.isPackaged;
 /** Carpeta del .exe (o del .exe portable, que se descomprime en %TEMP% y avisa su origen real). */
 const DIR_BASE = process.env['PORTABLE_EXECUTABLE_DIR'] ?? (EMPAQUETADO ? path.dirname(app.getPath('exe')) : process.cwd());
 const DIR_DIST = path.join(app.getAppPath(), 'dist');
-const DIR_CONTENIDO = EMPAQUETADO ? path.join(process.resourcesPath, 'contenido') : path.join(app.getAppPath(), 'contenido');
+// Sin empaquetar, DIR_CONTENIDO permite usar el contenido ya superpuesto de una variante (`dist/contenido`).
+const DIR_CONTENIDO = EMPAQUETADO
+  ? path.join(process.resourcesPath, 'contenido')
+  : path.resolve(app.getAppPath(), process.env['DIR_CONTENIDO'] ?? 'contenido');
 const DIR_TELEMETRIA = path.join(DIR_BASE, 'telemetria');
+/** Datos personales (propuesta): CSV que se abre en Excel y se importa al CRM al cierre del evento. */
+const DIR_LEADS = path.join(DIR_BASE, 'leads');
+/** BOM: sin él, Excel abre el CSV en UTF-8 con los acentos rotos. */
+const BOM = '\uFEFF';
 const MODO_KIOSCO = process.env['KIOSCO_VENTANA'] !== '1' && (EMPAQUETADO || process.env['KIOSCO'] === '1');
 
 const TIPOS: Record<string, string> = {
@@ -128,6 +135,24 @@ function registrarIpc(): void {
     return archivo;
   });
 
+  ipcMain.handle('leads:anexar', (_evento, cabecera: unknown, fila: unknown) => {
+    const valida = (texto: unknown): texto is string => typeof texto === 'string' && texto.length > 0 && texto.length <= 10_000 && !/[\r\n]/.test(texto);
+    if (!valida(cabecera) || !valida(fila)) throw new Error('Fila de leads inválida');
+    mkdirSync(DIR_LEADS, { recursive: true });
+    const archivo = path.join(DIR_LEADS, `leads-${fechaHoy()}.csv`);
+    if (!existsSync(archivo)) writeFileSync(archivo, `${BOM}${cabecera}\r\n`, 'utf8');
+    appendFileSync(archivo, `${fila}\r\n`, 'utf8');
+    return archivo;
+  });
+
+  ipcMain.handle('leads:exportar', (_evento, csv: unknown) => {
+    if (typeof csv !== 'string' || csv.length > 50_000_000) throw new Error('Exportación de leads inválida');
+    mkdirSync(DIR_LEADS, { recursive: true });
+    const archivo = path.join(DIR_LEADS, `exportacion-${fechaHoy()}-${Date.now()}.csv`);
+    writeFileSync(archivo, csv, 'utf8');
+    return archivo;
+  });
+
   ipcMain.on('humo:resultado', (_evento, json: unknown) => {
     if (typeof json !== 'string') return;
     process.stdout.write(`HUMO_RESULTADO ${json}\n`);
@@ -144,6 +169,7 @@ function crearVentana(): BrowserWindow {
     autoHideMenuBar: true,
     backgroundColor: '#FFFFFF',
     show: false,
+    icon: path.join(import.meta.dirname, 'icono.png'),
     webPreferences: {
       preload: path.join(import.meta.dirname, 'preload.cjs'),
       contextIsolation: true,

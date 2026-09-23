@@ -23,8 +23,11 @@ win:
   target:
     - target: dir
       arch: [x64]
-  # Sin firma de código: evita depender de wine/rcedit al construir desde macOS.
-  signAndEditExecutable: false
+  # Sin firma de código, pero con los recursos editados (icono y nombre): electron-builder
+  # los escribe en JS, sin wine, también desde macOS. La ventana y la barra de tareas
+  # toman el icono de BrowserWindow.icon (main.ts). Se genera con `npm run icono`.
+  signExecutable: false
+  icon: cascaras/icono/icono.png
 portable:
   artifactName: Biocaps-${version}-portable.exe
 mac:

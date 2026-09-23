@@ -1,0 +1,13 @@
+# Vía A de la propuesta de Rael: otro ejecutable, con su propia carpeta,
+# sus datos del navegador y su telemetría. No sustituye al de la versión del PDF.
+extends: cascaras/electron/electron-builder.yml
+appId: mx.xestionintelixente.biocaps.propuesta
+productName: Biocaps Propuesta
+directories:
+  output: paquetes/propuesta
+# El contenido ya superpuesto por `build:propuesta` (contenido/ + variantes/propuesta/contenido/).
+extraResources:
+  - from: dist/contenido
+    to: contenido
+portable:
+  artifactName: Biocaps-Propuesta-${version}-portable.exe

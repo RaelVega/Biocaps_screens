@@ -6,14 +6,17 @@ import '../marca/tokens/primitivos.css';
 import '../marca/tokens/semanticos.css';
 import '../marca/estilos-base.css';
 import { PruebaHumo } from '../humo/PruebaHumo';
-import { App } from '../marca/App';
 import { aplicarTokensMovimiento } from '../marca/tokens/movimiento';
 import { endurecerKiosco } from '../motor/kiosco/endurecer';
 import { Lienzo } from '../motor/lienzo/Lienzo';
+// La versión del PDF o la propuesta, según la variante de build (vite.config.ts).
+import { App } from '@variante/App';
 
 const parametros = new URLSearchParams(window.location.search);
 // En desarrollo el cursor se ve siempre; en el kiosco, solo con ?cursor=1.
 if (import.meta.env.DEV || parametros.has('cursor')) document.documentElement.dataset['cursor'] = '';
+// Qué variante corre (pdf o propuesta): para depurar y para etiquetar la telemetría.
+document.documentElement.dataset['variante'] = __VARIANTE__;
 aplicarTokensMovimiento();
 endurecerKiosco();
 

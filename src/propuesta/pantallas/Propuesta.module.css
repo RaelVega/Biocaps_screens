@@ -1,0 +1,164 @@
+/*
+ * Pantallas propias de la propuesta, en px del lienzo 1080×1920. Mismas reglas
+ * que Pantallas.module.css: nada de colores, cuerpos, radios, sombras ni
+ * duraciones literales, solo tokens (semanticos.css y propuesta/tokens.css).
+ */
+
+/* PAG 04: «PUEDE CONTENER», en el hueco libre bajo la rejilla (las tarjetas de abajo terminan en y = 1451). */
+.panelContenido {
+  position: absolute;
+  top: 1492px;
+  left: 122px;
+  width: 834px;
+  color: var(--color-panel-contenido);
+}
+
+.encabezadoPanel {
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-encabezado-panel);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+}
+
+/* Informativo, no tocable: texto suelto (sin tarjeta) para que no parezca un botón. */
+.listaPanel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 40px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--cuerpo-panel-contenido);
+  font-weight: var(--peso-regular);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+/* PAG 11: VOLVER AL INICIO, pastilla del tamaño del botón del PDF bajo «¿QUIERES CONOCER…?». */
+.botonInicio {
+  position: absolute;
+  top: 1560px;
+  left: 351px;
+  width: 377px;
+  height: 56px;
+  border-radius: var(--radio-pastilla);
+  background: var(--fondo-boton-invertido);
+  color: var(--color-boton-invertido);
+}
+
+.textoBotonInicio {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--cuerpo-boton);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+/* Leads: campos con la tarjeta lila de PAG 02/03 (x = 122, ancho 834). */
+.campo {
+  position: absolute;
+  left: 122px;
+  width: 834px;
+  height: 112px;
+  border-radius: var(--radio-tarjeta);
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-texto-tarjeta);
+  text-align: left;
+}
+
+.campo[data-seleccionado] {
+  box-shadow:
+    var(--sombra-tarjeta),
+    0 0 0 var(--grosor-seleccion) var(--color-seleccion);
+}
+
+.etiquetaCampo {
+  position: absolute;
+  top: 24px;
+  left: 43px;
+  font-size: var(--cuerpo-etiqueta-campo);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+}
+
+/* Un correo largo muestra su final (lo que se está escribiendo): el recorte es solo horizontal para no cortar descendentes. */
+.valorCampo {
+  position: absolute;
+  top: 60px;
+  left: 43px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: fit-content;
+  max-width: 748px;
+  overflow: clip visible;
+  font-size: var(--cuerpo-valor-campo);
+  font-weight: var(--peso-regular);
+  white-space: pre;
+}
+
+.campoIncompleto .etiquetaCampo {
+  color: var(--color-boton-secundario);
+}
+
+.consentimiento {
+  position: absolute;
+  top: 902px;
+  left: 122px;
+  width: 834px;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-consentimiento);
+  font-weight: var(--peso-regular);
+  line-height: 1.3;
+  color: var(--color-pie);
+}
+
+.omitir {
+  position: absolute;
+  top: 985px;
+  left: 390px;
+  width: 300px;
+  height: 56px;
+  color: var(--color-boton-secundario);
+}
+
+.textoOmitir {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--cuerpo-tarjeta);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+/* Mismo teclado que PAG 07 con la fila de autocompletado encima: termina a la misma altura (y = 1648). */
+.tecladoLeads {
+  position: absolute;
+  top: 1076px;
+  left: 0;
+  right: 0;
+  --tecla-lado: 88px;
+  --tecla-separacion: 12px;
+  --tecla-radio: var(--radio-tarjeta);
+  --tecla-fondo: var(--fondo-tarjeta);
+  --tecla-color: var(--color-texto-tarjeta);
+  --tecla-sombra: var(--sombra-tarjeta);
+  --tecla-cuerpo: var(--cuerpo-tarjeta);
+  --tecla-peso: var(--peso-tarjeta);
+  --tecla-fondo-borrar: var(--degradado-primario);
+  --tecla-color-borrar: var(--color-sobre-primario);
+  --tecla-cuerpo-borrar: var(--cuerpo-boton);
+  --tecla-alto-sugerencia: 72px;
+  --tecla-fondo-sugerencia: var(--fondo-boton-secundario);
+  --tecla-color-sugerencia: var(--color-boton-secundario);
+  --tecla-cuerpo-sugerencia: var(--cuerpo-boton);
+}

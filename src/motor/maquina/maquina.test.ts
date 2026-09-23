@@ -137,6 +137,78 @@ describe('aviso de inactividad', () => {
   });
 });
 
+describe('retroceder', () => {
+  const RETROCEDER: EventoFlujo = { tipo: 'retroceder' };
+  const enTexto = aplicar(maquina.inicial(), AVANZAR, { tipo: 'elegir', valor: 'a' }, AVANZAR, { tipo: 'escribir', texto: 'HOLA' });
+
+  it('vuelve al paso anterior conservando la sesión', () => {
+    const resultado = maquina.transicion(enTexto, RETROCEDER);
+    expect(resultado.efecto).toBe('cambioPaso');
+    expect(resultado.estado).toEqual({ paso: 'elegir', sesion: { opcion: 'a', texto: 'HOLA' }, avisoInactividad: false });
+  });
+
+  it('volver a la portada reinicia: el siguiente visitante no hereda nada', () => {
+    const enElegir = aplicar(maquina.inicial(), AVANZAR, { tipo: 'elegir', valor: 'b' });
+    const resultado = maquina.transicion(enElegir, RETROCEDER);
+    expect(resultado.efecto).toBe('reinicio');
+    expect(resultado.estado).toEqual(maquina.inicial());
+  });
+
+  it('salta los pasos automáticos', () => {
+    // Desde el paso siguiente al automático se vuelve al de antes del automático.
+    const conSiguiente = crearMaquina({ ...definicion, orden: ['portada', 'elegir', 'auto', 'info', 'cierre'] });
+    const enInfoTrasAuto = { paso: 'info' as const, sesion: { opcion: 'a', texto: '' }, avisoInactividad: false };
+    expect(conSiguiente.transicion(enInfoTrasAuto, RETROCEDER).estado.paso).toBe('elegir');
+  });
+
+  it.each<[string, Paso]>([
+    ['en la portada', 'portada'],
+    ['en un paso automático', 'auto'],
+    ['en el cierre', 'cierre'],
+  ])('es un no-op %s', (_nombre, paso) => {
+    const estado = { paso, sesion: { opcion: 'a', texto: 'X' }, avisoInactividad: false };
+    const resultado = maquina.transicion(estado, RETROCEDER);
+    expect(resultado.efecto).toBe('sinCambio');
+    expect(resultado.estado).toBe(estado);
+  });
+
+  it('quita el aviso de inactividad', () => {
+    const conAviso = aplicar(enTexto, { tipo: 'avisarInactividad' });
+    expect(aplicar(conAviso, RETROCEDER).avisoInactividad).toBe(false);
+  });
+});
+
+describe('pasos omitidos', () => {
+  // El paso `elegir` se omite cuando ya viene elegido (una sola opción, aplicada antes).
+  const conOmision = crearMaquina<Paso, Sesion>({
+    ...definicion,
+    sesionInicial: { opcion: 'unica', texto: '' },
+    pasos: { ...definicion.pasos, elegir: { ...definicion.pasos.elegir, omitir: (s) => s.opcion === 'unica' } },
+  });
+
+  it('avanzar lo salta', () => {
+    const tras = conOmision.transicion(conOmision.inicial(), AVANZAR);
+    expect(tras.estado.paso).toBe('texto');
+  });
+
+  it('retroceder lo salta (y aquí llega a la portada, así que reinicia)', () => {
+    const enTexto = conOmision.transicion(conOmision.inicial(), AVANZAR).estado;
+    expect(conOmision.transicion(enTexto, { tipo: 'retroceder' })).toMatchObject({ efecto: 'reinicio', estado: { paso: 'portada' } });
+  });
+});
+
+describe('escribir con campo', () => {
+  it('pasa el campo a la regla de la marca', () => {
+    const conCampos = crearMaquina<Paso, Sesion>({
+      ...definicion,
+      pasos: { ...definicion.pasos, texto: { tipo: 'texto', escribir: (s, texto, campo) => ({ ...s, texto: `${campo ?? '-'}:${texto}` }) } },
+    });
+    const enTexto = { paso: 'texto' as const, sesion: { opcion: 'a', texto: '' }, avisoInactividad: false };
+    expect(conCampos.transicion(enTexto, { tipo: 'escribir', texto: 'ana', campo: 'nombre' }).estado.sesion.texto).toBe('nombre:ana');
+    expect(conCampos.transicion(enTexto, { tipo: 'escribir', texto: 'ana' }).estado.sesion.texto).toBe('-:ana');
+  });
+});
+
 describe('definición del flujo', () => {
   it('rechaza un flujo vacío, con pasos repetidos o que no empieza en la portada', () => {
     expect(() => crearMaquina({ ...definicion, orden: [] })).toThrow('no tiene pasos');

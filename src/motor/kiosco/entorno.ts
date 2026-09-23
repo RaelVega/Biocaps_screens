@@ -3,6 +3,10 @@ export interface PuenteKiosco {
   readonly via: 'ejecutable';
   readonly versionElectron: string;
   anexarTelemetria: (linea: string) => Promise<string>;
+  /** Anexa una fila al CSV de leads del día junto al ejecutable (escribe la cabecera si el archivo es nuevo). Devuelve la ruta. */
+  anexarLead?: (cabecera: string, fila: string) => Promise<string>;
+  /** Escribe una exportación completa de leads junto al ejecutable. Devuelve la ruta. */
+  exportarLeads?: (csv: string) => Promise<string>;
   informarHumo: (json: string) => void;
 }
 

@@ -33,6 +33,36 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 - **El nombre admite como máximo 14 caracteres (aprobado el 22-09) y además solo acepta una tecla si cabe en la caja de la etiqueta plana (PAG 07) y en la del frasco (PAG 10).** Una tecla rechazada hace temblar la vista previa. Si se cambia una caja o una fuente, correr `npm run estres`.
 - En los CSS de `src/marca/pantallas/` no puede haber colores, radios, sombras, duraciones ni tamaños de texto literales: solo `var(--…)` de los tokens de `04`.
 
+## Propuesta de Rael (segunda variante)
+
+- Hay dos variantes de la experiencia sobre el mismo motor: **`pdf`** (`src/marca/`, la del PDF de marketing, la que va al evento) y **`propuesta`** (`src/propuesta/`, el flujo alternativo de Rael). Se elige **al construir**: `--mode propuesta` o `VITE_VARIANTE=propuesta`. El alias `@variante/App` (`vite.config.ts`) apunta a una u otra, así que la build de una no lleva código de la otra. En tiempo de ejecución, `__VARIANTE__` y `<html data-variante>`.
+- `src/propuesta/` **no** está sujeta al PDF: allí manda el criterio de Rael. Sí cumple todas las demás reglas de este archivo (lienzo, tokens, `transform`/`opacity`, precarga, textos en JSON, sin `file://`…).
+- Dependencias: `propuesta/` puede importar de `motor/` y de `marca/`; **`marca/` nunca importa de `propuesta/`** (lo comprueba `src/app/dependencias.test.ts`). Si la propuesta necesita un componente o pantalla distinta, **se copia** a `propuesta/` y se cambia ahí: nunca se edita `marca/` para acomodarla. Un cambio en `motor/` que pida la propuesta tiene que dejar igual la versión del PDF (`npm test` y `npm run visual`).
+- Contenido: `variantes/propuesta/contenido/` se **superpone** encima de `contenido/` (en la build y, con un middleware, en desarrollo). Solo va ahí lo que cambie; las imágenes de la ingesta se reutilizan. Los textos propios van en `propuesta.json` (esquema en `src/propuesta/contenido/esquema.ts`), no en una copia de `contenido.json`.
+- **Sustituciones de la build** (`VARIANTES.propuesta.sustituye` en `vite.config.ts`): en la build `propuesta`, cuando código de `src/marca/` importa `componentes/BotonPrimario.tsx`, recibe `src/propuesta/componentes/Navegacion.tsx` (ATRÁS + SIGUIENTE). Así las pantallas del PDF que se reutilizan llevan ATRÁS sin copiarlas. El sustituto exporta lo mismo con la misma firma. Las pantallas propias de la propuesta importan `Navegacion` directamente.
+- Tipos: la sesión de la propuesta amplía la del PDF (`lead`) y los pasos añaden `leads`. El único cruce de tipos hacia las pantallas de `marca/` es `comoRecursosDeMarca()` en `src/propuesta/estado.ts`.
+- **Flujo de la propuesta:** portada → **cápsula** → ingrediente → suplemento → cantidad → etiqueta → etiquetaDetalle → nombre → color → **leads** → fabricación → terminado → qr (`ORDEN_PROPUESTA` en `src/propuesta/flujo.ts`).
+  - La cápsula va primero y filtra lo demás (`catalogo.categoriasPorForma` / `suplementosDeCategoriaYForma`, la matriz `formaPorSuplemento` leída al revés). No se ven opciones atenuadas: lo que no cabe no se muestra. Bajo la rejilla de PAG 04, «PUEDE CONTENER» lista los suplementos de la cápsula elegida.
+  - Si la cápsula admite una sola categoría (redonda → Marinos, twist-off → Faciales), la categoría se elige sola y PAG 02 se salta en los dos sentidos (`omitir` del motor).
+  - El Multivitamínico A-1 / A-4 no tiene forma: en la propuesta **no aparece bajo ninguna cápsula** hasta que llegue el dato (lo fija `src/propuesta/flujo.test.ts`).
+  - ATRÁS despacha `retroceder` (el motor salta los pasos automáticos y los omitidos). Volver a la portada **reinicia** la sesión. En PAG 11, VOLVER AL INICIO reinicia con `motivo: 'fin'`.
+- **Leads (solo en la propuesta):** nombre y correo obligatorios, empresa opcional, OMITIR avanza sin datos y borra lo escrito. El teclado del correo va sin espacio y con autocompletado de dominios y terminaciones (`dominios` / `terminaciones` en `propuesta.json`; lógica pura en `src/propuesta/leads/campos.ts`).
+  - Se guardan al pasar de `leads` a `fabricacion`, en un suscriptor del almacén (`leads/guardar.ts`); la máquina sigue siendo pura. Van a IndexedDB (`biocaps-leads`) en todas las vías y, en el ejecutable, además a `leads/leads-AAAA-MM-DD.csv` junto al `.exe` (UTF-8 con BOM, CRLF, protegido contra fórmulas de Excel). Reenviar en la misma sesión reutiliza el `id`: en IndexedDB se actualiza, pero el CSV del día es un registro y puede repetir la fila.
+  - `Ctrl+Shift+E` exporta los leads de IndexedDB: en el ejecutable, a `leads/exportacion-*.csv`; en el navegador, como descarga. Un aviso abajo (`componentes/AvisoExportacion.tsx`, 3,5 s, no se toca) confirma cuántos se exportaron y dónde, o que falló. Cuando se construya la exportación de telemetría, el mismo atajo tiene que exportar las dos cosas.
+  - **Son datos personales:** nunca van a la telemetría, la USB los lleva en claro y el texto de consentimiento es provisional hasta que el cliente dé su aviso de privacidad (`_pendientes` de `propuesta.json`).
+- Ejecutable aparte: «Biocaps Propuesta» (`electron-builder.propuesta.yml`, sale en `paquetes/propuesta/`), con sus propios `datos-kiosco/` y `telemetria/`. `armar:usb` sigue armando **solo** la versión del PDF.
+- `dist/` es de la última variante construida: después de `build:propuesta` o `empaquetar:*:propuesta`, volver a correr `npm run build` antes de empaquetar o probar la del PDF.
+- Netlify: la propuesta va en un sitio **propio** con `VITE_VARIANTE=propuesta`, nunca en `biocaps-screens` ni en `biocaps-screens-v2`.
+- El tag `pdf-marketing-v1` marca la versión del PDF terminada. Si se aprueba la propuesta, se cambia la variante por defecto en `leerVariante()` y después se reordenan las carpetas.
+
+```
+npm run dev:propuesta             # http://localhost:5174 (a la vez que `npm run dev` en 5173)
+npm run build:propuesta           # dist/ de la propuesta; `preview:propuesta` en 4174
+npm run electron:dev:propuesta
+npm run empaquetar:win:propuesta  # paquetes/propuesta/win-unpacked/Biocaps Propuesta.exe
+npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por defecto 4174) → pruebas/visual/resultados-propuesta/
+```
+
 ## Contenido fuera del bundle (restricción 7)
 
 - `contenido/` no pasa por Vite: se copia tal cual a `dist/contenido/` y, en Electron, a `resources/contenido/` (fuera del asar).
@@ -58,7 +88,7 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 
 - **Todas las dependencias van en `devDependencies` a propósito.** Vite ya las mete en el bundle; si pasan a `dependencies`, electron-builder las copia al asar (pasa de 1 a 24 MB).
 - npm 11 bloquea los scripts de instalación. El binario de Electron se baja con `npx install-electron`.
-- El `.exe` portable de un solo archivo (`empaquetar:win-portable`) necesita NSIS, que en Apple Silicon solo corre con Rosetta. La vía principal es la carpeta `win-unpacked`. `signAndEditExecutable: false` evita depender de wine.
+- El `.exe` portable de un solo archivo (`empaquetar:win-portable`) necesita NSIS, que en Apple Silicon solo corre con Rosetta. La vía principal es la carpeta `win-unpacked`. `signExecutable: false` salta la firma sin depender de wine, y aun así incrusta el icono y el nombre en el `.exe`. El icono (símbolo de Biocaps, `cascaras/icono/icono.png`) lo genera `npm run icono` y sirve también de favicon en las dos variantes.
 - El `.exe` va sin firmar: SmartScreen avisa («Más información → Ejecutar de todas formas»). No pide admin.
 
 ## Texto y tipografía
@@ -109,7 +139,7 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 
 - Es anónima, sin datos personales. Va a IndexedDB y, en la vía A, además a `telemetria/AAAA-MM-DD.ndjson` a través de `window.kiosco.anexarTelemetria`.
 - A y B son orígenes distintos, así que cada una tiene su IndexedDB. Al cierre del evento se exportan las dos.
-- **El panel de staff se descartó.** La telemetría sale por el NDJSON y por `Ctrl+Shift+E` (CSV, pendiente de construir). No construir panel, PIN ni leads sin que se pida.
+- **El panel de staff se descartó.** La telemetría sale por el NDJSON y por `Ctrl+Shift+E` (CSV, pendiente de construir). No construir panel ni PIN sin que se pida. Los leads existen solo en la propuesta (ver arriba).
 
 ## Comandos
 

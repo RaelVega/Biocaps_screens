@@ -49,3 +49,18 @@
   stroke-linejoin: round;
   stroke-linecap: round;
 }
+
+/* Autocompletado: teclas del ancho de su texto, en una fila de alto fijo. */
+.sugerencias {
+  min-height: var(--tecla-alto-sugerencia, 72px);
+}
+
+.sugerencia {
+  width: auto;
+  height: var(--tecla-alto-sugerencia, 72px);
+  padding: 0 var(--tecla-relleno-sugerencia, 22px);
+  background: var(--tecla-fondo-sugerencia, var(--tecla-fondo, #eee));
+  color: var(--tecla-color-sugerencia, var(--tecla-color, #333));
+  font-size: var(--tecla-cuerpo-sugerencia, 28px);
+  text-transform: none;
+}

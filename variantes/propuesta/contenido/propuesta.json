@@ -1,0 +1,116 @@
+{
+  "version": 1,
+  "_nota": "Textos y datos que solo usa la variante «propuesta». Se sirve junto a contenido.json (superposición de variantes/propuesta/contenido/). Los textos son de la propuesta de Rael, no del PDF.",
+  "_pendientes": [
+    "leads.consentimiento: texto provisional. El aviso de privacidad (LFPDPPP) y su redacción los tiene que dar el cliente.",
+    "multivitaminico-a1-a4: sin forma en el documento de combinaciones. En la propuesta no aparece bajo ninguna cápsula hasta que llegue el dato."
+  ],
+  "navegacion": {
+    "atras": "ATRÁS",
+    "inicio": "VOLVER AL INICIO"
+  },
+  "capsula": {
+    "puedeContener": "PUEDE CONTENER"
+  },
+  "leads": {
+    "titulo": [
+      "DÉJANOS",
+      "TUS DATOS"
+    ],
+    "campos": {
+      "nombre": {
+        "etiqueta": "NOMBRE",
+        "maxCaracteres": 40
+      },
+      "correo": {
+        "etiqueta": "CORREO",
+        "maxCaracteres": 60
+      },
+      "empresa": {
+        "etiqueta": "EMPRESA (OPCIONAL)",
+        "maxCaracteres": 40
+      }
+    },
+    "omitir": "OMITIR",
+    "consentimiento": "Al continuar aceptas que Biocaps te contacte conforme a su aviso de privacidad.",
+    "tecladoCorreo": {
+      "filas": [
+        [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "0"
+        ],
+        [
+          "q",
+          "w",
+          "e",
+          "r",
+          "t",
+          "y",
+          "u",
+          "i",
+          "o",
+          "p"
+        ],
+        [
+          "a",
+          "s",
+          "d",
+          "f",
+          "g",
+          "h",
+          "j",
+          "k",
+          "l",
+          "@"
+        ],
+        [
+          "z",
+          "x",
+          "c",
+          "v",
+          "b",
+          "n",
+          "m",
+          "."
+        ],
+        [
+          "-",
+          "_"
+        ]
+      ]
+    },
+    "_dominios": "Autocompletado del correo: sin «@», se ofrecen los dominios; tras la «@», los que coinciden con lo escrito y las terminaciones para correos de empresa.",
+    "dominios": [
+      "gmail.com",
+      "hotmail.com",
+      "outlook.com",
+      "yahoo.com",
+      "icloud.com",
+      "live.com"
+    ],
+    "terminaciones": [
+      ".com",
+      ".com.mx",
+      ".mx",
+      ".org",
+      ".net"
+    ],
+    "maxSugerencias": 4
+  },
+  "exportacion": {
+    "_nota": "Aviso para el staff tras Ctrl+Shift+E. «{n}» es el número de leads exportados.",
+    "hecha": "LEADS EXPORTADOS: {n}",
+    "destinoEjecutable": "En la carpeta «leads», junto al programa",
+    "destinoNavegador": "En la carpeta de descargas",
+    "fallo": "NO SE PUDIERON EXPORTAR LOS LEADS",
+    "falloDetalle": "Vuelve a intentarlo con Ctrl+Shift+E"
+  }
+}
