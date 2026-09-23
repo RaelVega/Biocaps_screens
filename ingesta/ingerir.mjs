@@ -129,8 +129,41 @@ async function procesarImagen(pieza) {
 
   const medida = pieza.alto ? { height: pieza.alto } : { width: pieza.ancho };
   const archivo = nombreSalida(pieza.id);
-  const info = await imagen.resize({ ...medida, kernel: 'lanczos3' }).webp(WEBP).toFile(path.join(DIR_IMG, archivo));
-  return { archivo: `img/${archivo}`, ancho: info.width, alto: info.height, bytes: info.size };
+  const { data: final, info } = await imagen.resize({ ...medida, kernel: 'lanczos3' }).webp(WEBP).toBuffer({ resolveWithObject: true });
+  writeFileSync(path.join(DIR_IMG, archivo), final);
+  const entrada = { archivo: `img/${archivo}`, ancho: info.width, alto: info.height };
+  if (pieza.medirCuerpo) entrada.cuerpo = await medirCuerpo(final, pieza.medirCuerpo);
+  return { ...entrada, bytes: info.size };
+}
+
+/**
+ * Rectángulo del «cuerpo» de la pieza dentro de la imagen final: la tarjeta
+ * lila sin la sombra ni lo que sobresale (cápsula, frasco), o el contorno
+ * opaco si se pide «alfa». La app coloca la tarjeta por su cuerpo, así que
+ * si el cliente reexporta con otros márgenes la posición se recalcula sola.
+ */
+async function medirCuerpo(buffer, criterio) {
+  const { data, info } = await sharp(buffer).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const clave = criterio === 'alfa' ? null : [1, 3, 5].map((i) => Number.parseInt(criterio.slice(i, i + 2), 16));
+  let minX = info.width;
+  let minY = info.height;
+  let maxX = -1;
+  let maxY = -1;
+  for (let y = 0; y < info.height; y++) {
+    for (let x = 0; x < info.width; x++) {
+      const i = (y * info.width + x) * 4;
+      const dentro = clave
+        ? data[i + 3] > 250 && Math.abs(data[i] - clave[0]) + Math.abs(data[i + 1] - clave[1]) + Math.abs(data[i + 2] - clave[2]) < 16
+        : data[i + 3] > 200;
+      if (!dentro) continue;
+      minX = Math.min(minX, x);
+      minY = Math.min(minY, y);
+      maxX = Math.max(maxX, x);
+      maxY = Math.max(maxY, y);
+    }
+  }
+  if (maxX < 0) throw new Error(`No se encontró el cuerpo (${criterio}) en la imagen`);
+  return { x: minX, y: minY, ancho: maxX - minX + 1, alto: maxY - minY + 1 };
 }
 
 function piezasFrascosFinales() {

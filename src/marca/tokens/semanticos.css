@@ -1,0 +1,62 @@
+/*
+ * Nombres por función. Las pantallas solo usan estos. Para la pantalla dual se
+ * cambian los valores, nunca los nombres. Las duraciones y curvas no viven
+ * aquí: las escribe movimiento.ts al arrancar, para tener una sola fuente.
+ */
+:root {
+  --familia-interfaz: 'Interfaz', system-ui, sans-serif;
+
+  /* Colores */
+  --fondo-pantalla: var(--p-blanco);
+  --color-titulo: var(--p-gris-800);
+  --color-pie: var(--p-gris-800);
+  --color-encabezado-categoria: var(--p-gris-900);
+  --color-texto-tarjeta: var(--p-gris-800);
+  --fondo-tarjeta: var(--p-lila-100);
+  --color-sobre-primario: var(--p-blanco);
+  --degradado-primario: linear-gradient(
+    90deg,
+    var(--p-azul-cian) 0%,
+    var(--p-azul-claro) 30%,
+    var(--p-azul-medio) 50%,
+    var(--p-azul-oscuro) 70%,
+    var(--p-azul-profundo) 100%
+  );
+  --pista-progreso: var(--p-lila-100);
+  --fondo-invertido: linear-gradient(180deg, var(--p-azul-qr-arriba) 0%, var(--p-azul-qr-abajo) 100%);
+  --color-invertido: var(--p-blanco);
+  /* Propuesta (el PDF no dibuja el aviso de inactividad): velo blanco sobre la pantalla. */
+  --velo-aviso: rgb(255 255 255 / 0.9);
+  /* Opción elegida (el PDF no la dibuja; propuesta aprobada el 22-09): contorno azul del botón primario, por fuera. */
+  --color-seleccion: var(--p-azul-profundo);
+  --grosor-seleccion: 4px;
+
+  /* Cuerpos de letra */
+  --cuerpo-titulo: var(--p-cuerpo-73);
+  --interlineado-titulo: 76px;
+  --cuerpo-estilo-etiqueta: var(--p-cuerpo-56);
+  --cuerpo-escanea: var(--p-cuerpo-53);
+  --cuerpo-fabricacion: var(--p-cuerpo-50);
+  --cuerpo-cantidad: var(--p-cuerpo-46);
+  --cuerpo-encabezado-categoria: var(--p-cuerpo-41);
+  --cuerpo-tarjeta-grande: var(--p-cuerpo-40);
+  --cuerpo-pie: var(--p-cuerpo-37);
+  --cuerpo-tarjeta: var(--p-cuerpo-35);
+  --interlineado-tarjeta: 37px;
+  --cuerpo-rotulo-pequeno: var(--p-cuerpo-31);
+  --cuerpo-boton: var(--p-cuerpo-25);
+
+  /* Pesos y anchuras de la sustituta de Acumin, calibrados contra el PDF (ancho de línea y grosor de trazo). */
+  --peso-titulo: 700;
+  --anchura-titulo: 95%;
+  --peso-tarjeta: 750;
+  --anchura-negrita: 94%;
+  --peso-regular: 400;
+
+  /* Radios y sombras */
+  --radio-tarjeta: var(--p-radio-14);
+  --radio-boton-estilo: var(--p-radio-12);
+  --radio-tarjeta-grande: var(--p-radio-28);
+  --radio-pastilla: 999px;
+  --sombra-tarjeta: var(--p-sombra-tarjeta);
+}

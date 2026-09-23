@@ -12,7 +12,9 @@ import { app, BrowserWindow, ipcMain, powerSaveBlocker, protocol } from 'electro
 
 const ESQUEMA = 'app';
 const HOST = 'biocaps';
-const URL_INICIO = `${ESQUEMA}://${HOST}/index.html`;
+/** --humo (o HUMO_SALIR=1) abre la prueba técnica de distribución en lugar de la experiencia. */
+const HUMO = process.argv.includes('--humo') || process.env['HUMO_SALIR'] === '1';
+const URL_INICIO = `${ESQUEMA}://${HOST}/index.html${HUMO ? '?humo' : ''}`;
 
 const EMPAQUETADO = app.isPackaged;
 /** Carpeta del .exe (o del .exe portable, que se descomprime en %TEMP% y avisa su origen real). */

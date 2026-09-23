@@ -1,0 +1,11 @@
+/* Reglas comunes de la marca. Los valores salen de los tokens. */
+body {
+  font-family: var(--familia-interfaz);
+  color: var(--color-titulo);
+}
+
+/* Recorta la caja de texto a la altura de las mayúsculas y la línea base:
+   así se coloca cada texto por el borde superior de sus mayúsculas, igual que se midió en el PDF. */
+.recortado {
+  text-box: trim-both cap alphabetic;
+}

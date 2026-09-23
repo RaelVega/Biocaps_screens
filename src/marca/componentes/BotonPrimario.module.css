@@ -1,0 +1,35 @@
+/* 377×56 en (351, 381). Texto centrado en x = 533; flecha centrada en x = 700. */
+.boton {
+  position: absolute;
+  top: 381px;
+  left: 351px;
+  width: 377px;
+  height: 56px;
+  border-radius: var(--radio-pastilla);
+  background: var(--degradado-primario);
+  color: var(--color-sobre-primario);
+}
+
+.texto {
+  position: absolute;
+  top: 50%;
+  left: 182px;
+  transform: translate(-50%, -50%);
+  font-size: var(--cuerpo-boton);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+.flecha {
+  position: absolute;
+  top: 20px;
+  left: 336px;
+  width: 26px;
+  height: 16px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

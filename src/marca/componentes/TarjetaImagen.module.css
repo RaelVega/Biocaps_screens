@@ -1,0 +1,27 @@
+.tarjeta {
+  position: absolute;
+  color: var(--color-texto-tarjeta);
+}
+
+.imagen {
+  position: absolute;
+  max-width: none;
+}
+
+/* Propuesta aprobada (22-09): contorno azul de la opción elegida, por fuera del cuerpo y detrás de la imagen. */
+.contorno {
+  position: absolute;
+  inset: calc(-1 * var(--grosor-seleccion));
+  border-radius: calc(var(--radio-tarjeta-grande) + var(--grosor-seleccion));
+  box-shadow: inset 0 0 0 var(--grosor-seleccion) var(--color-seleccion);
+  opacity: 0;
+  transition: opacity var(--dur-salida) var(--curva-estandar);
+}
+
+.tarjeta[data-seleccionado] .contorno {
+  opacity: 1;
+}
+
+.tarjeta[aria-disabled] {
+  opacity: 0.4;
+}

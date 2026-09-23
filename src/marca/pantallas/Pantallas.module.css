@@ -1,0 +1,264 @@
+/*
+ * Posiciones de las pantallas en px del lienzo 1080×1920, medidas sobre las
+ * «página completa» del PDF. Los textos llevan la clase `recortado`: su `top`
+ * es el borde superior de las mayúsculas, como se midió.
+ * Aquí no van colores, cuerpos, radios, sombras ni duraciones literales: solo tokens.
+ */
+
+/* PAG 01 */
+.portada {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* PAG 03: la categoría elegida, sobre la lista */
+.encabezadoCategoria {
+  position: absolute;
+  top: 553px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-encabezado-categoria);
+  font-weight: var(--peso-regular);
+  color: var(--color-encabezado-categoria);
+}
+
+/* PAG 04: textos dentro del cuerpo de la tarjeta (348×220) */
+.formaNombre,
+.formaTamanos {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: var(--cuerpo-tarjeta);
+}
+
+.formaNombre {
+  top: 96px;
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+}
+
+.formaTamanos {
+  top: 136px;
+  font-weight: var(--peso-regular);
+  font-style: italic;
+}
+
+/* PAG 05: textos dentro del cuerpo de la tarjeta */
+.cantidadRotulo {
+  position: absolute;
+  top: 82px;
+  left: 56px;
+  font-size: var(--cuerpo-rotulo-pequeno);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+}
+
+.cantidadNombre {
+  position: absolute;
+  top: 116px;
+  left: 58px;
+  font-size: var(--cuerpo-cantidad);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
+}
+
+/* PAG 6.1–6.5 */
+.etiquetaPlana {
+  position: absolute;
+  top: 682px;
+  left: 35px;
+  /* En el PDF la etiqueta va un 1.4 % más grande que la pieza suelta (1003 px visibles frente a 989). */
+  width: 1029px;
+  height: auto;
+}
+
+.estiloNombre {
+  position: absolute;
+  top: 1362px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-estilo-etiqueta);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  color: var(--color-titulo);
+}
+
+/* PAG 07 (propuesta: el PDF no dibuja la vista previa ni el teclado) */
+.vistaPrevia {
+  position: absolute;
+  top: 530px;
+  left: 32px;
+}
+
+.vistaPrevia > img {
+  position: absolute;
+  inset: 0;
+}
+
+/* Tecla rechazada porque el nombre ya no cabe: temblor corto (límite duro y visible). */
+.vistaPreviaRechazo {
+  animation: temblor var(--dur-entrada) var(--curva-estandar);
+}
+
+@keyframes temblor {
+  20% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  80% {
+    transform: translateX(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vistaPreviaRechazo {
+    animation-name: destello;
+  }
+
+  @keyframes destello {
+    50% {
+      opacity: 0.6;
+    }
+  }
+}
+
+.teclado {
+  position: absolute;
+  top: 1160px;
+  left: 0;
+  right: 0;
+  --tecla-lado: 88px;
+  --tecla-separacion: 12px;
+  --tecla-radio: var(--radio-tarjeta);
+  --tecla-fondo: var(--fondo-tarjeta);
+  --tecla-color: var(--color-texto-tarjeta);
+  --tecla-sombra: var(--sombra-tarjeta);
+  --tecla-cuerpo: var(--cuerpo-tarjeta);
+  --tecla-peso: var(--peso-tarjeta);
+  --tecla-fondo-borrar: var(--degradado-primario);
+  --tecla-color-borrar: var(--color-sobre-primario);
+  --tecla-cuerpo-borrar: var(--cuerpo-boton);
+}
+
+/* PAG 09 — provisional */
+.pistaFabricacion {
+  position: absolute;
+  top: 870px;
+  left: 122px;
+  width: 753px;
+  height: 96px;
+  overflow: hidden;
+  border-radius: var(--radio-pastilla);
+  background: var(--pista-progreso);
+}
+
+.barraFabricacion {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radio-pastilla);
+  background: var(--degradado-primario);
+  transform-origin: left center;
+}
+
+.porcentaje {
+  position: absolute;
+  top: 902px;
+  left: 905px;
+  margin: 0;
+  font-size: var(--cuerpo-fabricacion);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  color: var(--color-titulo);
+  font-variant-numeric: tabular-nums;
+}
+
+.textoFabricacion {
+  position: absolute;
+  top: 1058px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-fabricacion);
+  font-weight: var(--peso-regular);
+  color: var(--color-titulo);
+}
+
+/* PAG 10: el frasco va a su tamaño de imagen y se escala al alto del PDF (881 px) desde arriba al centro. */
+.frascoTerminado {
+  position: absolute;
+  top: 608px;
+  left: 50%;
+  transform-origin: top center;
+}
+
+.frascoTerminado > img {
+  position: absolute;
+  inset: 0;
+}
+
+/* PAG 11 (medida sobre su página completa; los textos no vienen en el PDF, el cuerpo sale de la altura de sus mayúsculas) */
+.fondoQr {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.logoQr {
+  position: absolute;
+  top: 372px;
+  left: 329px;
+}
+
+.escaneaQr,
+.catalogoQr {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  color: var(--color-invertido);
+}
+
+.escaneaQr {
+  top: 614px;
+  font-size: var(--cuerpo-escanea);
+  font-weight: var(--peso-regular);
+}
+
+/* Imagen de marketing: recuadro blanco redondeado con el QR dentro. */
+.codigoQr {
+  position: absolute;
+  top: 689px;
+  left: 267px;
+}
+
+.catalogoQr {
+  top: 1326px;
+  font-size: var(--cuerpo-estilo-etiqueta);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+}
+
+.catalogoQrSegunda {
+  top: 1404px;
+}

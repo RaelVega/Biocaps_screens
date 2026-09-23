@@ -1,0 +1,41 @@
+/*
+ * Valores medidos del PDF de marketing (ver contexto/04-plan-design-tokens.md).
+ * Ninguna pantalla los usa directamente: solo a través de semanticos.css.
+ * Si una pantalla no coincide con su «página completa», se corrige el código, nunca estos valores.
+ */
+:root {
+  /* Paleta */
+  --p-blanco: #ffffff;
+  --p-gris-900: #404040;
+  --p-gris-800: #505050;
+  --p-lila-100: #d6ddf8;
+  --p-azul-marca: #2c3488;
+  --p-azul-cian: #0088ff;
+  --p-azul-claro: #0063ff;
+  --p-azul-medio: #004bf7;
+  --p-azul-oscuro: #003cdb;
+  --p-azul-profundo: #002dc1;
+  --p-azul-qr-arriba: #0024ac;
+  --p-azul-qr-abajo: #004cfa;
+
+  /* Cuerpos de letra (tamaños exactos del PDF) */
+  --p-cuerpo-73: 73.7px;
+  --p-cuerpo-56: 55.7px;
+  --p-cuerpo-53: 53px; /* «ESCANEA AQUÍ» de PAG 11, medido en su página completa */
+  --p-cuerpo-50: 50px;
+  --p-cuerpo-46: 45.7px;
+  --p-cuerpo-41: 40.6px;
+  --p-cuerpo-40: 40px;
+  --p-cuerpo-37: 37px;
+  --p-cuerpo-35: 35px;
+  --p-cuerpo-31: 31.2px;
+  --p-cuerpo-25: 24.6px;
+
+  /* Radios medidos */
+  --p-radio-12: 12px;
+  --p-radio-14: 14px;
+  --p-radio-28: 28px;
+
+  /* Sombra de tarjeta: desplazada abajo a la derecha, muy suave (estimada; se afina con la superposición) */
+  --p-sombra-tarjeta: 8px 10px 40px rgb(24 32 64 / 0.1);
+}

@@ -25,6 +25,11 @@ SALIR DE LA PANTALLA
   - Alt + F4          (cualquier opcion)
   - 2-RESPALDO\detener-respaldo.bat cierra Edge y el servidor de las opciones 2 y 3.
 
+PRUEBA TECNICA (antes del evento, en la laptop del stand, con el WiFi apagado)
+  - 1-EJECUTABLE\prueba-tecnica.bat y 2-RESPALDO\prueba-tecnica.bat
+    Muestran una lista de verificaciones. Todo debe salir con palomita y
+    terminar en "TODO BIEN". Si algo sale en rojo, tomar foto y avisar.
+
 AL CIERRE DEL EVENTO
   - Los datos anonimos de uso quedan en 1-EJECUTABLE\telemetria\ (un archivo por dia).
     Copia esa carpeta y entregala.

@@ -1,0 +1,24 @@
+/* Posiciones medidas en el PDF (px del lienzo 1080×1920). */
+.marco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.logo {
+  position: absolute;
+  top: 99px;
+  left: 414px;
+}
+
+.pie {
+  position: absolute;
+  top: 1804px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-pie);
+  font-weight: var(--peso-regular);
+  color: var(--color-pie);
+}

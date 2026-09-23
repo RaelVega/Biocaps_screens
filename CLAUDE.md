@@ -27,7 +27,10 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 ## Arquitectura
 
 - `src/motor/` es agnóstico de marca: nunca importa de `src/marca/` ni menciona «Biocaps». `src/marca/` sí puede importar del motor. La pantalla dual se hará copiando el repo y reemplazando `marca/` y `contenido/`, no con un sistema de temas.
-- `src/humo/` es la prueba de humo temporal del paso 0. Se borra cuando `main.tsx` monte el flujo real; `pruebas/humo/navegador.mjs` se va con ella.
+- `src/humo/` es la prueba técnica de distribución. Se abre con `?humo` (navegador) o `--humo` (ejecutable, `prueba-tecnica.bat` en la USB). **No se borra mientras siga pendiente la prueba en Windows.**
+- Estado de las pantallas: PAG 01–08 y PAG 11 replican el PDF (PAG 11 usa el QR de marketing, recortado de su página completa). **PAG 09 es provisional**: falta el frasco que cruza. En PAG 10 el nombre ya va en la caja del estilo; cajas, fuentes y colores de `rotuladoPlano`/`rotuladoFrasco` son provisionales hasta que lleguen las tipografías.
+- Aprobado por Rael (22-09) aunque el PDF no lo dibuja: el contorno azul de la opción elegida (por fuera del cuerpo y detrás de la imagen, para no cortar cápsula ni frasco), la atenuación de las formas no válidas en PAG 04, la vista previa y el teclado de PAG 07, el aviso de inactividad y la pantalla de fallo (se ve con `?fallo`).
+- **El nombre admite como máximo 14 caracteres (aprobado el 22-09) y además solo acepta una tecla si cabe en la caja de la etiqueta plana (PAG 07) y en la del frasco (PAG 10).** Una tecla rechazada hace temblar la vista previa. Si se cambia una caja o una fuente, correr `npm run estres`.
 - En los CSS de `src/marca/pantallas/` no puede haber colores, radios, sombras, duraciones ni tamaños de texto literales: solo `var(--…)` de los tokens de `04`.
 
 ## Contenido fuera del bundle (restricción 7)
@@ -57,6 +60,13 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 - npm 11 bloquea los scripts de instalación. El binario de Electron se baja con `npx install-electron`.
 - El `.exe` portable de un solo archivo (`empaquetar:win-portable`) necesita NSIS, que en Apple Silicon solo corre con Rosetta. La vía principal es la carpeta `win-unpacked`. `signAndEditExecutable: false` evita depender de wine.
 - El `.exe` va sin firmar: SmartScreen avisa («Más información → Ejecutar de todas formas»). No pide admin.
+
+## Texto y tipografía
+
+- Los textos se colocan con la clase `recortado` (`text-box: trim-both cap alphabetic`): su `top` es el borde superior de las mayúsculas, como se midió en el PDF.
+- **Nunca un bloque de varias líneas con `text-box`**: según `white-space` o `font-stretch`, Chromium mete ~12 px de más entre líneas. Cada línea va en su propio elemento (ver `Titulo.tsx` y `TarjetaLista.tsx`); entre líneas, `gap: calc(interlineado - 1cap)`.
+- Los saltos de línea que el PDF decide (p. ej. «COMPLEJO VITAMÍNICO Y / COENZIMA…») van como `\n` en el JSON, no se dejan al navegador.
+- Archivo sustituye a Acumin **calibrada contra el PDF**: títulos 700 al 95 % de anchura, negritas 750 al 94 % (`--peso-*`, `--anchura-*`). Si se cambia la fuente, se recalibra con `npm run visual` (ancho de línea a menos del 3 % y mismo grosor de trazo).
 
 ## Lienzo y kiosco
 
@@ -111,8 +121,10 @@ npm run lint                   # oxlint
 npm run ingesta                # assets-fuente/ → contenido/img + manifiesto + referencias
 npm run electron:dev           # build + Electron en ventana (KIOSCO=1 para kiosco)
 npm run armar:usb              # paquetes/Biocaps-USB con las vías A, B y B′ + LEEME
-npm run humo:navegador -- <url>  # prueba de humo en Chrome contra cualquier vía
-HUMO_SALIR=1 npx electron .    # prueba de humo en Electron; imprime HUMO_RESULTADO y sale
+npm run estres                 # nombres largos en los 5 estilos: ninguna línea fuera de su caja en PAG 07 ni PAG 10
+npm run visual [-- <url>]      # recorrido completo en Chrome 1080×1920 + comparación con los mockups (pruebas/visual/resultados/)
+npm run humo:navegador -- <url>  # prueba técnica (?humo) en Chrome contra cualquier vía
+HUMO_SALIR=1 npx electron .    # prueba técnica en Electron; imprime HUMO_RESULTADO y sale
 ```
 
-Antes de dar algo por terminado: `npm run build`, `npm test` y `npm run lint` en verde. Si hay cambios visuales, capturas en horizontal (1440×900) **y** en vertical (1080×1920). La prueba de resistencia de 8 h con toques aleatorios es criterio de entrega antes de viajar.
+Antes de dar algo por terminado: `npm run build`, `npm test` y `npm run lint` en verde. Si hay cambios visuales, `npm run visual` (sin errores de consola, comparación con el PDF) y una captura en horizontal (1440×900). La prueba de resistencia de 8 h con toques aleatorios es criterio de entrega antes de viajar.

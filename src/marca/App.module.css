@@ -1,0 +1,39 @@
+.arranque {
+  position: absolute;
+  inset: 0;
+  background: var(--fondo-pantalla);
+}
+
+.fallo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 48px;
+  padding: 0 122px;
+  background: var(--fondo-pantalla);
+  text-align: center;
+}
+
+.falloTitulo {
+  margin: 0;
+  font-size: var(--cuerpo-titulo);
+  font-weight: var(--peso-titulo);
+  font-stretch: var(--anchura-titulo);
+  color: var(--color-titulo);
+}
+
+.falloTexto {
+  margin: 0;
+  font-size: var(--cuerpo-pie);
+  color: var(--color-pie);
+}
+
+/* Detalle técnico, pequeño, para quien revise la pantalla. */
+.falloDetalle {
+  margin: 48px 0 0;
+  font-size: var(--cuerpo-boton);
+  color: var(--color-pie);
+  opacity: 0.6;
+  overflow-wrap: anywhere;
+}

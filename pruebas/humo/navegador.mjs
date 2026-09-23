@@ -28,7 +28,10 @@ pagina.on('console', (mensaje) => {
 });
 pagina.on('pageerror', (error) => console.log(`[error de página] ${error.message}`));
 
-await pagina.goto(url);
+// La prueba técnica vive en ?humo: la raíz abre la experiencia real.
+const destino = new URL(url);
+destino.searchParams.set('humo', '');
+await pagina.goto(destino.href);
 try {
   await pagina.waitForFunction(() => document.title.startsWith('HUMO:'), null, { timeout: 60_000 });
 } catch {

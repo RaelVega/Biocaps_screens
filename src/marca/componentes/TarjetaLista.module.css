@@ -1,0 +1,56 @@
+/* Medidas del PDF: x = 122, ancho 834; texto a 43 px del borde; chevron a 35 px del borde derecho. */
+.tarjeta {
+  position: absolute;
+  left: 122px;
+  width: 834px;
+  display: flex;
+  align-items: center;
+  padding: 0 80px 0 43px;
+  border-radius: var(--radio-tarjeta);
+  background: var(--fondo-tarjeta);
+  box-shadow: var(--sombra-tarjeta);
+  color: var(--color-texto-tarjeta);
+  font-weight: var(--peso-tarjeta);
+  font-stretch: var(--anchura-negrita);
+  transition:
+    transform var(--dur-presion) var(--curva-estandar),
+    box-shadow var(--dur-salida) var(--curva-estandar);
+}
+
+.ingrediente {
+  height: 76px;
+  font-size: var(--cuerpo-tarjeta-grande);
+}
+
+.suplemento {
+  height: 96px;
+  font-size: var(--cuerpo-tarjeta);
+}
+
+/* Líneas separadas de mayúscula a mayúscula por el interlineado del PDF (37 px). */
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--interlineado-tarjeta) - 1cap);
+}
+
+/* Propuesta aprobada (22-09): contorno azul por fuera de la opción elegida. */
+.tarjeta[data-seleccionado] {
+  box-shadow:
+    var(--sombra-tarjeta),
+    0 0 0 var(--grosor-seleccion) var(--color-seleccion);
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 35px;
+  width: 12px;
+  height: 22px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

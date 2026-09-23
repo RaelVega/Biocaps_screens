@@ -47,6 +47,8 @@ Un **token** es un valor de diseño con nombre: un color, un tamaño de letra, u
 | `--p-azul-qr-arriba` | `#0024AC` | Fondo de PAG 11, arriba |
 | `--p-azul-qr-abajo` | `#004CFA` | Fondo de PAG 11, abajo |
 
+> **Nota de implementación (22-09):** en el código, los colores semánticos llevan prefijo `--color-*` / `--fondo-*` y los tamaños de la §3.2 se llaman `--cuerpo-*` («cuerpo» es el término tipográfico del tamaño), para que `--texto-titulo` no nombre a la vez un color y un tamaño. Los valores son los de este documento. Pesos y anchuras de la sustituta quedaron calibrados en `semanticos.css` (títulos 700 al 95 %, negritas 750 al 94 %).
+
 ### 2.2 Semánticos
 
 | Token semántico | Apunta a |

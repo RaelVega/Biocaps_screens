@@ -4,28 +4,29 @@
     { "id": "logo-azul", "origen": "PAG 02 INGREDIENTE/página completa selecciona el ingrediente.png", "recorte": [1725, 413, 1044, 231], "colorAAlfa": "#FFFFFF", "ancho": 250, "nota": "Recortado del mockup mientras no llega el logo suelto en SVG" },
     { "id": "logo-blanco", "origen": "PAG 11 CÓDIGO QR/logo blanco biocaps.png", "ancho": 422 },
     { "id": "fondo-qr", "origen": "PAG 11 CÓDIGO QR/fondo.png", "ancho": 1080 },
+    { "id": "qr-codigo", "origen": "PAG 11 CÓDIGO QR/página completa código QR.png", "recorte": [1114, 2871, 2262, 2262], "ancho": 543, "nota": "El QR no viene como pieza suelta: se recorta de la página completa (recuadro blanco incluido). Lleva a qr.url de contenido.json" },
 
-    { "id": "capsula-oblonga", "origen": "PAG 04 TIPO DE CÁPSULA/oblonga.png", "borrarTexto": [[407, 602, 747, 316]], "ancho": 380 },
-    { "id": "capsula-oval", "origen": "PAG 04 TIPO DE CÁPSULA/oval.png", "borrarTexto": [[434, 585, 656, 356]], "ancho": 380 },
-    { "id": "capsula-redonda", "origen": "PAG 04 TIPO DE CÁPSULA/redonda.png", "borrarTexto": [[384, 668, 739, 333]], "ancho": 380 },
-    { "id": "capsula-twist-off", "origen": "PAG 04 TIPO DE CÁPSULA/twist off.png", "borrarTexto": [[357, 628, 808, 333]], "ancho": 380 },
+    { "id": "capsula-oblonga", "origen": "PAG 04 TIPO DE CÁPSULA/oblonga.png", "borrarTexto": [[407, 602, 747, 316]], "ancho": 380, "medirCuerpo": "#D6DDF8" },
+    { "id": "capsula-oval", "origen": "PAG 04 TIPO DE CÁPSULA/oval.png", "borrarTexto": [[434, 585, 656, 356]], "ancho": 380, "medirCuerpo": "#D6DDF8" },
+    { "id": "capsula-redonda", "origen": "PAG 04 TIPO DE CÁPSULA/redonda.png", "borrarTexto": [[384, 668, 739, 333]], "ancho": 380, "medirCuerpo": "#D6DDF8" },
+    { "id": "capsula-twist-off", "origen": "PAG 04 TIPO DE CÁPSULA/twist off.png", "borrarTexto": [[357, 628, 808, 333]], "ancho": 380, "medirCuerpo": "#D6DDF8" },
 
-    { "id": "cantidad-30", "origen": "PAG 05 CANT CAPSULAS/30 cápsulas.png", "borrarTexto": [[261, 362, 1302, 310]], "recolorear": [[254, 275, 235, 45, "#505050"]], "ancho": 715, "nota": "La pieza suelta trae la barrita azul; en la página completa del PDF es gris y el PDF manda" },
-    { "id": "cantidad-60", "origen": "PAG 05 CANT CAPSULAS/fraasco 60 caps.png", "borrarTexto": [[261, 362, 1307, 310]], "ancho": 715 },
-    { "id": "cantidad-120", "origen": "PAG 05 CANT CAPSULAS/frasco 120 caps.png", "borrarTexto": [[261, 430, 1378, 310]], "ancho": 715 },
+    { "id": "cantidad-30", "origen": "PAG 05 CANT CAPSULAS/30 cápsulas.png", "borrarTexto": [[261, 362, 1302, 310]], "recolorear": [[254, 275, 235, 45, "#505050"]], "ancho": 715, "medirCuerpo": "#D6DDF8", "nota": "La pieza suelta trae la barrita azul; en la página completa del PDF es gris y el PDF manda" },
+    { "id": "cantidad-60", "origen": "PAG 05 CANT CAPSULAS/fraasco 60 caps.png", "borrarTexto": [[261, 362, 1307, 310]], "ancho": 715, "medirCuerpo": "#D6DDF8" },
+    { "id": "cantidad-120", "origen": "PAG 05 CANT CAPSULAS/frasco 120 caps.png", "borrarTexto": [[261, 430, 1378, 310]], "ancho": 715, "medirCuerpo": "#D6DDF8" },
 
-    { "id": "frasco-color-transparente", "origen": "PAG 08 COLOR DEL FRASCO/frasco transparente.png", "ancho": 347 },
-    { "id": "frasco-color-negro", "origen": "PAG 08 COLOR DEL FRASCO/frasco negro.png", "ancho": 347 },
-    { "id": "frasco-color-azul", "origen": "PAG 08 COLOR DEL FRASCO/frasco azul.png", "ancho": 347 },
-    { "id": "frasco-color-blanco", "origen": "PAG 08 COLOR DEL FRASCO/frasco blanco.png", "ancho": 347 },
-    { "id": "frasco-color-rosa", "origen": "PAG 08 COLOR DEL FRASCO/frasco rosa.png", "ancho": 347 },
-    { "id": "frasco-color-gris", "origen": "PAG 08 COLOR DEL FRASCO/frasco gris.png", "ancho": 347 },
+    { "id": "frasco-color-transparente", "origen": "PAG 08 COLOR DEL FRASCO/frasco transparente.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-color-negro", "origen": "PAG 08 COLOR DEL FRASCO/frasco negro.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-color-azul", "origen": "PAG 08 COLOR DEL FRASCO/frasco azul.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-color-blanco", "origen": "PAG 08 COLOR DEL FRASCO/frasco blanco.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-color-rosa", "origen": "PAG 08 COLOR DEL FRASCO/frasco rosa.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-color-gris", "origen": "PAG 08 COLOR DEL FRASCO/frasco gris.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
 
-    { "id": "etiqueta-plana-farmaceutico", "origen": "PAG 6.1 FARMACÉUTICO/etiqueta farmacéutica f.png", "ancho": 1015 },
-    { "id": "etiqueta-plana-naturista", "origen": "PÁG 6.2 NATURISTA/etiqueta narustista.png", "ancho": 1015 },
-    { "id": "etiqueta-plana-femenino", "origen": "PÁG 6.3 FEMENINO/etiqueta femenina.png", "ancho": 1015 },
-    { "id": "etiqueta-plana-moderno", "origen": "PAG 6.4 MODERNO/etiqueta moderna.png", "ancho": 1015 },
-    { "id": "etiqueta-plana-deportivo", "origen": "PAG 6.5 DEPORTIVO/etiqueta deportiva.png", "ancho": 1015 }
+    { "id": "etiqueta-plana-farmaceutico", "origen": "PAG 6.1 FARMACÉUTICO/etiqueta farmacéutica f.png", "ancho": 1015, "medirCuerpo": "alfa" },
+    { "id": "etiqueta-plana-naturista", "origen": "PÁG 6.2 NATURISTA/etiqueta narustista.png", "ancho": 1015, "medirCuerpo": "alfa" },
+    { "id": "etiqueta-plana-femenino", "origen": "PÁG 6.3 FEMENINO/etiqueta femenina.png", "ancho": 1015, "medirCuerpo": "alfa" },
+    { "id": "etiqueta-plana-moderno", "origen": "PAG 6.4 MODERNO/etiqueta moderna.png", "ancho": 1015, "medirCuerpo": "alfa" },
+    { "id": "etiqueta-plana-deportivo", "origen": "PAG 6.5 DEPORTIVO/etiqueta deportiva.png", "ancho": 1015, "medirCuerpo": "alfa" }
   ],
 
   "frascosFinales": {

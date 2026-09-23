@@ -32,14 +32,24 @@ rmSync(DESTINO, { recursive: true, force: true });
 const ejecutable = path.join(DESTINO, '1-EJECUTABLE');
 const respaldo = path.join(DESTINO, '2-RESPALDO');
 
+/**
+ * cmd y PowerShell 5.1 necesitan CRLF, y PowerShell además BOM para leer bien
+ * los acentos. Se fuerza al copiar, sin depender de cómo esté el archivo en disco.
+ */
+function copiarParaWindows(origen, destino) {
+  const texto = readFileSync(origen, 'utf8').replace(/^﻿/, '').replace(/\r?\n/g, '\r\n');
+  writeFileSync(destino, destino.endsWith('.ps1') ? `﻿${texto}` : texto);
+}
+
 cpSync(WIN, ejecutable, { recursive: true });
 cpSync(path.join(RAIZ, 'dist'), path.join(respaldo, 'web'), { recursive: true });
 cpSync(CACHE_CADDY, path.join(respaldo, 'caddy.exe'));
-for (const archivo of ['Caddyfile', 'servir.ps1', 'iniciar-respaldo.bat', 'iniciar-sin-exe.bat', 'abrir-edge.bat', 'detener-respaldo.bat']) {
-  cpSync(path.join(RAIZ, 'cascaras/respaldo-local', archivo), path.join(respaldo, archivo));
+cpSync(path.join(RAIZ, 'cascaras/respaldo-local/Caddyfile'), path.join(respaldo, 'Caddyfile'));
+for (const archivo of ['servir.ps1', 'iniciar-respaldo.bat', 'iniciar-sin-exe.bat', 'abrir-edge.bat', 'detener-respaldo.bat', 'prueba-tecnica.bat']) {
+  copiarParaWindows(path.join(RAIZ, 'cascaras/respaldo-local', archivo), path.join(respaldo, archivo));
 }
-// El Bloc de notas de Windows antiguo necesita CRLF.
-const leeme = readFileSync(path.join(RAIZ, 'cascaras/usb/LEEME.txt'), 'utf8').replace(/\r?\n/g, '\r\n');
-writeFileSync(path.join(DESTINO, 'LEEME.txt'), leeme);
+copiarParaWindows(path.join(RAIZ, 'cascaras/usb/prueba-tecnica-ejecutable.bat'), path.join(ejecutable, 'prueba-tecnica.bat'));
+// El Bloc de notas de Windows antiguo también necesita CRLF.
+copiarParaWindows(path.join(RAIZ, 'cascaras/usb/LEEME.txt'), path.join(DESTINO, 'LEEME.txt'));
 
 console.log(`Listo: ${path.relative(RAIZ, DESTINO)}`);

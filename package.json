@@ -19,12 +19,13 @@
     "empaquetar:win-portable": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --win portable --x64",
     "armar:usb": "npm run empaquetar:win && node cascaras/usb/armar-usb.mjs",
     "humo:navegador": "node pruebas/humo/navegador.mjs",
-    "ingesta": "node ingesta/ingerir.mjs"
+    "ingesta": "node ingesta/ingerir.mjs",
+    "visual": "node pruebas/visual/recorrido.mjs",
+    "estres": "node pruebas/visual/estres-nombre.mjs"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.3",
     "@types/node": "^26.6.2",
-    "@types/qrcode": "^1.5.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
@@ -36,7 +37,6 @@
     "motion": "^13.4.1",
     "oxlint": "^1.85.0",
     "playwright-core": "^1.63.0",
-    "qrcode": "^1.5.4",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "sharp": "^0.35.4",

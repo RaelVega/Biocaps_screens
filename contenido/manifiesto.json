@@ -17,95 +17,208 @@
       "ancho": 1080,
       "alto": 1920
     },
+    "qr-codigo": {
+      "archivo": "img/biocaps_qr_codigo_v1.webp",
+      "ancho": 543,
+      "alto": 543
+    },
     "capsula-oblonga": {
       "archivo": "img/biocaps_capsula_oblonga_v1.webp",
       "ancho": 380,
-      "alto": 296
+      "alto": 296,
+      "cuerpo": {
+        "x": 9,
+        "y": 52,
+        "ancho": 348,
+        "alto": 220
+      }
     },
     "capsula-oval": {
       "archivo": "img/biocaps_capsula_oval_v1.webp",
       "ancho": 380,
-      "alto": 296
+      "alto": 296,
+      "cuerpo": {
+        "x": 10,
+        "y": 52,
+        "ancho": 347,
+        "alto": 220
+      }
     },
     "capsula-redonda": {
       "archivo": "img/biocaps_capsula_redonda_v1.webp",
       "ancho": 380,
-      "alto": 307
+      "alto": 307,
+      "cuerpo": {
+        "x": 9,
+        "y": 63,
+        "ancho": 348,
+        "alto": 221
+      }
     },
     "capsula-twist-off": {
       "archivo": "img/biocaps_capsula_twist_off_v1.webp",
       "ancho": 380,
-      "alto": 297
+      "alto": 297,
+      "cuerpo": {
+        "x": 9,
+        "y": 53,
+        "ancho": 348,
+        "alto": 221
+      }
     },
     "cantidad-30": {
       "archivo": "img/biocaps_cantidad_30_v1.webp",
       "ancho": 715,
-      "alto": 227
+      "alto": 227,
+      "cuerpo": {
+        "x": 9,
+        "y": 9,
+        "ancho": 683,
+        "alto": 194
+      }
     },
     "cantidad-60": {
       "archivo": "img/biocaps_cantidad_60_v1.webp",
       "ancho": 715,
-      "alto": 227
+      "alto": 227,
+      "cuerpo": {
+        "x": 9,
+        "y": 10,
+        "ancho": 683,
+        "alto": 194
+      }
     },
     "cantidad-120": {
       "archivo": "img/biocaps_cantidad_120_v1.webp",
       "ancho": 715,
-      "alto": 244
+      "alto": 244,
+      "cuerpo": {
+        "x": 10,
+        "y": 26,
+        "ancho": 682,
+        "alto": 194
+      }
     },
     "frasco-color-transparente": {
       "archivo": "img/biocaps_frasco_color_transparente_v1.webp",
       "ancho": 347,
-      "alto": 391
+      "alto": 391,
+      "cuerpo": {
+        "x": 9,
+        "y": 60,
+        "ancho": 315,
+        "alto": 308
+      }
     },
     "frasco-color-negro": {
       "archivo": "img/biocaps_frasco_color_negro_v1.webp",
       "ancho": 347,
-      "alto": 394
+      "alto": 394,
+      "cuerpo": {
+        "x": 10,
+        "y": 63,
+        "ancho": 314,
+        "alto": 308
+      }
     },
     "frasco-color-azul": {
       "archivo": "img/biocaps_frasco_color_azul_v1.webp",
       "ancho": 347,
-      "alto": 392
+      "alto": 392,
+      "cuerpo": {
+        "x": 9,
+        "y": 61,
+        "ancho": 315,
+        "alto": 308
+      }
     },
     "frasco-color-blanco": {
       "archivo": "img/biocaps_frasco_color_blanco_v1.webp",
       "ancho": 347,
-      "alto": 390
+      "alto": 390,
+      "cuerpo": {
+        "x": 10,
+        "y": 59,
+        "ancho": 314,
+        "alto": 309
+      }
     },
     "frasco-color-rosa": {
       "archivo": "img/biocaps_frasco_color_rosa_v1.webp",
       "ancho": 347,
-      "alto": 391
+      "alto": 391,
+      "cuerpo": {
+        "x": 9,
+        "y": 60,
+        "ancho": 315,
+        "alto": 308
+      }
     },
     "frasco-color-gris": {
       "archivo": "img/biocaps_frasco_color_gris_v1.webp",
       "ancho": 347,
-      "alto": 391
+      "alto": 391,
+      "cuerpo": {
+        "x": 10,
+        "y": 60,
+        "ancho": 314,
+        "alto": 308
+      }
     },
     "etiqueta-plana-farmaceutico": {
       "archivo": "img/biocaps_etiqueta_plana_farmaceutico_v1.webp",
       "ancho": 1015,
-      "alto": 399
+      "alto": 399,
+      "cuerpo": {
+        "x": 9,
+        "y": 9,
+        "ancho": 983,
+        "alto": 367
+      }
     },
     "etiqueta-plana-naturista": {
       "archivo": "img/biocaps_etiqueta_plana_naturista_v1.webp",
       "ancho": 1015,
-      "alto": 399
+      "alto": 399,
+      "cuerpo": {
+        "x": 9,
+        "y": 8,
+        "ancho": 989,
+        "alto": 369
+      }
     },
     "etiqueta-plana-femenino": {
       "archivo": "img/biocaps_etiqueta_plana_femenino_v1.webp",
       "ancho": 1015,
-      "alto": 399
+      "alto": 399,
+      "cuerpo": {
+        "x": 9,
+        "y": 9,
+        "ancho": 984,
+        "alto": 368
+      }
     },
     "etiqueta-plana-moderno": {
       "archivo": "img/biocaps_etiqueta_plana_moderno_v1.webp",
       "ancho": 1015,
-      "alto": 403
+      "alto": 403,
+      "cuerpo": {
+        "x": 9,
+        "y": 6,
+        "ancho": 984,
+        "alto": 378
+      }
     },
     "etiqueta-plana-deportivo": {
       "archivo": "img/biocaps_etiqueta_plana_deportivo_v1.webp",
       "ancho": 1015,
-      "alto": 398
+      "alto": 398,
+      "cuerpo": {
+        "x": 8,
+        "y": 9,
+        "ancho": 985,
+        "alto": 366
+      }
     },
     "frasco-final-farmaceutico-transparente": {
       "archivo": "img/biocaps_frasco_final_farmaceutico_transparente_v1.webp",

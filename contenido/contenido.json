@@ -2,14 +2,15 @@
   "version": 1,
   "_pendientes": [
     "formaPorSuplemento.multivitaminico-a1-a4: sin forma en el documento de combinaciones (Grupo AB). Mientras falte, el visitante ve las 4 formas activas.",
-    "nombreProducto.maxCaracteres: máximo de líneas y regla si se excede (marketing). null = sin límite de contenido.",
-    "qr.url: URL del catálogo (Grupo AB)."
+    "estilos[].rotuladoPlano y rotuladoFrasco: caja, fuente y color del nombre en cada estilo son provisionales hasta que marketing entregue las tipografías (TIPOGRAFÍAS/ vacía) y confirme medidas."
   ],
   "marco": {
     "pie": "Cada elección da forma a tu producto",
     "botonSiguiente": "SIGUIENTE",
     "botonFinalizar": "FINALIZAR",
-    "logo": "logo-azul"
+    "logo": "logo-azul",
+    "aviso": { "titulo": "¿SIGUES AHÍ?", "texto": "Toca la pantalla para continuar" },
+    "error": { "titulo": "VOLVEMOS EN UN MOMENTO", "texto": "La pantalla se está reiniciando" }
   },
   "pantallas": {
     "ingrediente": { "titulo": ["SELECCIONA EL", "INGREDIENTE"] },
@@ -17,7 +18,20 @@
     "capsula": { "titulo": ["ELIGE EL TIPO", "DE CÁPSULA"] },
     "cantidad": { "titulo": ["ELIGE LA CANTIDAD", "DE CÁPSULAS"] },
     "etiqueta": { "titulo": ["SELECCIONA", "EL TIPO DE ETIQUETA"] },
-    "nombre": { "titulo": ["NOMBRA TU", "PRODUCTO"] },
+    "nombre": {
+      "titulo": ["NOMBRA TU", "PRODUCTO"],
+      "teclado": {
+        "filas": [
+          ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
+          ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
+          ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ñ"],
+          ["Z", "X", "C", "V", "B", "N", "M", "&", "-", "."],
+          ["Á", "É", "Í", "Ó", "Ú", "Ü"]
+        ],
+        "borrar": "BORRAR",
+        "espacio": "ESPACIO"
+      }
+    },
     "color": { "titulo": ["ELIGE EL COLOR", "DE TU FRASCO"] },
     "fabricacion": { "texto": "Se está fabricando tu producto" },
     "terminado": { "titulo": ["CONOCE TU", "PRODUCTO TERMINADO"] },
@@ -26,7 +40,9 @@
       "catalogo": ["¿QUIERES CONOCER", "TODO NUESTRO CATÁLOGO?"],
       "logo": "logo-blanco",
       "fondo": "fondo-qr",
-      "url": null
+      "codigo": "qr-codigo",
+      "_url": "Decodificada del QR de marketing (página completa de PAG 11). Si cambia el QR, cambia también esta URL.",
+      "url": "https://indd.adobe.com/view/cb12c78f-e384-4636-baf4-73c1fa9640e5"
     }
   },
   "categorias": [
@@ -48,8 +64,8 @@
     { "id": "multivitaminico-d-rojo", "categoria": "multivitaminicos", "nombre": "MULTIVITAMÍNICO D ROJO" },
     { "id": "complejo-b", "categoria": "multivitaminicos", "nombre": "COMPLEJO B" },
     { "id": "complejo-vitaminico-verde", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO VERDE" },
-    { "id": "complejo-q10-a1", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y COENZIMA Q-10 A-1" },
-    { "id": "complejo-q10-a2", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y COENZIMA Q-10 A-2" },
+    { "id": "complejo-q10-a1", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y\nCOENZIMA Q-10 A-1" },
+    { "id": "complejo-q10-a2", "categoria": "multivitaminicos", "nombre": "COMPLEJO VITAMÍNICO Y\nCOENZIMA Q-10 A-2" },
     { "id": "zinc", "categoria": "multivitaminicos", "nombre": "ZINC" },
 
     { "id": "vitamina-e-500", "categoria": "vitaminicos", "nombre": "VITAMINA E - 500" },
@@ -123,11 +139,21 @@
     { "id": "120", "rotulo": "FRASCO", "nombre": "120 CÁPSULAS", "imagen": "cantidad-120" }
   ],
   "estilos": [
-    { "id": "naturista", "nombre": "NATURISTA", "etiquetaPlana": "etiqueta-plana-naturista" },
-    { "id": "farmaceutico", "nombre": "FARMACÉUTICO", "etiquetaPlana": "etiqueta-plana-farmaceutico" },
-    { "id": "moderno", "nombre": "MODERNO", "etiquetaPlana": "etiqueta-plana-moderno" },
-    { "id": "deportivo", "nombre": "DEPORTIVO", "etiquetaPlana": "etiqueta-plana-deportivo" },
-    { "id": "femenino", "nombre": "FEMENINO", "etiquetaPlana": "etiqueta-plana-femenino" }
+    { "id": "naturista", "nombre": "NATURISTA", "etiquetaPlana": "etiqueta-plana-naturista",
+      "rotuladoPlano": {"caja": [372,96,270,170], "rotacion": 0, "fuente": "Interfaz", "peso": 500, "italica": false, "color": "#2F5A1F", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 30, "interlineado": 1.05},
+      "rotuladoFrasco": {"caja": [8,360,250,200], "rotacion": 0, "fuente": "Interfaz", "peso": 500, "italica": false, "color": "#2F5A1F", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 26, "interlineado": 1.05} },
+    { "id": "farmaceutico", "nombre": "FARMACÉUTICO", "etiquetaPlana": "etiqueta-plana-farmaceutico",
+      "rotuladoPlano": {"caja": [370,150,290,120], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 800, "italica": false, "color": "#3D3D3D", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 56, "cuerpoMinimo": 28, "interlineado": 1.05},
+      "rotuladoFrasco": {"caja": [0,470,300,200], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 800, "italica": false, "color": "#3D3D3D", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 60, "cuerpoMinimo": 24, "interlineado": 1.05} },
+    { "id": "moderno", "nombre": "MODERNO", "etiquetaPlana": "etiqueta-plana-moderno",
+      "rotuladoPlano": {"caja": [330,70,110,230], "rotacion": -90, "fuente": "Interfaz", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 52, "cuerpoMinimo": 26, "interlineado": 1},
+      "rotuladoFrasco": {"caja": [-50,288,120,312], "rotacion": -90, "fuente": "Interfaz", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 56, "cuerpoMinimo": 22, "interlineado": 1} },
+    { "id": "deportivo", "nombre": "DEPORTIVO", "etiquetaPlana": "etiqueta-plana-deportivo",
+      "rotuladoPlano": {"caja": [330,80,360,170], "rotacion": 0, "fuente": "Interfaz", "peso": 900, "italica": true, "color": "#F26A1B", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 72, "cuerpoMinimo": 32, "interlineado": 0.95},
+      "rotuladoFrasco": {"caja": [0,300,330,210], "rotacion": 0, "fuente": "Interfaz", "peso": 900, "italica": true, "color": "#F26A1B", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 76, "cuerpoMinimo": 26, "interlineado": 0.95} },
+    { "id": "femenino", "nombre": "FEMENINO", "etiquetaPlana": "etiqueta-plana-femenino",
+      "rotuladoPlano": {"caja": [330,110,360,170], "rotacion": 0, "fuente": "Interfaz", "peso": 700, "italica": false, "color": "#B0175E", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 60, "cuerpoMinimo": 28, "interlineado": 1.05},
+      "rotuladoFrasco": {"caja": [0,400,320,220], "rotacion": 0, "fuente": "Interfaz", "peso": 700, "italica": false, "color": "#7A0E46", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 24, "interlineado": 1.05} }
   ],
   "colores": [
     { "id": "transparente", "nombre": "TRANSPARENTE", "imagen": "frasco-color-transparente" },
@@ -139,7 +165,8 @@
   ],
   "_frascoFinal": "Id de manifiesto del frasco terminado: se sustituyen {estilo} y {color}.",
   "frascoFinal": "frasco-final-{estilo}-{color}",
+  "_nombreProducto": "Máximo aprobado por Rael el 22-09: 14 caracteres (7 por línea, sugerencia de marketing), contando espacios. Además el nombre tiene que caber por ancho en la etiqueta plana y en el frasco.",
   "nombreProducto": {
-    "maxCaracteres": null
+    "maxCaracteres": 14
   }
 }
