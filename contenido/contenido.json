@@ -1,7 +1,7 @@
 {
   "version": 1,
   "_pendientes": [
-    "formaPorSuplemento.multivitaminico-a1-a4: sin forma en el documento de combinaciones (Grupo AB). Mientras falte, el visitante ve las 4 formas activas.",
+    "formaPorSuplemento.multivitaminico-a1-a4: sin forma en el documento de combinaciones (Grupo AB). Mientras falte, no se muestra en PAG 03 (Multivitamínicos queda con 6 opciones; decisión de Rael, 23-09).",
     "estilos[].rotuladoPlano y rotuladoFrasco: caja, fuente y color del nombre en cada estilo son provisionales hasta que marketing entregue las tipografías (TIPOGRAFÍAS/ vacía) y confirme medidas."
   ],
   "marco": {
@@ -35,7 +35,8 @@
       }
     },
     "color": { "titulo": ["ELIGE EL COLOR", "DE TU FRASCO"] },
-    "fabricacion": { "texto": "Se está fabricando tu producto" },
+    "_fabricacion": "«frasco»: el de PAG 09, siempre azul sea cual sea el color elegido (convención de marca, Rael 23-09).",
+    "fabricacion": { "texto": "Se está fabricando tu producto", "frasco": "frasco-transicion" },
     "terminado": { "titulo": ["CONOCE TU", "PRODUCTO TERMINADO"] },
     "qr": {
       "escanea": "ESCANEA AQUÍ",

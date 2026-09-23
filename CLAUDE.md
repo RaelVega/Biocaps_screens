@@ -28,7 +28,7 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 
 - `src/motor/` es agnóstico de marca: nunca importa de `src/marca/` ni menciona «Biocaps». `src/marca/` sí puede importar del motor. La pantalla dual se hará copiando el repo y reemplazando `marca/` y `contenido/`, no con un sistema de temas.
 - `src/humo/` es la prueba técnica de distribución. Se abre con `?humo` (navegador) o `--humo` (ejecutable, `prueba-tecnica.bat` en la USB). **No se borra mientras siga pendiente la prueba en Windows.**
-- Estado de las pantallas: PAG 01–08 y PAG 11 replican el PDF (PAG 11 usa el QR de marketing, recortado de su página completa). **PAG 09 es provisional**: falta el frasco que cruza. En PAG 10 el nombre ya va en la caja del estilo; cajas, fuentes y colores de `rotuladoPlano`/`rotuladoFrasco` son provisionales hasta que lleguen las tipografías.
+- Estado de las pantallas: PAG 01–08 y PAG 11 replican el PDF (PAG 11 usa el QR de marketing, recortado de su página completa). PAG 09 lleva el frasco azul del PDF, que recorre la barra de principio a fin movido por el mismo progreso (el borde del relleno queda siempre detrás del frasco); es siempre el azul, sea cual sea el color elegido (convención de marca, Rael 23-09). En PAG 10 el nombre ya va en la caja del estilo; cajas, fuentes y colores de `rotuladoPlano`/`rotuladoFrasco` son provisionales hasta que lleguen las tipografías.
 - Aprobado por Rael (22-09) aunque el PDF no lo dibuja: el contorno azul de la opción elegida (por fuera del cuerpo y detrás de la imagen, para no cortar cápsula ni frasco), la atenuación de las formas no válidas en PAG 04, la vista previa y el teclado de PAG 07, el aviso de inactividad y la pantalla de fallo (se ve con `?fallo`). El 23-09, en las dos variantes: el logo blanco centrado y «TOCA PARA INICIAR» sobre el video de portada (`pantallas.portada.logo` / `.invitacion`; `null` los quita si el video final ya los trae).
 - **El nombre admite como máximo 14 caracteres (aprobado el 22-09) y además solo acepta una tecla si cabe en la caja de la etiqueta plana (PAG 07) y en la del frasco (PAG 10).** Una tecla rechazada hace temblar la vista previa. Si se cambia una caja o una fuente, correr `npm run estres`.
 - En los CSS de `src/marca/pantallas/` no puede haber colores, radios, sombras, duraciones ni tamaños de texto literales: solo `var(--…)` de los tokens de `04`.
@@ -119,9 +119,9 @@ npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por d
 ## Reglas de negocio que no se ven en el PDF
 
 - **La forma de la cápsula depende del suplemento elegido.** PAG 04 parece una elección libre y no lo es. La matriz `formaPorSuplemento` vive en `contenido.json`, normalizada contra los nombres del PDF (el documento original trae erratas). La regla está en `catalogo.formasValidas()`, no en las pantallas.
-- **Multivitamínico A-1 / A-4 no tiene forma en la matriz** y no se rellena inventando. Mientras falte, `formasValidas()` devuelve las 4 para no dejar al visitante sin salida. Cuando llegue el dato, se quita de `SIN_FORMA_PENDIENTE` en `src/marca/flujo.test.ts`; esa prueba falla si aparece otro suplemento sin forma.
+- **Multivitamínico A-1 / A-4 no tiene forma en la matriz** y no se rellena inventando. Mientras falte, **no se muestra en PAG 03** (`catalogo.suplementosDe()` deja fuera los suplementos sin forma; decisión de Rael, 23-09), así PAG 04 siempre llega con una sola cápsula. Cuando llegue el dato vuelve solo; entonces se quita de `SIN_FORMA_PENDIENTE` en `src/marca/flujo.test.ts`, que falla si aparece otro suplemento sin forma.
 - Las tarjetas de PAG 04 y PAG 05 son las imágenes del cliente **con el texto borrado** en la ingesta: el nombre y los tamaños se escriben en vivo encima, desde el JSON.
-- PAG 10 no compone capas: usa uno de los 30 renders `{estilo} {color}` y solo dibuja el nombre encima. Los frascos sin etiqueta de PAG 08 son para elegir el color y para PAG 09. `frasco transición.png` solo existe en azul.
+- PAG 10 no compone capas: usa uno de los 30 renders `{estilo} {color}` y solo dibuja el nombre encima. Los frascos sin etiqueta de PAG 08 son para elegir el color. PAG 09 usa siempre `frasco transición.png` (id `frasco-transicion`), que solo existe en azul.
 - **El nombre se ajusta por ancho medido, no por número de caracteres.** El límite de caracteres solo aplica al campo de PAG 07 (duro y visible). La caja de cada estilo va en el JSON y admite rotación (en Moderno el nombre va vertical).
 - La fuente del nombre la decide el estilo de etiqueta y se declara en su JSON, nunca en el CSS. Las carpetas `TIPOGRAFÍAS/` siguen vacías.
 - **Acumin (la fuente de toda la interfaz del PDF) no se puede empaquetar** porque es de Adobe Fonts. Se usa Archivo, que es OFL, en `src/marca/fuentes-ui/` detrás de `--familia-interfaz`, ajustada hasta que la superposición con el PDF quede a menos del 3 %.
@@ -144,7 +144,7 @@ npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por d
 ## Comandos
 
 ```
-npm run dev                    # http://localhost:5173, recarga en caliente (contenido/: recargar con Cmd+R)
+npm run dev                    # http://localhost:5173, recarga en caliente (un cambio en contenido/ recarga la página entera)
 npm run build                  # tsc estricto + vite → dist/
 npm test                       # Vitest
 npm run lint                   # oxlint

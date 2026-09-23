@@ -205,6 +205,15 @@
   transform-origin: left center;
 }
 
+/* Frasco de PAG 09 (465×353, estelas y destellos incluidos), a la altura de la página completa. La x la da el progreso. */
+.frascoFabricacion {
+  position: absolute;
+  top: 654px;
+  left: 0;
+  max-width: none;
+  pointer-events: none;
+}
+
 .porcentaje {
   position: absolute;
   top: 902px;

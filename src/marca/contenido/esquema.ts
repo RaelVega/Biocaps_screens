@@ -48,7 +48,7 @@ export const esquemaContenido = v.object({
       teclado: v.object({ filas: v.pipe(v.array(v.pipe(v.array(texto), v.minLength(1))), v.minLength(1)), borrar: texto, espacio: texto }),
     }),
     color: v.object({ titulo }),
-    fabricacion: v.object({ texto }),
+    fabricacion: v.object({ texto, frasco: id }),
     terminado: v.object({ titulo }),
     qr: v.object({ escanea: texto, catalogo: titulo, logo: id, fondo: id, codigo: id, url: v.nullable(v.pipe(v.string(), v.url())) }),
   }),
@@ -125,6 +125,7 @@ export function validarReferencias(contenido: ContenidoBiocaps, manifiesto: Mani
     if (!manifiesto.imagenes[idImagen]) problemas.push(`${donde}: la imagen «${idImagen}» no está en el manifiesto`);
   };
   imagen(contenido.marco.logo, 'marco.logo');
+  imagen(contenido.pantallas.fabricacion.frasco, 'pantallas.fabricacion.frasco');
   if (contenido.pantallas.portada.logo) imagen(contenido.pantallas.portada.logo, 'pantallas.portada.logo');
   imagen(contenido.pantallas.qr.logo, 'pantallas.qr.logo');
   imagen(contenido.pantallas.qr.fondo, 'pantallas.qr.fondo');

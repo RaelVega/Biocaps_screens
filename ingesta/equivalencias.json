@@ -21,6 +21,7 @@
     { "id": "frasco-color-blanco", "origen": "PAG 08 COLOR DEL FRASCO/frasco blanco.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
     { "id": "frasco-color-rosa", "origen": "PAG 08 COLOR DEL FRASCO/frasco rosa.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
     { "id": "frasco-color-gris", "origen": "PAG 08 COLOR DEL FRASCO/frasco gris.png", "ancho": 347, "medirCuerpo": "#D6DDF8" },
+    { "id": "frasco-transicion", "origen": "PAG 09 TRANSICIÓN/frasco transición.png", "ancho": 465, "nota": "PAG 09: frasco con estelas y destellos incluidos. Solo existe en azul y es el que se muestra siempre, sea cual sea el color elegido (convención de marca, Rael 23-09). 465 px = su tamaño en la página completa" },
 
     { "id": "etiqueta-plana-farmaceutico", "origen": "PAG 6.1 FARMACÉUTICO/etiqueta farmacéutica f.png", "ancho": 1015, "medirCuerpo": "alfa" },
     { "id": "etiqueta-plana-naturista", "origen": "PÁG 6.2 NATURISTA/etiqueta narustista.png", "ancho": 1015, "medirCuerpo": "alfa" },

@@ -28,7 +28,7 @@ describe('contenido', () => {
 
   it('tiene los 32 suplementos del PDF en sus 6 categorías', () => {
     expect(contenido.suplementos).toHaveLength(32);
-    expect(contenido.categorias.map((c) => catalogo.suplementosDe(c.id).length)).toEqual([5, 7, 3, 7, 3, 7]);
+    expect(contenido.categorias.map((c) => contenido.suplementos.filter((s) => s.categoria === c.id).length)).toEqual([5, 7, 3, 7, 3, 7]);
   });
 
   it('cada suplemento tiene su forma en la matriz, salvo los pendientes conocidos', () => {
@@ -36,12 +36,12 @@ describe('contenido', () => {
     expect(sinForma).toEqual(SIN_FORMA_PENDIENTE);
   });
 
-  it('ningún suplemento deja al visitante sin salida en PAG 04', () => {
-    for (const s of contenido.suplementos) expect(catalogo.formasValidas(s.id).length, s.id).toBeGreaterThan(0);
-  });
-
-  it('un suplemento sin dato permite las 4 formas', () => {
-    expect(catalogo.formasValidas('multivitaminico-a1-a4')).toEqual(['oblonga', 'oval', 'redonda', 'twist-off']);
+  it('los suplementos sin forma no se muestran en PAG 03; todos los que se muestran tienen exactamente una forma', () => {
+    const visibles = contenido.categorias.flatMap((c) => catalogo.suplementosDe(c.id));
+    expect(contenido.categorias.map((c) => catalogo.suplementosDe(c.id).length)).toEqual([5, 6, 3, 7, 3, 7]);
+    expect(contenido.suplementos.filter((s) => !visibles.includes(s)).map((s) => s.id)).toEqual(SIN_FORMA_PENDIENTE);
+    // Una sola forma: PAG 04 nunca llega con varias cápsulas desbloqueadas.
+    for (const s of visibles) expect(catalogo.formasValidas(s.id), s.id).toHaveLength(1);
   });
 });
 
@@ -102,11 +102,9 @@ describe('reglas de cada paso', () => {
     expect(maquina.transicion(enCapsula, AVANZAR).estado.paso).toBe('cantidad');
   });
 
-  it('con un suplemento sin dato, el visitante elige entre las 4 formas', () => {
-    const enCapsula = aplicar(enIngrediente, elegir('multivitaminicos'), AVANZAR, elegir('multivitaminico-a1-a4'), AVANZAR);
-    expect(enCapsula.sesion.capsula).toBeNull();
-    expect(maquina.transicion(enCapsula, AVANZAR).efecto).toBe('sinCambio');
-    expect(aplicar(enCapsula, elegir('redonda'), AVANZAR).paso).toBe('cantidad');
+  it('un suplemento sin forma en la matriz no se puede elegir (no se muestra hasta que llegue el dato)', () => {
+    const enSuplementoMulti = aplicar(enIngrediente, elegir('multivitaminicos'), AVANZAR);
+    expect(maquina.transicion(enSuplementoMulti, elegir('multivitaminico-a1-a4'))).toMatchObject({ efecto: 'sinCambio', motivo: 'opcion_invalida:multivitaminico-a1-a4' });
   });
 
   it('cambiar de categoría borra el suplemento y la cápsula elegidos', () => {

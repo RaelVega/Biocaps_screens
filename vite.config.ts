@@ -48,6 +48,17 @@ function copiarContenido(variante: Variante): Plugin {
   return {
     name: 'copiar-contenido',
     configureServer(servidor) {
+      // El contenido se lee con fetch al arrancar, no es un módulo: si cambia, la recarga en caliente
+      // dejaría código nuevo con contenido viejo en memoria. Se recarga la página entera.
+      const vigilados = [resolve(RAIZ, 'contenido'), ...(superposicion ? [superposicion] : [])];
+      servidor.watcher.add(vigilados);
+      const alCambiar = (archivo: string): void => {
+        if (vigilados.some((dir) => !relative(dir, archivo).startsWith('..'))) servidor.ws.send({ type: 'full-reload' });
+      };
+      servidor.watcher.on('change', alCambiar);
+      servidor.watcher.on('add', alCambiar);
+      servidor.watcher.on('unlink', alCambiar);
+
       if (!superposicion || !prefijoSuperposicion) return;
       servidor.middlewares.use((peticion, _respuesta, siguiente) => {
         const [ruta = '', consulta] = (peticion.url ?? '').split('?');

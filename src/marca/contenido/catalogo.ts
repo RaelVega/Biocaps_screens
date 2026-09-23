@@ -3,13 +3,14 @@ import type { ContenidoBiocaps } from './esquema';
 /** Consultas de negocio sobre el contenido. Todo lo que decide qué se puede elegir vive aquí. */
 export interface Catalogo {
   readonly contenido: ContenidoBiocaps;
-  suplementosDe(categoria: string): ContenidoBiocaps['suplementos'];
   /**
-   * Formas de cápsula válidas para un suplemento: la forma la decide el
-   * suplemento, no el visitante. Si la matriz no tiene dato para ese
-   * suplemento (hoy: Multivitamínico A-1 / A-4), se permiten todas para no
-   * dejar al visitante sin salida.
+   * Suplementos que el visitante puede elegir en una categoría. Los que no
+   * tienen forma en la matriz (hoy: Multivitamínico A-1 / A-4) no se muestran
+   * hasta que llegue el dato (decisión de Rael, 23-09): así PAG 04 siempre
+   * llega con una sola cápsula. Cuando el dato esté en contenido.json, vuelven solos.
    */
+  suplementosDe(categoria: string): ContenidoBiocaps['suplementos'];
+  /** Formas de cápsula válidas para un suplemento: la forma la decide el suplemento, no el visitante. */
   formasValidas(suplemento: string): string[];
   /** Id de manifiesto del frasco terminado para la combinación elegida. */
   frascoFinal(estilo: string, color: string): string;
@@ -29,11 +30,8 @@ export function crearCatalogo(contenido: ContenidoBiocaps): Catalogo {
 
   return {
     contenido,
-    suplementosDe: (categoria) => contenido.suplementos.filter((s) => s.categoria === categoria),
-    formasValidas(suplemento) {
-      const definidas = contenido.formaPorSuplemento[suplemento] ?? [];
-      return definidas.length > 0 ? [...definidas] : [...todasLasFormas];
-    },
+    suplementosDe: (categoria) => contenido.suplementos.filter((s) => s.categoria === categoria && (contenido.formaPorSuplemento[s.id] ?? []).length > 0),
+    formasValidas: (suplemento) => [...(contenido.formaPorSuplemento[suplemento] ?? [])],
     frascoFinal: (estilo, color) => contenido.frascoFinal.replace('{estilo}', estilo).replace('{color}', color),
     existe: (que, valor) => conjuntos[que].has(valor),
   };

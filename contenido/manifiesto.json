@@ -165,6 +165,11 @@
         "alto": 308
       }
     },
+    "frasco-transicion": {
+      "archivo": "img/biocaps_frasco_transicion_v1.webp",
+      "ancho": 465,
+      "alto": 353
+    },
     "etiqueta-plana-farmaceutico": {
       "archivo": "img/biocaps_etiqueta_plana_farmaceutico_v1.webp",
       "ancho": 1015,
