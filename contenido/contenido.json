@@ -13,6 +13,8 @@
     "error": { "titulo": "VOLVEMOS EN UN MOMENTO", "texto": "La pantalla se está reiniciando" }
   },
   "pantallas": {
+    "_portada": "Logo e invitación sobre el video de relleno (pedido de Rael, 23-09). Si el video final ya los trae, «logo»: null o «invitacion»: null los quitan.",
+    "portada": { "logo": "logo-blanco", "invitacion": "TOCA PARA INICIAR" },
     "ingrediente": { "titulo": ["SELECCIONA EL", "INGREDIENTE"] },
     "suplemento": { "titulo": ["SELECCIONA EL", "TIPO DE SUPLEMENTO"] },
     "capsula": { "titulo": ["ELIGE EL TIPO", "DE CÁPSULA"] },

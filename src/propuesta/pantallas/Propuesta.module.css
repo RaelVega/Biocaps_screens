@@ -7,33 +7,60 @@
 /* PAG 04: «PUEDE CONTENER», en el hueco libre bajo la rejilla (las tarjetas de abajo terminan en y = 1451). */
 .panelContenido {
   position: absolute;
-  top: 1492px;
+  top: 1476px;
   left: 122px;
   width: 834px;
   color: var(--color-panel-contenido);
 }
 
+/* Encabezado entre dos líneas finas del lila de las tarjetas. */
 .encabezadoPanel {
+  display: flex;
+  align-items: center;
+  gap: 22px;
   margin: 0;
-  text-align: center;
-  font-size: var(--cuerpo-encabezado-panel);
+  font-size: var(--cuerpo-etiqueta-campo);
   font-weight: var(--peso-tarjeta);
   font-stretch: var(--anchura-negrita);
+  white-space: nowrap;
 }
 
-/* Informativo, no tocable: texto suelto (sin tarjeta) para que no parezca un botón. */
+.encabezadoPanel::before,
+.encabezadoPanel::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--linea-panel);
+}
+
+/* Lista informativa (no se toca) en dos columnas, en orden alfabético de arriba abajo. */
 .listaPanel {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 40px;
-  margin: 18px 0 0;
+  columns: 2;
+  column-gap: 32px;
+  margin: 22px 0 0;
   padding: 0;
   list-style: none;
   font-size: var(--cuerpo-panel-contenido);
   font-weight: var(--peso-regular);
-  line-height: 1.15;
-  white-space: nowrap;
+  line-height: 1.1;
+}
+
+.listaPanel li {
+  position: relative;
+  padding: 0 0 9px 22px;
+  break-inside: avoid;
+}
+
+/* Viñeta: punto del azul de la selección, centrado en la primera línea. */
+.listaPanel li::before {
+  content: '';
+  position: absolute;
+  top: 0.4em;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: var(--radio-pastilla);
+  background: var(--vineta-panel);
 }
 
 /* PAG 11: VOLVER AL INICIO, pastilla del tamaño del botón del PDF bajo «¿QUIERES CONOCER…?». */
@@ -120,23 +147,27 @@
   color: var(--color-pie);
 }
 
+/*
+ * OMITIR, para el staff y las pruebas: en la esquina inferior derecha, bajo el
+ * pie y casi invisible, para que el visitante deje sus datos. La zona tocable
+ * es mayor que el texto para que el staff lo acierte.
+ */
 .omitir {
   position: absolute;
-  top: 985px;
-  left: 390px;
-  width: 300px;
-  height: 56px;
-  color: var(--color-boton-secundario);
+  top: 1840px;
+  right: 0;
+  width: 200px;
+  height: 80px;
+  color: var(--color-omitir);
 }
 
 .textoOmitir {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: var(--cuerpo-tarjeta);
-  font-weight: var(--peso-tarjeta);
-  font-stretch: var(--anchura-negrita);
+  right: 40px;
+  transform: translateY(-50%);
+  font-size: var(--cuerpo-omitir);
+  font-weight: var(--peso-regular);
   white-space: nowrap;
 }
 

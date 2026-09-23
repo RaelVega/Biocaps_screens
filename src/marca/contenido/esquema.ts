@@ -36,6 +36,8 @@ export const esquemaContenido = v.object({
     error: v.object({ titulo: texto, texto }),
   }),
   pantallas: v.object({
+    /** `null` oculta el logo o la invitación (p. ej. cuando el video final ya los trae). */
+    portada: v.object({ logo: v.nullable(id), invitacion: v.nullable(texto) }),
     ingrediente: v.object({ titulo }),
     suplemento: v.object({ titulo }),
     capsula: v.object({ titulo }),
@@ -123,6 +125,7 @@ export function validarReferencias(contenido: ContenidoBiocaps, manifiesto: Mani
     if (!manifiesto.imagenes[idImagen]) problemas.push(`${donde}: la imagen «${idImagen}» no está en el manifiesto`);
   };
   imagen(contenido.marco.logo, 'marco.logo');
+  if (contenido.pantallas.portada.logo) imagen(contenido.pantallas.portada.logo, 'pantallas.portada.logo');
   imagen(contenido.pantallas.qr.logo, 'pantallas.qr.logo');
   imagen(contenido.pantallas.qr.fondo, 'pantallas.qr.fondo');
   imagen(contenido.pantallas.qr.codigo, 'pantallas.qr.codigo');

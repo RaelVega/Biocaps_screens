@@ -31,7 +31,7 @@
         "maxCaracteres": 40
       }
     },
-    "omitir": "OMITIR",
+    "omitir": "omitir",
     "consentimiento": "Al continuar aceptas que Biocaps te contacte conforme a su aviso de privacidad.",
     "tecladoCorreo": {
       "filas": [

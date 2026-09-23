@@ -21,6 +21,33 @@
   object-fit: cover;
 }
 
+/* Logo blanco sobre el video (propuesta de Rael, 23-09): centrado en el lienzo; el margen negativo lo pone el componente. */
+.logoPortada {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+/* Invitación sobre el video (propuesta de Rael, 23-09): mismo tratamiento que «ESCANEA AQUÍ» de PAG 11,
+   en la zona oscura del video de relleno. Solo pulsa la opacidad. */
+.invitacion {
+  position: absolute;
+  top: 1560px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: var(--cuerpo-escanea);
+  font-weight: var(--peso-regular);
+  color: var(--color-invertido);
+  animation: invitar var(--dur-invitacion) var(--curva-estandar) infinite;
+}
+
+@keyframes invitar {
+  50% {
+    opacity: 0.45;
+  }
+}
+
 /* PAG 03: la categoría elegida, sobre la lista */
 .encabezadoCategoria {
   position: absolute;

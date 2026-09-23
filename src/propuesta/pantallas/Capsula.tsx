@@ -38,7 +38,9 @@ function PuedeContener(): ReactNode {
   const { catalogo } = useRecursosPropuesta();
   const textos = useTextosPropuesta();
   const capsula = useFlujoPropuesta((f) => f.sesion.capsula);
-  const suplementos = capsula === null ? [] : catalogo.suplementosPorForma(capsula);
+  // En orden alfabético (español): se lee como lista, no como el orden de las categorías.
+  const nombres = capsula === null ? [] : catalogo.suplementosPorForma(capsula).map((s) => ({ id: s.id, nombre: s.nombre.replaceAll('\n', ' ') }));
+  nombres.sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'));
 
   return (
     <AnimatePresence initial={false}>
@@ -52,8 +54,8 @@ function PuedeContener(): ReactNode {
         >
           <p className={`${estilos.encabezadoPanel} recortado`}>{textos.capsula.puedeContener}</p>
           <ul className={estilos.listaPanel}>
-            {suplementos.map((s) => (
-              <li key={s.id}>{s.nombre.replaceAll('\n', ' ')}</li>
+            {nombres.map((s) => (
+              <li key={s.id}>{s.nombre}</li>
             ))}
           </ul>
         </motion.div>

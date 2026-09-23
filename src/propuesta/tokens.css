@@ -16,9 +16,14 @@
   --cuerpo-panel-contenido: var(--p-cuerpo-25);
   --cuerpo-encabezado-panel: var(--p-cuerpo-31);
   --color-panel-contenido: var(--p-gris-800);
+  --linea-panel: var(--p-lila-100);
+  --vineta-panel: var(--p-azul-profundo);
 
   /* Leads */
   --cuerpo-etiqueta-campo: var(--p-cuerpo-25);
   --cuerpo-valor-campo: var(--p-cuerpo-35);
   --cuerpo-consentimiento: var(--p-cuerpo-25);
+  /* OMITIR es para el staff y para pruebas: casi invisible a propósito (lila claro sobre blanco). */
+  --color-omitir: var(--p-lila-100);
+  --cuerpo-omitir: var(--p-cuerpo-25);
 }

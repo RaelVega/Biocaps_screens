@@ -13,6 +13,8 @@ export const DURACION = {
   fabricacion: 4000,
   fabricacionPausa: 400,
   respaldoFabricacion: 6000,
+  /** Pulso de «TOCA PARA INICIAR» en la portada (ciclo completo). */
+  invitacion: 2400,
 } as const;
 
 /** Desplazamiento vertical del contenido al entrar una pantalla (0 con movimiento reducido). */
