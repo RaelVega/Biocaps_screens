@@ -41,7 +41,8 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 - Contenido: `variantes/propuesta/contenido/` se **superpone** encima de `contenido/` (en la build y, con un middleware, en desarrollo). Solo va ahí lo que cambie; las imágenes de la ingesta se reutilizan. Los textos propios van en `propuesta.json` (esquema en `src/propuesta/contenido/esquema.ts`), no en una copia de `contenido.json`.
 - **Sustituciones de la build** (`VARIANTES.propuesta.sustituye` en `vite.config.ts`): en la build `propuesta`, cuando código de `src/marca/` importa `componentes/BotonPrimario.tsx`, recibe `src/propuesta/componentes/Navegacion.tsx` (ATRÁS + SIGUIENTE). Así las pantallas del PDF que se reutilizan llevan ATRÁS sin copiarlas. El sustituto exporta lo mismo con la misma firma. Las pantallas propias de la propuesta importan `Navegacion` directamente.
 - Tipos: la sesión de la propuesta amplía la del PDF (`lead`) y los pasos añaden `leads`. El único cruce de tipos hacia las pantallas de `marca/` es `comoRecursosDeMarca()` en `src/propuesta/estado.ts`.
-- **Flujo de la propuesta:** portada → **cápsula** → ingrediente → suplemento → cantidad → etiqueta → etiquetaDetalle → nombre → color → **leads** → fabricación → terminado → qr (`ORDEN_PROPUESTA` en `src/propuesta/flujo.ts`).
+- **Flujo de la propuesta:** portada → **cápsula** → ingrediente → suplemento → cantidad → **etiqueta (con su vista previa)** → nombre → color → **leads** → fabricación → terminado → qr (`ORDEN_PROPUESTA` en `src/propuesta/flujo.ts`).
+  - PAG 06 y PAG 6.x van fusionadas: la etiqueta del estilo elegido arriba (en su sitio de PAG 6.x) y los 5 estilos debajo para cambiarla ahí mismo. Se entra con el primer estilo ya elegido (la `sesionInicial` de la propuesta lo trae), así SIGUIENTE funciona sin tocar nada.
   - La cápsula va primero y filtra lo demás (`catalogo.categoriasPorForma` / `suplementosDeCategoriaYForma`, la matriz `formaPorSuplemento` leída al revés). No se ven opciones atenuadas: lo que no cabe no se muestra. Bajo la rejilla de PAG 04, «PUEDE CONTENER» lista los suplementos de la cápsula elegida.
   - Si la cápsula admite una sola categoría (redonda → Marinos, twist-off → Faciales), la categoría se elige sola y PAG 02 se salta en los dos sentidos (`omitir` del motor).
   - El Multivitamínico A-1 / A-4 no tiene forma: en la propuesta **no aparece bajo ninguna cápsula** hasta que llegue el dato (lo fija `src/propuesta/flujo.test.ts`).
@@ -144,7 +145,7 @@ npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por d
 ## Comandos
 
 ```
-npm run dev                    # http://localhost:5173, recarga en caliente (un cambio en contenido/ recarga la página entera)
+npm run dev                    # http://localhost:5173, recarga en caliente de componentes y CSS; un cambio en contenido/ o en un .ts de src/ recarga la página entera
 npm run build                  # tsc estricto + vite → dist/
 npm test                       # Vitest
 npm run lint                   # oxlint

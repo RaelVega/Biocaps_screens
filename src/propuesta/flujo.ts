@@ -4,8 +4,12 @@ import type { CatalogoPropuesta } from './contenido/catalogo';
 import type { TextosPropuesta } from './contenido/esquema';
 import { caracteresValidos, leadCompleto, normalizarCampo, type CampoLead } from './leads/campos';
 
-/** Los pasos del PDF más la pantalla de leads. */
-export type PasoPropuesta = PasoBiocaps | 'leads';
+/**
+ * Los pasos del PDF, sin PAG 6.x (`etiquetaDetalle`: en la propuesta la
+ * etiqueta se ve y se cambia en la misma pantalla en que se elige), más la
+ * pantalla de leads.
+ */
+export type PasoPropuesta = Exclude<PasoBiocaps, 'etiquetaDetalle'> | 'leads';
 
 export interface LeadSesion {
   readonly nombre: string;
@@ -37,7 +41,6 @@ export const ORDEN_PROPUESTA: readonly PasoPropuesta[] = [
   'suplemento',
   'cantidad',
   'etiqueta',
-  'etiquetaDetalle',
   'nombre',
   'color',
   'leads',
@@ -78,7 +81,8 @@ export function crearFlujoPropuesta(catalogo: CatalogoPropuesta, textos: TextosP
 
   return {
     orden: ORDEN_PROPUESTA,
-    sesionInicial: SESION_INICIAL_PROPUESTA,
+    // La pantalla de etiqueta entra con el primer estilo ya elegido: la etiqueta se ve desde el principio.
+    sesionInicial: { ...SESION_INICIAL_PROPUESTA, estilo: catalogo.contenido.estilos[0]?.id ?? null },
     pasos: {
       portada: { tipo: 'portada' },
 
@@ -114,7 +118,6 @@ export function crearFlujoPropuesta(catalogo: CatalogoPropuesta, textos: TextosP
 
       cantidad: heredar(pdf.cantidad),
       etiqueta: heredar(pdf.etiqueta),
-      etiquetaDetalle: heredar(pdf.etiquetaDetalle),
       nombre: heredar(pdf.nombre),
       color: heredar(pdf.color),
 

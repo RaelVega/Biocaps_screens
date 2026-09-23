@@ -8,8 +8,6 @@ import { AVISO_INACTIVIDAD_MS, REINICIO_INACTIVIDAD_MS } from '../marca/configur
 import { useDespachar } from '../marca/estado';
 import { Cantidad } from '../marca/pantallas/Cantidad';
 import { Color } from '../marca/pantallas/Color';
-import { Etiqueta } from '../marca/pantallas/Etiqueta';
-import { EtiquetaDetalle } from '../marca/pantallas/EtiquetaDetalle';
 import { Fabricacion } from '../marca/pantallas/Fabricacion';
 import { Nombre } from '../marca/pantallas/Nombre';
 import { Portada } from '../marca/pantallas/Portada';
@@ -20,6 +18,7 @@ import { AvisoExportacion } from './componentes/AvisoExportacion';
 import { useFlujoPropuesta } from './estado';
 import type { PasoPropuesta } from './flujo';
 import { Capsula } from './pantallas/Capsula';
+import { Etiqueta } from './pantallas/Etiqueta';
 import { Ingrediente } from './pantallas/Ingrediente';
 import { Leads } from './pantallas/Leads';
 import { Qr } from './pantallas/Qr';
@@ -27,7 +26,7 @@ import { Suplemento } from './pantallas/Suplemento';
 
 /**
  * Pantallas de la propuesta: las propias (cápsula, ingrediente, suplemento,
- * leads y QR) y las del PDF, que llevan ATRÁS por la sustitución de la build.
+ * etiqueta con su vista previa, leads y QR) y las del PDF, que llevan ATRÁS por la sustitución de la build.
  */
 const PANTALLAS: Record<PasoPropuesta, () => ReactNode> = {
   portada: Portada,
@@ -36,7 +35,6 @@ const PANTALLAS: Record<PasoPropuesta, () => ReactNode> = {
   capsula: Capsula,
   cantidad: Cantidad,
   etiqueta: Etiqueta,
-  etiquetaDetalle: EtiquetaDetalle,
   nombre: Nombre,
   color: Color,
   leads: Leads,

@@ -37,7 +37,6 @@ const hastaColor = (): Estado =>
     AVANZAR,
     elegir('naturista'),
     AVANZAR,
-    AVANZAR,
     { tipo: 'escribir', texto: 'FLORIL' },
     AVANZAR,
     elegir('azul'),
@@ -60,10 +59,10 @@ describe('la cápsula decide lo demás', () => {
     }
   });
 
-  it('empieza en la cápsula, sin nada elegido', () => {
+  it('empieza en la cápsula, sin nada elegido salvo el estilo de etiqueta', () => {
     const enCapsula = aplicar(maquina.inicial(), AVANZAR);
     expect(enCapsula.paso).toBe('capsula');
-    expect(enCapsula.sesion).toEqual(SESION_INICIAL_PROPUESTA);
+    expect(enCapsula.sesion).toEqual({ ...SESION_INICIAL_PROPUESTA, estilo: contenido.estilos[0]?.id });
   });
 
   it('solo muestra y acepta categorías y suplementos de la cápsula elegida', () => {
@@ -93,6 +92,23 @@ describe('la cápsula decide lo demás', () => {
     // Volver a elegir la misma cápsula no borra nada.
     const igual = aplicar(conOmega, RETROCEDER, RETROCEDER, elegir('oblonga'));
     expect(igual.sesion).toMatchObject({ capsula: 'oblonga', categoria: 'omegas', suplemento: 'omega-3-salmon' });
+  });
+});
+
+describe('etiqueta con su vista previa en la misma pantalla', () => {
+  const enEtiqueta = aplicar(maquina.inicial(), AVANZAR, elegir('oval'), AVANZAR, elegir('naturales'), AVANZAR, elegir('jalea-real'), AVANZAR, elegir('60'), AVANZAR);
+
+  it('entra con el primer estilo ya elegido y SIGUIENTE avanza sin tocar nada', () => {
+    expect(enEtiqueta.paso).toBe('etiqueta');
+    expect(enEtiqueta.sesion.estilo).toBe('naturista');
+    expect(aplicar(enEtiqueta, AVANZAR).paso).toBe('nombre');
+  });
+
+  it('se cambia de estilo ahí mismo y no hay pantalla de detalle (PAG 6.x) antes del nombre', () => {
+    const cambiado = aplicar(enEtiqueta, elegir('moderno'), elegir('deportivo'));
+    expect(cambiado).toMatchObject({ paso: 'etiqueta', sesion: { estilo: 'deportivo' } });
+    expect(maquina.definicion.orden).not.toContain('etiquetaDetalle');
+    expect(aplicar(cambiado, AVANZAR, RETROCEDER).paso).toBe('etiqueta');
   });
 });
 

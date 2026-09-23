@@ -116,6 +116,26 @@ function sustituirModulos(sustituye: Readonly<Record<string, string>>): Plugin {
   };
 }
 
+/**
+ * En desarrollo, un cambio en un módulo de lógica (`.ts` de `src/`: flujo,
+ * catálogo, máquina, esquemas…) recarga la página entera. Esos módulos se
+ * usan una sola vez al arrancar (crean la máquina y el almacén): la recarga en
+ * caliente dejaría pantallas nuevas con una máquina vieja, que puede llevar a
+ * un paso que ya no existe. Los componentes y el CSS siguen en caliente.
+ */
+function recargarLogica(): Plugin {
+  const src = resolve(RAIZ, 'src');
+  return {
+    name: 'recargar-logica',
+    apply: 'serve',
+    handleHotUpdate({ file, server }) {
+      if (!file.endsWith('.ts') || file.endsWith('.test.ts') || relative(src, file).startsWith('..')) return;
+      server.ws.send({ type: 'full-reload' });
+      return [];
+    },
+  };
+}
+
 /** La CSP solo se inyecta en la build: el servidor de desarrollo necesita scripts en línea. */
 function politicaContenido(): Plugin {
   return {
@@ -131,7 +151,7 @@ export default defineConfig(({ mode }) => {
   const variante = leerVariante(mode);
   const { app, puertoDev, puertoPreview, sustituye } = VARIANTES[variante];
   return {
-    plugins: [sustituirModulos(sustituye), react(), copiarContenido(variante), politicaContenido()],
+    plugins: [sustituirModulos(sustituye), react(), copiarContenido(variante), recargarLogica(), politicaContenido()],
     define: { __VERSION__: JSON.stringify(version), __VARIANTE__: JSON.stringify(variante) },
     // `@variante/App` es la única puerta a la experiencia: apunta a la de la variante elegida.
     resolve: { alias: { '@variante/App': resolve(RAIZ, app) } },
