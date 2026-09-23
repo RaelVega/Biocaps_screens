@@ -1,0 +1,57 @@
+# Vía C′ · GitHub Pages: cada push a main pasa pruebas y lint, construye las
+# dos variantes y las publica en subcarpetas del mismo sitio:
+#   https://raelvega.github.io/Biocaps_screens/principal/   (versión del PDF)
+#   https://raelvega.github.io/Biocaps_screens/propuesta/   (propuesta de Rael)
+# Gratis y sin límite de publicaciones. GitHub Pages no lee _headers: el
+# noindex y la CSP ya van como <meta> en index.html.
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Una publicación a la vez; si llega otro push, la anterior se cancela.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      # --ignore-scripts: la web no necesita el binario de Electron.
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm test
+      - run: npm run lint
+      - name: Construir las dos variantes
+        run: |
+          mkdir -p sitio
+          npm run build
+          cp -R dist sitio/principal
+          npm run build:propuesta
+          cp -R dist sitio/propuesta
+          cp cascaras/web/portal.html sitio/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: sitio
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4
