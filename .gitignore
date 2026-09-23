@@ -1,15 +1,16 @@
 node_modules/
-dist/
+/dist/
 .DS_Store
 *.psd
 *.ai
 *.indd
 assets-fuente/
 prototipos/
-dist-electron/
-paquetes/
-datos-kiosco/
-telemetria/
+/dist-electron/
+/paquetes/
+/datos-kiosco/
+/telemetria/
 pruebas/visual/resultados/
 pruebas/visual/resultados-propuesta/
-leads/
+# Datos personales de la propuesta (CSV junto al .exe en desarrollo). Anclado a la raíz: src/propuesta/leads/ es código.
+/leads/
