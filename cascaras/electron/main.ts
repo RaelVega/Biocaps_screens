@@ -14,7 +14,10 @@ const ESQUEMA = 'app';
 const HOST = 'biocaps';
 /** --humo (o HUMO_SALIR=1) abre la prueba técnica de distribución en lugar de la experiencia. */
 const HUMO = process.argv.includes('--humo') || process.env['HUMO_SALIR'] === '1';
-const URL_INICIO = `${ESQUEMA}://${HOST}/index.html${HUMO ? '?humo' : ''}`;
+/** --cursor muestra el cursor (en el kiosco va oculto): para probar con mouse en una laptop sin pantalla táctil. */
+const CURSOR = process.argv.includes('--cursor');
+const PARAMETROS = [HUMO && 'humo', CURSOR && 'cursor=1'].filter(Boolean).join('&');
+const URL_INICIO = `${ESQUEMA}://${HOST}/index.html${PARAMETROS ? `?${PARAMETROS}` : ''}`;
 
 const EMPAQUETADO = app.isPackaged;
 /** Carpeta del .exe (o del .exe portable, que se descomprime en %TEMP% y avisa su origen real). */

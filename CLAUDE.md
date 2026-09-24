@@ -80,6 +80,7 @@ npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por d
   - El preload es CommonJS (`preload.cjs`) porque el sandbox está activo.
   - `userData` y `telemetria/` van junto al `.exe`.
   - Ctrl+Shift+Q cierra el kiosco.
+  - `--cursor` muestra el cursor y `KIOSCO_VENTANA=1` abre en ventana: los junta `probar-en-ventana.bat`, para probar con mouse en una laptop. `npm run empaquetar:zips` arma `paquetes/compartir/Biocaps-{Principal,Propuesta}-win.zip` (carpeta del `.exe` + `.bat` de prueba + `LEEME-PRUEBA.txt`) para compartir sin USB.
 - **B · Caddy + Edge / B′ · PowerShell + Edge** (`cascaras/respaldo-local/`). Los servidores escuchan **solo en 127.0.0.1**: escuchar en todas las interfaces dispara el aviso del firewall de Windows, que pide admin. `servir.ps1` sirve los rangos abiertos en trozos de 4 MB porque atiende una petición a la vez.
 - Los `.bat` y el `.ps1` van con CRLF, y el `.ps1` además con BOM (lo fija `.gitattributes`). Si no, PowerShell 5.1 y cmd los leen mal.
 - **C · Netlify:** https://biocaps-screens-v2.netlify.app. `biocaps-screens.netlify.app` es el **prototipo** que ya vio el cliente: no publicar encima. El equipo protege los proyectos nuevos con inicio de sesión (`sso_login`), y en v2 se desactivó a propósito. El aviso de CSP en consola viene del script «hud» que inyecta Netlify: es inofensivo.

@@ -23,6 +23,7 @@
     "empaquetar:mac": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --mac --dir",
     "empaquetar:mac:propuesta": "npm run build:propuesta && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.propuesta.yml --mac --dir",
     "empaquetar:win-portable": "npm run build && npm run electron:compilar && electron-builder -c cascaras/electron/electron-builder.yml --win portable --x64",
+    "empaquetar:zips": "node cascaras/electron/empaquetar-zips.mjs",
     "armar:usb": "npm run empaquetar:win && node cascaras/usb/armar-usb.mjs",
     "humo:navegador": "node pruebas/humo/navegador.mjs",
     "publicar:cloudflare": "node cascaras/web/publicar-cloudflare.mjs",
