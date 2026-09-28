@@ -2,8 +2,7 @@
   "version": 1,
   "_nota": "Textos y datos que solo usa la variante «propuesta». Se sirve junto a contenido.json (superposición de variantes/propuesta/contenido/). Los textos son de la propuesta de Rael, no del PDF.",
   "_pendientes": [
-    "leads.consentimiento: texto provisional. El aviso de privacidad (LFPDPPP) y su redacción los tiene que dar el cliente.",
-    "multivitaminico-a1-a4: sin forma en el documento de combinaciones. En la propuesta no aparece bajo ninguna cápsula hasta que llegue el dato."
+    "leads.consentimiento: texto provisional. El aviso de privacidad (LFPDPPP) y su redacción los tiene que dar el cliente."
   ],
   "navegacion": {
     "atras": "ATRÁS",

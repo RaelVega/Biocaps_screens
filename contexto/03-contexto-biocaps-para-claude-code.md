@@ -221,7 +221,7 @@ El documento `COMBINACIÓN CÁPSULAS` de Drive establece que **la forma de la c�
 
 1. La matriz vive en el JSON de contenido, no en el código. Es un mapa de suplemento → forma(s) de cápsula válida(s).
 2. **Cómo se comporta PAG 04 está sin decidir y hay que preguntarlo:** o muestra solo la forma que corresponde (informativa, un solo toque para continuar), o muestra las 4 con las no válidas deshabilitadas. Las dos son defendibles; elegir sin preguntar es inventar producto.
-3. **Hueco confirmado en los datos:** el suplemento **Multivitamínico A-1 / A-4** aparece en el flujo (PAG 3.2) pero **no está en la matriz de combinaciones**. Falta su forma de cápsula.
+3. **Hueco confirmado en los datos:** el suplemento **Multivitamínico A-1 / A-4** aparece en el flujo (PAG 3.2) pero **no está en la matriz de combinaciones**. Falta su forma de cápsula. **Resuelto el 28-09: es oblonga** (confirmado por marketing).
 4. El documento de combinaciones trae los nombres abreviados y con erratas ("Aceide de pescados", "Germen de trico"). **La lista buena es la del PDF**, que es lo que ve el visitante; la matriz se normaliza contra esa lista al ingerirla.
 
 ---
@@ -372,7 +372,7 @@ La app debe poder entregarse **por las tres vías a la vez**, desde el mismo có
 ## 14. Calidad y pruebas
 
 - TypeScript estricto si el stack lo incluye: sin `any`, sin supresiones de tipo.
-- **Pruebas automatizadas de la máquina de estados:** cada transición válida, cada inválida, los temporizadores (con relojes falsos), que reiniciar deje el estado idéntico al arranque, y **que la matriz de cápsulas nunca deje al visitante en un callejón sin salida** (todo suplemento debe resolver a al menos una forma válida — hoy el Multivitamínico A-1/A-4 no lo hace).
+- **Pruebas automatizadas de la máquina de estados:** cada transición válida, cada inválida, los temporizadores (con relojes falsos), que reiniciar deje el estado idéntico al arranque, y **que la matriz de cápsulas nunca deje al visitante en un callejón sin salida** (todo suplemento debe resolver a al menos una forma válida; desde el 28-09 todos lo hacen).
 - **Prueba de resistencia de 8 horas con toques aleatorios antes de viajar.** Es criterio de entrega, no una buena práctica opcional.
 
 ---
@@ -470,7 +470,7 @@ Ninguna bloquea, pero todas muerden si se automatiza la ingesta sin revisarlas:
 | ¿El frasco terminado cambia de tamaño según 30/60/120 cápsulas? | Marketing | PAG 10: o se ignora la presentación, o faltan 60 imágenes |
 | Video de portada | Marketing | Nada: se construye con relleno y se sustituye al llegar |
 | Logo de Biocaps en azul, suelto (SVG) | Marketing | El encabezado de las 11 pantallas |
-| Forma de cápsula del Multivitamínico A-1 / A-4 | Grupo AB | La matriz de combinaciones queda incompleta |
+| ~~Forma de cápsula del Multivitamínico A-1 / A-4~~ | Grupo AB | **Resuelto el 28-09: oblonga** |
 | Cómo se comporta PAG 04 (filtrada vs. deshabilitada) | Marketing | El diseño de esa pantalla |
 | Qué hace `SIGUIENTE` sin selección previa | Marketing | La navegación de 8 pantallas |
 | Si hay botón de volver y progreso visible | Marketing | El marco de todas las pantallas |

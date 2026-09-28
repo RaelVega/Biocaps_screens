@@ -7,8 +7,8 @@ type Categoria = ContenidoBiocaps['categorias'][number];
 /**
  * En la propuesta la cápsula se elige primero y decide lo demás. Todo sale de
  * la misma matriz `formaPorSuplemento` del PDF, leída al revés: qué
- * suplementos caben en cada forma. Un suplemento sin forma en la matriz (hoy:
- * Multivitamínico A-1 / A-4) no aparece bajo ninguna cápsula: no se inventa.
+ * suplementos caben en cada forma. Un suplemento sin forma en la matriz no
+ * aparece bajo ninguna cápsula: no se inventa.
  */
 export interface CatalogoPropuesta extends Catalogo {
   suplementosPorForma(forma: string): Suplemento[];

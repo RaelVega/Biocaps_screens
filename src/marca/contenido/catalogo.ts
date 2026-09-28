@@ -4,10 +4,10 @@ import type { ContenidoBiocaps } from './esquema';
 export interface Catalogo {
   readonly contenido: ContenidoBiocaps;
   /**
-   * Suplementos que el visitante puede elegir en una categoría. Los que no
-   * tienen forma en la matriz (hoy: Multivitamínico A-1 / A-4) no se muestran
-   * hasta que llegue el dato (decisión de Rael, 23-09): así PAG 04 siempre
-   * llega con una sola cápsula. Cuando el dato esté en contenido.json, vuelven solos.
+   * Suplementos que el visitante puede elegir en una categoría. Si alguno no
+   * tiene forma en la matriz, no se muestra hasta que llegue el dato (decisión
+   * de Rael, 23-09): así PAG 04 siempre llega con una sola cápsula. Hoy todos
+   * la tienen; cuando el dato esté en contenido.json, vuelven solos.
    */
   suplementosDe(categoria: string): ContenidoBiocaps['suplementos'];
   /** Formas de cápsula válidas para un suplemento: la forma la decide el suplemento, no el visitante. */

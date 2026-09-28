@@ -47,10 +47,10 @@ describe('la cápsula decide lo demás', () => {
     for (const forma of contenido.formas) expect(catalogo.suplementosPorForma(forma.id).length, forma.id).toBeGreaterThan(0);
   });
 
-  it('cada suplemento con forma aparece bajo su cápsula (los que no tienen forma, bajo ninguna)', () => {
+  it('cada suplemento aparece bajo su cápsula', () => {
     const alcanzables = new Set(contenido.formas.flatMap((f) => catalogo.suplementosPorForma(f.id).map((s) => s.id)));
     const fuera = contenido.suplementos.filter((s) => !alcanzables.has(s.id)).map((s) => s.id);
-    expect(fuera).toEqual(['multivitaminico-a1-a4']);
+    expect(fuera).toEqual([]);
   });
 
   it('ninguna categoría de una forma pasa de 7 suplementos (las 7 posiciones de PAG 03)', () => {

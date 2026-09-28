@@ -1,7 +1,6 @@
 {
   "version": 1,
   "_pendientes": [
-    "formaPorSuplemento.multivitaminico-a1-a4: sin forma en el documento de combinaciones (Grupo AB). Mientras falte, no se muestra en PAG 03 (Multivitamínicos queda con 6 opciones; decisión de Rael, 23-09).",
     "estilos[].rotuladoPlano y rotuladoFrasco: caja, fuente y color del nombre en cada estilo son provisionales hasta que marketing entregue las tipografías (TIPOGRAFÍAS/ vacía) y confirme medidas."
   ],
   "marco": {
@@ -101,14 +100,14 @@
     { "id": "redonda", "nombre": "REDONDA", "tamanos": "(5)", "imagen": "capsula-redonda" },
     { "id": "twist-off", "nombre": "TWIST-OFF", "tamanos": "(4, 5)", "imagen": "capsula-twist-off" }
   ],
-  "_formaPorSuplemento": "Del documento COMBINACIÓN CÁPSULAS, normalizado contra los nombres del PDF. La forma la decide el suplemento, no el visitante.",
+  "_formaPorSuplemento": "Del documento COMBINACIÓN CÁPSULAS, normalizado contra los nombres del PDF. La forma la decide el suplemento, no el visitante. Multivitamínico A-1 / A-4 no venía en el documento: oblonga, confirmado por marketing (28-09).",
   "formaPorSuplemento": {
     "omega-3-n": ["oval"],
     "omega-3-6-9": ["oblonga"],
     "omega-3-salmon": ["oblonga"],
     "omega-3-linaza-citricos": ["oblonga"],
     "omega-3-bacalao-salmon": ["oblonga"],
-    "multivitaminico-a1-a4": [],
+    "multivitaminico-a1-a4": ["oblonga"],
     "multivitaminico-d-rojo": ["oblonga"],
     "complejo-b": ["oval"],
     "complejo-vitaminico-verde": ["oblonga"],
