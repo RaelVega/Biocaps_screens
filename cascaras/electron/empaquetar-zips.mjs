@@ -18,10 +18,12 @@ const BATS = { 'probar-en-ventana.bat': 'cascaras/electron/probar-en-ventana.bat
 /** cmd necesita CRLF: se fuerza al copiar, sin depender de cómo esté el archivo en disco. */
 const aWindows = (texto) => texto.replace(/^﻿/, '').replace(/\r?\n/g, '\r\n');
 
-rmSync(SALIDA, { recursive: true, force: true });
+// Solo se borra lo propio: en la misma carpeta van los zips de Mac (empaquetar-mac.mjs).
 mkdirSync(SALIDA, { recursive: true });
 for (const { nombre, empaquetar, origen } of VARIANTES) {
   console.log(`\n== ${nombre}`);
+  rmSync(path.join(SALIDA, nombre), { recursive: true, force: true });
+  rmSync(path.join(SALIDA, `${nombre}-win.zip`), { force: true });
   execFileSync('npm', ['run', empaquetar], { cwd: RAIZ, stdio: 'inherit' });
   if (!existsSync(path.join(RAIZ, origen))) throw new Error(`No se generó ${origen}`);
   const carpeta = path.join(SALIDA, nombre);

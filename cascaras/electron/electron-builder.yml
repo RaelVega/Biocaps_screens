@@ -30,6 +30,13 @@ win:
   icon: cascaras/icono/icono.png
 portable:
   artifactName: Biocaps-${version}-portable.exe
+# Universal: un solo .app para Mac con Intel y con Apple Silicon. Sin firma de
+# Apple (identity: null); empaquetar-mac.mjs le pone una firma ad-hoc, sin ella
+# Apple Silicon lo da por «dañado».
 mac:
-  target: dir
+  target:
+    - target: dir
+      arch: [universal]
   identity: null
+  icon: cascaras/icono/icono-mac.png
+  category: public.app-category.business
