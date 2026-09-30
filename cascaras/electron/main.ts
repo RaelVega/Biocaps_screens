@@ -1,7 +1,7 @@
 import { accessSync, appendFileSync, constants, createReadStream, existsSync, mkdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { Readable } from 'node:stream';
-import { app, BrowserWindow, ipcMain, powerSaveBlocker, protocol } from 'electron';
+import { app, BrowserWindow, ipcMain, powerSaveBlocker, protocol, screen } from 'electron';
 
 /**
  * Cáscara del ejecutable portable (vía A). Sirve la misma `dist/` que las
@@ -20,8 +20,34 @@ const PARAMETROS = [HUMO && 'humo', CURSOR && 'cursor=1'].filter(Boolean).join('
 const URL_INICIO = `${ESQUEMA}://${HOST}/index.html${PARAMETROS ? `?${PARAMETROS}` : ''}`;
 
 const EMPAQUETADO = app.isPackaged;
-/** Carpeta del .exe (o del .exe portable, que se descomprime en %TEMP% y avisa su origen real). */
-const DIR_BASE = process.env['PORTABLE_EXECUTABLE_DIR'] ?? (EMPAQUETADO ? path.dirname(app.getPath('exe')) : process.cwd());
+
+function puedeEscribir(dir: string): boolean {
+  try {
+    mkdirSync(dir, { recursive: true });
+    accessSync(dir, constants.W_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Carpeta donde van datos-kiosco/, telemetria/ y leads/: junto al .exe (o al .exe
+ * portable, que se descomprime en %TEMP% y avisa su origen real). En macOS el
+ * ejecutable está dentro del paquete (`X.app/Contents/MacOS/`), así que se usa la
+ * carpeta que contiene el `.app`. Si no admite escritura (una USB bloqueada, o el
+ * `.app` en cuarentena, que macOS abre desde una copia de solo lectura), van a
+ * Documentos/<nombre del ejecutable> («Biocaps» o «Biocaps Propuesta»).
+ */
+function carpetaBase(): string {
+  if (!EMPAQUETADO) return process.cwd();
+  const dirEjecutable = path.dirname(app.getPath('exe'));
+  const preferida = process.env['PORTABLE_EXECUTABLE_DIR']
+    ?? (process.platform === 'darwin' ? path.resolve(dirEjecutable, '../../..') : dirEjecutable);
+  return puedeEscribir(preferida) ? preferida : path.join(app.getPath('documents'), path.parse(app.getPath('exe')).name);
+}
+
+const DIR_BASE = carpetaBase();
 const DIR_DIST = path.join(app.getAppPath(), 'dist');
 // Sin empaquetar, DIR_CONTENIDO permite usar el contenido ya superpuesto de una variante (`dist/contenido`).
 const DIR_CONTENIDO = EMPAQUETADO
@@ -55,14 +81,8 @@ const TIPOS: Record<string, string> = {
 
 // Los datos del navegador (IndexedDB, localStorage) viajan con la carpeta del
 // ejecutable. Si esa carpeta no admite escritura, se quedan en el perfil del usuario.
-try {
-  const dirDatos = path.join(DIR_BASE, 'datos-kiosco');
-  mkdirSync(dirDatos, { recursive: true });
-  accessSync(dirDatos, constants.W_OK);
-  app.setPath('userData', dirDatos);
-} catch {
-  // Se usa la ruta por defecto de Electron.
-}
+const dirDatos = path.join(DIR_BASE, 'datos-kiosco');
+if (puedeEscribir(dirDatos)) app.setPath('userData', dirDatos);
 
 app.commandLine.appendSwitch('disable-pinch');
 app.commandLine.appendSwitch('overscroll-history-navigation', '0');
@@ -163,10 +183,21 @@ function registrarIpc(): void {
   });
 }
 
+/**
+ * Con una laptop y la pantalla táctil conectadas, el kiosco tiene que abrir en la
+ * táctil aunque no sea la principal: se elige la primera pantalla en vertical.
+ */
+function pantallaDelKiosco(): Electron.Display {
+  return screen.getAllDisplays().find((p) => p.bounds.height > p.bounds.width) ?? screen.getPrimaryDisplay();
+}
+
 function crearVentana(): BrowserWindow {
+  const { bounds } = pantallaDelKiosco();
   const ventana = new BrowserWindow({
     width: 540,
     height: 960,
+    x: bounds.x + Math.max(0, Math.round((bounds.width - 540) / 2)),
+    y: bounds.y + Math.max(0, Math.round((bounds.height - 960) / 2)),
     kiosk: MODO_KIOSCO,
     fullscreen: MODO_KIOSCO,
     autoHideMenuBar: true,
