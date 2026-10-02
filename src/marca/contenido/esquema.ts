@@ -29,6 +29,8 @@ export const esquemaContenido = v.object({
   version: v.number(),
   marco: v.object({
     pie: texto,
+    /** Leyenda bajo el pie (pedido de Rael, 01-10); `null` la quita. */
+    leyenda: v.nullable(texto),
     botonSiguiente: texto,
     botonFinalizar: texto,
     logo: id,

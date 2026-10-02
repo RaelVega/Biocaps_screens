@@ -10,6 +10,7 @@
   --fondo-pantalla: var(--p-blanco);
   --color-titulo: var(--p-gris-800);
   --color-pie: var(--p-gris-800);
+  --color-leyenda: var(--p-gris-800);
   --color-encabezado-categoria: var(--p-gris-900);
   --color-texto-tarjeta: var(--p-gris-800);
   --fondo-tarjeta: var(--p-lila-100);
@@ -41,6 +42,8 @@
   --cuerpo-encabezado-categoria: var(--p-cuerpo-41);
   --cuerpo-tarjeta-grande: var(--p-cuerpo-40);
   --cuerpo-pie: var(--p-cuerpo-37);
+  /* Leyenda bajo el pie (el PDF no la dibuja; pedido de Rael, 01-10). */
+  --cuerpo-leyenda: var(--p-cuerpo-25);
   --cuerpo-tarjeta: var(--p-cuerpo-35);
   --interlineado-tarjeta: 37px;
   --cuerpo-rotulo-pequeno: var(--p-cuerpo-31);

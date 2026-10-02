@@ -101,7 +101,7 @@ Si hay que elegir entre entregar Biocaps a tiempo o dejar el motor más reutiliz
 Fuente: `FLUJO DIAPOSITIVAS PANTALLA TÁCTIL BIOCAPS_organized (1).pdf` (19 páginas, 1080×1920) más las carpetas `PAG 01`–`PAG 11` de Drive. **Este es el flujo que se construye.** No hay límite de duración impuesto: la experiencia dura lo que el visitante tarde.
 
 ```
-PAG 01  PORTADA — video (pendiente de entrega)
+PAG 01  PORTADA — video (entregado el 01-10)
 PAG 02  SELECCIONA EL INGREDIENTE         → 6 categorías
 PAG 03  SELECCIONA EL TIPO DE SUPLEMENTO  → sublista según la categoría (3.1–3.6)
 PAG 04  ELIGE EL TIPO DE CÁPSULA          → 4 formas
@@ -128,7 +128,7 @@ Presentes en todas las pantallas del PDF:
 
 ### Pantalla por pantalla
 
-**PAG 01 · Portada (video).** La primera pantalla es un **video**, pendiente de entrega por parte del cliente. La carpeta `PAG 01 PORTADA` de Drive está vacía hoy. Construir la pantalla con un video de relleno del mismo formato y la ruta estable, para que sustituir el archivo baste. Aplican todas las reglas de video de la sección 13: `muted`, `playsinline`, en bucle, sin pista de audio, con limpieza del buffer al desmontar. Cualquier toque arranca la experiencia.
+**PAG 01 · Portada (video).** La primera pantalla es un **video**. Marketing lo entregó el 1 de octubre (`PAG 01 PORTADA/BIOCAPS_PANTALLABLOQUEO_EXPOFAC2026.mp4`, 1080×1920, ya con su texto y el logo de Biocaps, así que no se pone nada encima). Llega en HEVC de 10 bits y con audio: se convierte a H.264 sin audio y con el bucle cerrado por un fundido (ver `ingesta/README.md`). Aplican todas las reglas de video de la sección 13: `muted`, `playsinline`, en bucle, sin pista de audio, con limpieza del buffer al desmontar. Cualquier toque arranca la experiencia.
 
 **PAG 02 · Selecciona el ingrediente.** Seis tarjetas apiladas a ancho completo, con chevron `›` a la derecha:
 
@@ -411,7 +411,7 @@ Fuente de trabajo: `~/Desktop/BIOCAPS PANTALLA TÁCTIL` — copia local completa
 
 | Carpeta | Contenido | Estado |
 |---|---|---|
-| `PAG 01 PORTADA` | — | ⏳ **vacía**, esperando el video |
+| `PAG 01 PORTADA` | Video de portada (01-10) | ✅ completa |
 | `PAG 02 INGREDIENTE` | 6 tarjetas de categoría + título + página completa | ✅ completa |
 | `PAG 3.1 OMEGAS` | 5 suplementos + encabezado + título + página completa | ✅ completa |
 | `PAG 3.2 MULTIVITAMÍNICOS Y MINERALES` | 7 suplementos + encabezado + título + página completa | ✅ completa |
@@ -434,7 +434,7 @@ Fuente de trabajo: `~/Desktop/BIOCAPS PANTALLA TÁCTIL` — copia local completa
 
 ### Lo que falta por entregar
 
-1. **El video de portada.** `PAG 01 PORTADA` existe, vacía. Se trabaja con relleno del mismo formato.
+1. ~~**El video de portada.**~~ Entregado el 1 de octubre.
 2. **Todas las tipografías.** Las cinco subcarpetas están creadas y **las cinco están vacías**: no hay ni un archivo de fuente. Es el pendiente más urgente, porque **cada estilo de etiqueta usa su propia tipografía** para el nombre del producto (ver sección 8), y porque arrastra el riesgo de Acumin (abajo).
 3. **El logo de Biocaps en azul.** Aparece en el encabezado de las 19 pantallas del PDF, pero como archivo suelto solo existe `logo blanco biocaps.png`, dentro de `PAG 11`. Hace falta el positivo, idealmente en SVG.
 
@@ -468,7 +468,7 @@ Ninguna bloquea, pero todas muerden si se automatiza la ingesta sin revisarlas:
 | Máximo de líneas del nombre, y qué pasa si se excede | Marketing | La regla de ajuste del texto sobre la etiqueta |
 | Caja de texto de cada estilo (posición, medida, color, alineación) | Marketing, o se mide sobre los ejemplos | El rotulado; medible desde `EJEMPLOS_FRASCOS_TERMINADOS` si no llega |
 | ¿El frasco terminado cambia de tamaño según 30/60/120 cápsulas? | Marketing | PAG 10: o se ignora la presentación, o faltan 60 imágenes |
-| Video de portada | Marketing | Nada: se construye con relleno y se sustituye al llegar |
+| ~~Video de portada~~ | Marketing | Entregado el 01-10 |
 | Logo de Biocaps en azul, suelto (SVG) | Marketing | El encabezado de las 11 pantallas |
 | ~~Forma de cápsula del Multivitamínico A-1 / A-4~~ | Grupo AB | **Resuelto el 28-09: oblonga** |
 | Cómo se comporta PAG 04 (filtrada vs. deshabilitada) | Marketing | El diseño de esa pantalla |

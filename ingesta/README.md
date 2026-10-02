@@ -21,6 +21,22 @@ ORIGEN_ASSETS="/ruta/a/otra copia" npm run ingesta  # otra copia del espejo
 3. `npm run ingesta` y luego `npm test`. Las pruebas fallan si falta alguna imagen que el contenido nombra.
 4. Si el cliente reexporta una tarjeta de PAG 04 o PAG 05 con otra medida, hay que volver a medir sus rectángulos de `borrarTexto`.
 
+## Video de portada
+
+El video no pasa por el script: se convierte a mano con ffmpeg (`brew install ffmpeg`) y se guarda en `contenido/video/`. Marketing lo entrega en HEVC de 10 bits, que Chromium/Edge en Windows solo decodifica con hardware compatible, con una pista de audio (en silencio) que el kiosco no quiere y con un salto al volver a empezar (el último fotograma no es el primero). Se pasa a H.264 de 8 bits, sin audio y con *faststart*, y se cierra el bucle con un fundido: se quita el primer medio segundo (15 fotogramas) y se funde con el último, así el video acaba en el fotograma anterior al primero (4,97 s → 4,47 s; aprobado por Rael el 01-10):
+
+```
+ffmpeg -i "assets-fuente/PAG 01 PORTADA/BIOCAPS_PANTALLABLOQUEO_EXPOFAC2026.mp4" \
+  -filter_complex "[0:v]split[a][b];[a]trim=start_frame=15,setpts=PTS-STARTPTS[m];[b]trim=end_frame=15,setpts=PTS-STARTPTS[h];[m][h]xfade=transition=fade:duration=0.5:offset=3.9667,format=yuv420p[v]" \
+  -map "[v]" -an -c:v libx264 -preset slow -crf 18 -profile:v high -level 4.2 -g 30 \
+  -colorspace bt709 -color_primaries bt709 -color_trc bt709 \
+  -movflags +faststart -map_metadata -1 contenido/video/portada_expofac2026.mp4
+```
+
+`offset` es la duración del tramo recortado menos la del fundido: (149 − 15) / 30 − 0,5. Si llega un video de otra duración, se recalcula.
+
+Si llega otra versión, se repite el comando y, si cambia el nombre, se actualiza `estaticos.videos` en `equivalencias.json` y se corre `npm run ingesta` para reescribir el manifiesto.
+
 ## Operaciones de `equivalencias.json`
 
 | Campo | Qué hace |

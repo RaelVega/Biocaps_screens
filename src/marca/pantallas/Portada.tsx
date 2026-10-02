@@ -7,9 +7,9 @@ import estilos from './Pantallas.module.css';
 
 /**
  * PAG 01: video de portada a pantalla completa; cualquier toque arranca.
- * Encima, el logo blanco centrado y la invitación «TOCA PARA INICIAR»
- * (provisionales mientras llega el video final; el PDF no los dibuja, los
- * pidió Rael el 23-09).
+ * Encima pueden ir el logo blanco centrado y la invitación «TOCA PARA INICIAR»
+ * (el PDF no los dibuja, los pidió Rael el 23-09). Con el video final de
+ * marketing (01-10) los dos van en `null`: el video ya trae su texto y su logo.
  */
 export function Portada(): ReactNode {
   const despachar = useDespachar();

@@ -22,3 +22,16 @@
   font-weight: var(--peso-regular);
   color: var(--color-pie);
 }
+
+/* Leyenda bajo el pie: el PDF no la dibuja (pedido de Rael, 01-10). */
+.leyenda {
+  position: absolute;
+  top: 1856px;
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: var(--cuerpo-leyenda);
+  font-weight: var(--peso-regular);
+  color: var(--color-leyenda);
+}

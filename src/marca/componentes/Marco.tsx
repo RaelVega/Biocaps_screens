@@ -8,7 +8,7 @@ import estilos from './Marco.module.css';
 /** Pasos que en el PDF no llevan logo ni pie: la portada (video) y el QR (tratamiento invertido). */
 const SIN_MARCO: ReadonlySet<PasoBiocaps> = new Set(['portada', 'qr']);
 
-/** Logo arriba y pie abajo: fijos entre pantallas, solo aparecen o desaparecen. */
+/** Logo arriba y pie (con su leyenda) abajo: fijos entre pantallas, solo aparecen o desaparecen. */
 export function Marco(): ReactNode {
   const paso = useFlujo((f) => f.paso);
   const contenido = useContenido();
@@ -27,6 +27,7 @@ export function Marco(): ReactNode {
         >
           <img className={estilos.logo} src={logo.url} width={logo.ancho} height={logo.alto} alt="Biocaps" />
           <p className={`${estilos.pie} recortado`}>{contenido.marco.pie}</p>
+          {contenido.marco.leyenda && <p className={`${estilos.leyenda} recortado`}>{contenido.marco.leyenda}</p>}
         </motion.div>
       )}
     </AnimatePresence>

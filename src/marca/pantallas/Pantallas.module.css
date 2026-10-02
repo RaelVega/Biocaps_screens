@@ -29,7 +29,7 @@
 }
 
 /* Invitación sobre el video (propuesta de Rael, 23-09): mismo tratamiento que «ESCANEA AQUÍ» de PAG 11,
-   en la zona oscura del video de relleno. Solo pulsa la opacidad. */
+   en la zona oscura del video. Solo pulsa la opacidad. Hoy va en null: el video final ya trae su texto. */
 .invitacion {
   position: absolute;
   top: 1560px;
