@@ -1,7 +1,7 @@
 {
   "version": 1,
   "_pendientes": [
-    "Licencias de las tipografías de etiqueta: Surgena (Naturista) es la versión «Personal use only» y no trae acentos ni Ñ (se toman de la fuente de interfaz); Agrandir, Gleffy y Varien no declaran licencia. Marketing confirma la licencia comercial antes del evento."
+    "Licencias de las tipografías de etiqueta: Surgena (Naturista) es la versión «Personal use only» y no trae Á É Í Ó Ú Ü Ñ (compuestas provisionalmente con ingesta/componer-acentos.py); Agrandir, Gleffy y Varien no declaran licencia. Marketing confirma la licencia comercial antes del evento."
   ],
   "_rotulado": "Tipografías de marketing (TIPOGRAFÍAS/, 05-10). Fuente, color, cuerpo, interlineado y caja de rotuladoFrasco medidos sobre las muestras de cada carpeta; rotuladoPlano es la misma caja llevada a la etiqueta plana (≈1/1,7). Deportivo va a 82 px para que «SPORTS» ocupe en el frasco lo mismo que en su muestra. «espacioPalabras»: em que se suman al espacio entre palabras para que se vea (pedido de Rael, 05-10).",
   "marco": {
@@ -170,8 +170,8 @@
   ],
   "_frascoFinal": "Id de manifiesto del frasco terminado: se sustituyen {estilo} y {color}.",
   "frascoFinal": "frasco-final-{estilo}-{color}",
-  "_nombreProducto": "Máximo aprobado por Rael el 22-09: 14 caracteres (7 por línea, sugerencia de marketing), contando espacios. Además el nombre tiene que caber por ancho en la etiqueta plana y en el frasco.",
+  "_nombreProducto": "Máximo: 18 caracteres sin contar espacios (Rael, 05-10; antes 14 con espacios). Hasta ahí un nombre realista queda a más de la mitad del cuerpo en el frasco. Además el nombre tiene que caber por ancho en la etiqueta plana y en el frasco.",
   "nombreProducto": {
-    "maxCaracteres": 14
+    "maxCaracteres": 18
   }
 }

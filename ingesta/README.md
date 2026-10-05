@@ -37,6 +37,17 @@ ffmpeg -i "assets-fuente/PAG 01 PORTADA/BIOCAPS_PANTALLABLOQUEO_EXPOFAC2026.mp4"
 
 Si llega otra versión, se repite el comando y, si cambia el nombre, se actualiza `estaticos.videos` en `equivalencias.json` y se corre `npm run ingesta` para reescribir el manifiesto.
 
+## Tipografías de etiqueta
+
+Las fuentes del nombre se copian de `TIPOGRAFÍAS/<ESTILO>/` a `contenido/fuentes-etiqueta/` con nombre sin espacios y se registran en `estaticos.fuentes` (con el peso de la cara). La Surgena de Naturista es la versión «Personal use only» y no trae Á É Í Ó Ú Ü Ñ: `componer-acentos.py` las compone con los acentos sueltos de la propia fuente y escribe `Surgena-SemiBold-acentos.ttf`. Necesita fontTools, que no es dependencia del proyecto:
+
+```
+python3 -m venv paquetes/.cache/ft && paquetes/.cache/ft/bin/pip install fonttools
+paquetes/.cache/ft/bin/python ingesta/componer-acentos.py
+```
+
+Cuando llegue la licencia comercial, se copia ese archivo en su lugar, se actualiza `equivalencias.json` y el script deja de hacer falta.
+
 ## Operaciones de `equivalencias.json`
 
 | Campo | Qué hace |

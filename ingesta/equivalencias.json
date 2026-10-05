@@ -92,7 +92,7 @@
     "_fuentes": "Copiadas de «TIPOGRAFÍAS/<ESTILO>/» (entregadas el 05-10) con nombre sin espacios. «peso» es el de la cara (o el rango si es variable): sin él, el navegador simularía la negrita.",
     "fuentes": {
       "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Agrandir-TextBold.otf", "familia": "Etiqueta Farmacéutico", "peso": "700" },
-      "etiqueta-naturista": { "archivo": "fuentes-etiqueta/Surgena-SemiBold.ttf", "familia": "Etiqueta Naturista", "peso": "600" },
+      "etiqueta-naturista": { "archivo": "fuentes-etiqueta/Surgena-SemiBold-acentos.ttf", "familia": "Etiqueta Naturista", "peso": "600" },
       "etiqueta-moderno": { "archivo": "fuentes-etiqueta/Archivo-Variable.ttf", "familia": "Etiqueta Moderno", "peso": "100 900" },
       "etiqueta-deportivo": { "archivo": "fuentes-etiqueta/Gleffy-Slant.otf", "familia": "Etiqueta Deportivo", "peso": "400" },
       "etiqueta-femenino": { "archivo": "fuentes-etiqueta/Varien.otf", "familia": "Etiqueta Femenino", "peso": "400" }
