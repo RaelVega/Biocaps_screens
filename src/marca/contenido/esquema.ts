@@ -81,7 +81,7 @@ export const esquemaManifiesto = v.object({
     v.object({ archivo: v.string(), ancho: v.number(), alto: v.number(), cuerpo: v.optional(rectangulo) }),
   ),
   videos: v.record(v.string(), v.object({ archivo: v.string() })),
-  fuentes: v.record(v.string(), v.object({ archivo: v.string(), familia: v.string() })),
+  fuentes: v.record(v.string(), v.object({ archivo: v.string(), familia: v.string(), peso: v.optional(v.string()) })),
 });
 
 export type Manifiesto = v.InferOutput<typeof esquemaManifiesto>;

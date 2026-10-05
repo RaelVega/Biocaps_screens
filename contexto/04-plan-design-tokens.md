@@ -111,7 +111,15 @@ Leídas de las etiquetas planas del PDF (págs. 11–15). Son las fuentes **del 
 | Moderno | Clash Display | «RELAX FLOW», blanco, en **vertical, rotado 90°** |
 | Deportivo | Avenir | «POWER CAPS», negra itálica naranja |
 
-Cuando lleguen los archivos a `TIPOGRAFÍAS/{estilo}/` se usan esos. Mientras tanto se toma, por estilo, la fuente libre más parecida al ejemplo, declarada en el JSON de ese estilo.
+**Entregadas el 05-10** en `TIPOGRAFÍAS/{estilo}/`, cada una con una muestra del nombre sobre el frasco. Se copian a `contenido/fuentes-etiqueta/` y se registran en `ingesta/equivalencias.json` (`estaticos.fuentes`, con el peso de la cara). Fuente, color, cuerpo e interlineado de cada estilo se midieron sobre esas muestras:
+
+| Estilo | Fuente del nombre (archivo) | Peso | Color | Nota |
+|---|---|---|---|---|
+| Naturista | Surgena SemiBold (`Surgena-SemiBold.ttf`) | 600 | `#182F13` | Versión «Personal use only»: sin acentos ni Ñ, que salen de la fuente de interfaz |
+| Farmacéutico | Agrandir Text Bold (`Agrandir-TextBold.otf`) | 700 | `#0A0807` | |
+| Moderno | Archivo variable (`Archivo-Variable.ttf`) | 800 | blanco | Vertical, rotado −90° |
+| Deportivo | Gleffy Slant (`Gleffy-Slant.otf`) | 400 | blanco | |
+| Femenino | Varien (`Varien.otf`) | 400 | blanco | |
 
 Por estilo, la caja de rotulado (posición, medida, rotación, color, alineación, máximo de líneas, cuerpo de partida) **es contenido, no token**: vive en `contenido/contenido.json`, tal como pide la §8 del documento 03. Aquí solo se fija que la caja **admite rotación** (la necesita Moderno).
 

@@ -464,7 +464,7 @@ Ninguna bloquea, pero todas muerden si se automatiza la ingesta sin revisarlas:
 
 | Pendiente | Quién decide | Qué bloquea |
 |---|---|---|
-| **Tipografías: las 5 carpetas están vacías, y el origen de Acumin** | Marketing (Grupo AB) | El rotulado del nombre en PAG 07 y PAG 10. **Lo más urgente de la lista** |
+| ~~Tipografías del nombre~~ (entregadas el 05-10); queda la **licencia comercial** de las cinco (Surgena es «personal use only») | Marketing (Grupo AB) | Nada en la app; el uso en el evento |
 | Máximo de líneas del nombre, y qué pasa si se excede | Marketing | La regla de ajuste del texto sobre la etiqueta |
 | Caja de texto de cada estilo (posición, medida, color, alineación) | Marketing, o se mide sobre los ejemplos | El rotulado; medible desde `EJEMPLOS_FRASCOS_TERMINADOS` si no llega |
 | ¿El frasco terminado cambia de tamaño según 30/60/120 cápsulas? | Marketing | PAG 10: o se ignora la presentación, o faltan 60 imágenes |

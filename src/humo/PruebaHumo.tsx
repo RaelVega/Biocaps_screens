@@ -104,7 +104,7 @@ export function PruebaHumo(): ReactNode {
             </li>
           ))}
         </ul>
-        <p className={estilos.etiqueta}>Nombre de producto · Montserrat desde contenido/</p>
+        <p className={estilos.etiqueta}>Nombre de producto · Agrandir desde contenido/</p>
         {terminado && <p className={estilos.estado}>{resultados.every((r) => r.ok) ? 'TODO BIEN' : 'HAY FALLOS'}</p>}
       </div>
       {imagen && <img ref={refFrasco} className={estilos.frasco} src={urlContenido(imagen.archivo)} width={imagen.ancho} height={imagen.alto} alt="" />}

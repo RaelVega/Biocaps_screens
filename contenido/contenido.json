@@ -1,8 +1,9 @@
 {
   "version": 1,
   "_pendientes": [
-    "estilos[].rotuladoPlano y rotuladoFrasco: caja, fuente y color del nombre en cada estilo son provisionales hasta que marketing entregue las tipografías (TIPOGRAFÍAS/ vacía) y confirme medidas."
+    "Licencias de las tipografías de etiqueta: Surgena (Naturista) es la versión «Personal use only» y no trae acentos ni Ñ (se toman de la fuente de interfaz); Agrandir, Gleffy y Varien no declaran licencia. Marketing confirma la licencia comercial antes del evento."
   ],
+  "_rotulado": "Tipografías de marketing (TIPOGRAFÍAS/, 05-10). Fuente, color, cuerpo, interlineado y caja de rotuladoFrasco medidos sobre las muestras de cada carpeta; rotuladoPlano es la misma caja llevada a la etiqueta plana (≈1/1,7).",
   "marco": {
     "pie": "Cada elección da forma a tu producto",
     "_leyenda": "Bajo el pie en todas las pantallas con marco (pedido de Rael, 01-10). null la quita.",
@@ -144,20 +145,20 @@
   ],
   "estilos": [
     { "id": "naturista", "nombre": "NATURISTA", "etiquetaPlana": "etiqueta-plana-naturista",
-      "rotuladoPlano": {"caja": [372,96,270,170], "rotacion": 0, "fuente": "Interfaz", "peso": 500, "italica": false, "color": "#2F5A1F", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 30, "interlineado": 1.05},
-      "rotuladoFrasco": {"caja": [8,360,250,200], "rotacion": 0, "fuente": "Interfaz", "peso": 500, "italica": false, "color": "#2F5A1F", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 26, "interlineado": 1.05} },
+      "rotuladoPlano": {"caja": [430,148,200,91], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 44, "cuerpoMinimo": 15, "interlineado": 1.0},
+      "rotuladoFrasco": {"caja": [0,455,340,155], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 26, "interlineado": 1.0} },
     { "id": "farmaceutico", "nombre": "FARMACÉUTICO", "etiquetaPlana": "etiqueta-plana-farmaceutico",
-      "rotuladoPlano": {"caja": [370,150,290,120], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 800, "italica": false, "color": "#3D3D3D", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 56, "cuerpoMinimo": 28, "interlineado": 1.05},
-      "rotuladoFrasco": {"caja": [0,470,300,200], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 800, "italica": false, "color": "#3D3D3D", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 60, "cuerpoMinimo": 24, "interlineado": 1.05} },
+      "rotuladoPlano": {"caja": [392,158,200,95], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 47, "cuerpoMinimo": 14, "interlineado": 0.98},
+      "rotuladoFrasco": {"caja": [0,432,340,162], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 80, "cuerpoMinimo": 24, "interlineado": 0.98} },
     { "id": "moderno", "nombre": "MODERNO", "etiquetaPlana": "etiqueta-plana-moderno",
-      "rotuladoPlano": {"caja": [330,70,110,230], "rotacion": -90, "fuente": "Interfaz", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 52, "cuerpoMinimo": 26, "interlineado": 1},
-      "rotuladoFrasco": {"caja": [-50,288,120,312], "rotacion": -90, "fuente": "Interfaz", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 56, "cuerpoMinimo": 22, "interlineado": 1} },
+      "rotuladoPlano": {"caja": [418,58,87,183], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 39, "cuerpoMinimo": 13, "interlineado": 1.19},
+      "rotuladoFrasco": {"caja": [-106,258,150,316], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 68, "cuerpoMinimo": 22, "interlineado": 1.19} },
     { "id": "deportivo", "nombre": "DEPORTIVO", "etiquetaPlana": "etiqueta-plana-deportivo",
-      "rotuladoPlano": {"caja": [330,80,360,170], "rotacion": 0, "fuente": "Interfaz", "peso": 900, "italica": true, "color": "#F26A1B", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 72, "cuerpoMinimo": 32, "interlineado": 0.95},
-      "rotuladoFrasco": {"caja": [0,300,330,210], "rotacion": 0, "fuente": "Interfaz", "peso": 900, "italica": true, "color": "#F26A1B", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 76, "cuerpoMinimo": 26, "interlineado": 0.95} },
+      "rotuladoPlano": {"caja": [405,141,194,88], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 40, "cuerpoMinimo": 15, "interlineado": 1.15},
+      "rotuladoFrasco": {"caja": [0,425,330,150], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 68, "cuerpoMinimo": 26, "interlineado": 1.15} },
     { "id": "femenino", "nombre": "FEMENINO", "etiquetaPlana": "etiqueta-plana-femenino",
-      "rotuladoPlano": {"caja": [330,110,360,170], "rotacion": 0, "fuente": "Interfaz", "peso": 700, "italica": false, "color": "#B0175E", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 60, "cuerpoMinimo": 28, "interlineado": 1.05},
-      "rotuladoFrasco": {"caja": [0,400,320,220], "rotacion": 0, "fuente": "Interfaz", "peso": 700, "italica": false, "color": "#7A0E46", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 64, "cuerpoMinimo": 24, "interlineado": 1.05} }
+      "rotuladoPlano": {"caja": [392,130,203,93], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 45, "cuerpoMinimo": 14, "interlineado": 1.03},
+      "rotuladoFrasco": {"caja": [0,470,340,156], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 24, "interlineado": 1.03} }
   ],
   "colores": [
     { "id": "transparente", "nombre": "TRANSPARENTE", "imagen": "frasco-color-transparente" },

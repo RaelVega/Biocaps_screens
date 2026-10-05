@@ -89,6 +89,13 @@
     "_nota": "Piezas que ya viven en contenido/ y no salen del espejo tal cual (convertidas o descargadas). Solo se registran en el manifiesto.",
     "_video_portada": "Sale de «PAG 01 PORTADA/BIOCAPS_PANTALLABLOQUEO_EXPOFAC2026.mp4» (HEVC 10 bits con audio en silencio) convertido a H.264 8 bits sin audio y con el bucle cerrado por un fundido: ver ingesta/README.md.",
     "videos": { "portada": "video/portada_expofac2026.mp4" },
-    "fuentes": { "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Montserrat-Variable.ttf", "familia": "Etiqueta Farmacéutico" } }
+    "_fuentes": "Copiadas de «TIPOGRAFÍAS/<ESTILO>/» (entregadas el 05-10) con nombre sin espacios. «peso» es el de la cara (o el rango si es variable): sin él, el navegador simularía la negrita.",
+    "fuentes": {
+      "etiqueta-farmaceutico": { "archivo": "fuentes-etiqueta/Agrandir-TextBold.otf", "familia": "Etiqueta Farmacéutico", "peso": "700" },
+      "etiqueta-naturista": { "archivo": "fuentes-etiqueta/Surgena-SemiBold.ttf", "familia": "Etiqueta Naturista", "peso": "600" },
+      "etiqueta-moderno": { "archivo": "fuentes-etiqueta/Archivo-Variable.ttf", "familia": "Etiqueta Moderno", "peso": "100 900" },
+      "etiqueta-deportivo": { "archivo": "fuentes-etiqueta/Gleffy-Slant.otf", "familia": "Etiqueta Deportivo", "peso": "400" },
+      "etiqueta-femenino": { "archivo": "fuentes-etiqueta/Varien.otf", "familia": "Etiqueta Femenino", "peso": "400" }
+    }
   }
 }
