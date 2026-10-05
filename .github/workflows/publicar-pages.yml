@@ -1,7 +1,8 @@
 # Vía C′ · GitHub Pages: cada push a main pasa pruebas y lint, construye las
 # dos variantes y las publica en subcarpetas del mismo sitio:
-#   https://raelvega.github.io/Biocaps_screens/principal/   (versión del PDF)
-#   https://raelvega.github.io/Biocaps_screens/propuesta/   (propuesta de Rael)
+#   https://raelvega.github.io/Biocaps_screens/principal/   (la propuesta, variante principal desde el 05-10)
+#   https://raelvega.github.io/Biocaps_screens/propuesta/   (la misma, para los enlaces ya repartidos)
+#   https://raelvega.github.io/Biocaps_screens/pdf/         (versión del PDF de marketing, congelada)
 # Gratis y sin límite de publicaciones. GitHub Pages no lee _headers: el
 # noindex y la CSP ya van como <meta> en index.html.
 name: Publicar en GitHub Pages
@@ -37,9 +38,10 @@ jobs:
       - name: Construir las dos variantes
         run: |
           mkdir -p sitio
+          npm run build:pdf
+          cp -R dist sitio/pdf
           npm run build
           cp -R dist sitio/principal
-          npm run build:propuesta
           cp -R dist sitio/propuesta
           cp cascaras/web/portal.html sitio/index.html
       - uses: actions/upload-pages-artifact@v3

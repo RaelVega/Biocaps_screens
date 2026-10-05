@@ -19,8 +19,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "noEmit": true,
-    // Para tsc apunta a la versión del PDF; Vite lo redirige según VITE_VARIANTE (vite.config.ts).
-    "paths": { "@variante/App": ["./src/marca/App.tsx"] }
+    // Para tsc apunta a la variante principal (la propuesta); Vite lo redirige según VITE_VARIANTE (vite.config.ts).
+    "paths": { "@variante/App": ["./src/propuesta/App.tsx"] }
   },
   "include": ["src"]
 }

@@ -8,16 +8,17 @@ const RAIZ = import.meta.dirname;
 const { version } = JSON.parse(readFileSync(resolve(RAIZ, 'package.json'), 'utf8')) as { version: string };
 
 /**
- * Variantes de la experiencia (ver «Propuesta de Rael» en CLAUDE.md). Se elige
- * al construir con `--mode propuesta` o `VITE_VARIANTE=propuesta`: la build de
+ * Variantes de la experiencia (ver «Propuesta de Rael» en CLAUDE.md). Desde el
+ * 05-10 la principal, la que va al evento, es la propuesta; la del PDF queda
+ * congelada y se construye con `--mode pdf` o `VITE_VARIANTE=pdf`. La build de
  * una variante no lleva ni una línea de la otra.
  */
 const VARIANTES = {
-  pdf: { app: 'src/marca/App.tsx', puertoDev: 5173, puertoPreview: 4173, sustituye: {} },
+  pdf: { app: 'src/marca/App.tsx', puertoDev: 5174, puertoPreview: 4174, sustituye: {} },
   propuesta: {
     app: 'src/propuesta/App.tsx',
-    puertoDev: 5174,
-    puertoPreview: 4174,
+    puertoDev: 5173,
+    puertoPreview: 4173,
     // Las pantallas del PDF que la propuesta reutiliza llevan ATRÁS junto a SIGUIENTE sin copiarlas.
     sustituye: { 'src/marca/componentes/BotonPrimario.tsx': 'src/propuesta/componentes/Navegacion.tsx' },
   },
@@ -25,8 +26,8 @@ const VARIANTES = {
 type Variante = keyof typeof VARIANTES;
 
 function leerVariante(mode: string): Variante {
-  // `VITE_VARIANTE` (p. ej. en Netlify) manda; si no, `--mode propuesta` elige la propuesta.
-  const valor = loadEnv(mode, RAIZ, 'VITE_')['VITE_VARIANTE'] ?? (mode in VARIANTES ? mode : 'pdf');
+  // `VITE_VARIANTE` (p. ej. en Netlify) manda; si no, `--mode pdf` elige la del PDF. Por defecto, la propuesta.
+  const valor = loadEnv(mode, RAIZ, 'VITE_')['VITE_VARIANTE'] ?? (mode in VARIANTES ? mode : 'propuesta');
   if (!(valor in VARIANTES)) throw new Error(`VITE_VARIANTE desconocida: «${valor}» (válidas: ${Object.keys(VARIANTES).join(', ')})`);
   return valor as Variante;
 }

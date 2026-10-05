@@ -27,7 +27,7 @@ Funciona en Mac con Apple Silicon (M1 en adelante) y con Intel. macOS 12 o poste
    La app se abre sola en la pantalla que esté en vertical.
 
 Datos: las carpetas datos-kiosco, telemetria y leads aparecen junto al .app. Si esa carpeta
-no admite escritura, van a Documentos/Biocaps (o Documentos/Biocaps Propuesta).
+no admite escritura, van a Documentos/Biocaps.
 
-Propuesta: los leads quedan en la carpeta "leads" (un CSV por día).
+Leads: quedan en la carpeta "leads" (un CSV por día).
 Ctrl + Shift + E exporta todos a leads/exportacion-....csv y lo confirma en pantalla.

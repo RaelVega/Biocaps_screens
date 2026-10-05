@@ -1,6 +1,6 @@
 // Vía C″ · Cloudflare Pages: construye cada variante y la sube como proyecto propio.
-//   biocaps-principal → https://biocaps-principal.pages.dev (versión del PDF)
-//   biocaps-propuesta → https://biocaps-propuesta.pages.dev (propuesta de Rael)
+//   biocaps-principal → https://biocaps-principal.pages.dev (la propuesta, variante principal desde el 05-10)
+//   biocaps-propuesta → https://biocaps-propuesta.pages.dev (la misma build, para que los enlaces ya repartidos sigan valiendo)
 // Requiere una sesión: npx wrangler login (una sola vez). Crea los proyectos si no existen.
 // Uso: npm run publicar:cloudflare [-- principal|propuesta]
 import { execFileSync } from 'node:child_process';
@@ -10,7 +10,7 @@ const RAIZ = path.resolve(import.meta.dirname, '../..');
 const WRANGLER = ['--yes', 'wrangler@4'];
 const VARIANTES = {
   principal: { proyecto: 'biocaps-principal', build: 'build' },
-  propuesta: { proyecto: 'biocaps-propuesta', build: 'build:propuesta' },
+  propuesta: { proyecto: 'biocaps-propuesta', build: 'build' },
 };
 
 const elegidas = process.argv.slice(2);

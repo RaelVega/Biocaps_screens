@@ -37,7 +37,7 @@ function puedeEscribir(dir: string): boolean {
  * ejecutable está dentro del paquete (`X.app/Contents/MacOS/`), así que se usa la
  * carpeta que contiene el `.app`. Si no admite escritura (una USB bloqueada, o el
  * `.app` en cuarentena, que macOS abre desde una copia de solo lectura), van a
- * Documentos/<nombre del ejecutable> («Biocaps» o «Biocaps Propuesta»).
+ * Documentos/<nombre del ejecutable> («Biocaps», o «Biocaps PDF» en la versión del PDF).
  */
 function carpetaBase(): string {
   if (!EMPAQUETADO) return process.cwd();
@@ -54,7 +54,7 @@ const DIR_CONTENIDO = EMPAQUETADO
   ? path.join(process.resourcesPath, 'contenido')
   : path.resolve(app.getAppPath(), process.env['DIR_CONTENIDO'] ?? 'contenido');
 const DIR_TELEMETRIA = path.join(DIR_BASE, 'telemetria');
-/** Datos personales (propuesta): CSV que se abre en Excel y se importa al CRM al cierre del evento. */
+/** Datos personales (leads de la variante principal): CSV que se abre en Excel y se importa al CRM al cierre del evento. */
 const DIR_LEADS = path.join(DIR_BASE, 'leads');
 /** BOM: sin él, Excel abre el CSV en UTF-8 con los acentos rotos. */
 const BOM = '\uFEFF';

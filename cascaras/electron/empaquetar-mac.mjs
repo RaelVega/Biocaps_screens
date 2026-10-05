@@ -1,6 +1,5 @@
-// Arma un .zip por variante para probar en Mac (Intel y Apple Silicon):
-//   paquetes/compartir/Biocaps-Principal-mac.zip  (versión del PDF)
-//   paquetes/compartir/Biocaps-Propuesta-mac.zip  (propuesta de Rael)
+// Arma el .zip para probar en Mac (Intel y Apple Silicon):
+//   paquetes/compartir/Biocaps-Principal-mac.zip  (la propuesta, variante principal desde el 05-10)
 // Cada zip lleva el .app universal con firma ad-hoc, los .command de prueba y LEEME-PRUEBA-MAC.txt.
 // Solo corre en macOS (codesign y ditto). Uso: npm run empaquetar:zips:mac
 import { execFileSync } from 'node:child_process';
@@ -11,12 +10,13 @@ const RAIZ = path.resolve(import.meta.dirname, '../..');
 const SALIDA = path.join(RAIZ, 'paquetes', 'compartir');
 const VARIANTES = [
   { nombre: 'Biocaps-Principal', empaquetar: 'empaquetar:mac', app: 'paquetes/mac-universal/Biocaps.app' },
-  { nombre: 'Biocaps-Propuesta', empaquetar: 'empaquetar:mac:propuesta', app: 'paquetes/propuesta/mac-universal/Biocaps Propuesta.app' },
 ];
 const EXTRAS = ['probar-en-ventana.command', 'prueba-tecnica.command', 'LEEME-PRUEBA-MAC.txt'];
 
 if (process.platform !== 'darwin') throw new Error('empaquetar-mac.mjs necesita macOS (codesign y ditto).');
 mkdirSync(SALIDA, { recursive: true });
+// El zip de la propuesta de antes de que fuera la principal ya no se arma.
+rmSync(path.join(SALIDA, 'Biocaps-Propuesta-mac.zip'), { force: true });
 for (const { nombre, empaquetar, app } of VARIANTES) {
   console.log(`\n== ${nombre}`);
   execFileSync('npm', ['run', empaquetar], { cwd: RAIZ, stdio: 'inherit' });
@@ -42,6 +42,4 @@ for (const { nombre, empaquetar, app } of VARIANTES) {
   execFileSync('ditto', ['-c', '-k', '--norsrc', '--keepParent', carpeta, zip]);
   rmSync(carpeta, { recursive: true, force: true });
 }
-// dist/ queda con la versión principal.
-execFileSync('npm', ['run', 'build'], { cwd: RAIZ, stdio: 'ignore' });
 console.log(`\nListo: ${SALIDA}`);

@@ -33,11 +33,11 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
 - **El nombre admite como máximo 14 caracteres (aprobado el 22-09) y además solo acepta una tecla si cabe en la caja de la etiqueta plana (PAG 07) y en la del frasco (PAG 10).** Una tecla rechazada hace temblar la vista previa. Si se cambia una caja o una fuente, correr `npm run estres`.
 - En los CSS de `src/marca/pantallas/` no puede haber colores, radios, sombras, duraciones ni tamaños de texto literales: solo `var(--…)` de los tokens de `04`.
 
-## Propuesta de Rael (segunda variante)
+## Propuesta de Rael (variante principal desde el 05-10)
 
-- Hay dos variantes de la experiencia sobre el mismo motor: **`pdf`** (`src/marca/`, la del PDF de marketing, la que va al evento) y **`propuesta`** (`src/propuesta/`, el flujo alternativo de Rael). Se elige **al construir**: `--mode propuesta` o `VITE_VARIANTE=propuesta`. El alias `@variante/App` (`vite.config.ts`) apunta a una u otra, así que la build de una no lleva código de la otra. En tiempo de ejecución, `__VARIANTE__` y `<html data-variante>`.
+- Hay dos variantes de la experiencia sobre el mismo motor: **`propuesta`** (`src/propuesta/`, el flujo de Rael: **la principal, la que va al evento como `.exe` en Windows**) y **`pdf`** (`src/marca/`, la del PDF de marketing, **congelada** en el tag `pdf-marketing-v1`: ya no se actualiza ni se reparte). Se elige **al construir**: por defecto la propuesta; `--mode pdf` o `VITE_VARIANTE=pdf` para la del PDF. El alias `@variante/App` (`vite.config.ts`) apunta a una u otra, así que la build de una no lleva código de la otra. En tiempo de ejecución, `__VARIANTE__` y `<html data-variante>`.
 - `src/propuesta/` **no** está sujeta al PDF: allí manda el criterio de Rael. Sí cumple todas las demás reglas de este archivo (lienzo, tokens, `transform`/`opacity`, precarga, textos en JSON, sin `file://`…).
-- Dependencias: `propuesta/` puede importar de `motor/` y de `marca/`; **`marca/` nunca importa de `propuesta/`** (lo comprueba `src/app/dependencias.test.ts`). Si la propuesta necesita un componente o pantalla distinta, **se copia** a `propuesta/` y se cambia ahí: nunca se edita `marca/` para acomodarla. Un cambio en `motor/` que pida la propuesta tiene que dejar igual la versión del PDF (`npm test` y `npm run visual`).
+- Dependencias: `propuesta/` puede importar de `motor/` y de `marca/`; **`marca/` nunca importa de `propuesta/`** (lo comprueba `src/app/dependencias.test.ts`). Si la propuesta necesita un componente o pantalla distinta, **se copia** a `propuesta/` y se cambia ahí: nunca se edita `marca/` para acomodarla. Un cambio en `motor/` que pida la propuesta tiene que dejar igual la versión del PDF (`npm test` y `npm run visual:pdf`).
 - Contenido: `variantes/propuesta/contenido/` se **superpone** encima de `contenido/` (en la build y, con un middleware, en desarrollo). Solo va ahí lo que cambie; las imágenes de la ingesta se reutilizan. Los textos propios van en `propuesta.json` (esquema en `src/propuesta/contenido/esquema.ts`), no en una copia de `contenido.json`.
 - **Sustituciones de la build** (`VARIANTES.propuesta.sustituye` en `vite.config.ts`): en la build `propuesta`, cuando código de `src/marca/` importa `componentes/BotonPrimario.tsx`, recibe `src/propuesta/componentes/Navegacion.tsx` (ATRÁS + SIGUIENTE). Así las pantallas del PDF que se reutilizan llevan ATRÁS sin copiarlas. El sustituto exporta lo mismo con la misma firma. Las pantallas propias de la propuesta importan `Navegacion` directamente.
 - Tipos: la sesión de la propuesta amplía la del PDF (`lead`) y los pasos añaden `leads`. El único cruce de tipos hacia las pantallas de `marca/` es `comoRecursosDeMarca()` en `src/propuesta/estado.ts`.
@@ -50,17 +50,17 @@ Kiosco táctil vertical para Expo FAC 2026. El contexto completo está en `conte
   - Se guardan al pasar de `leads` a `fabricacion`, en un suscriptor del almacén (`leads/guardar.ts`); la máquina sigue siendo pura. Van a IndexedDB (`biocaps-leads`) en todas las vías y, en el ejecutable, además a `leads/leads-AAAA-MM-DD.csv` junto al `.exe` (UTF-8 con BOM, CRLF, protegido contra fórmulas de Excel). Reenviar en la misma sesión reutiliza el `id`: en IndexedDB se actualiza, pero el CSV del día es un registro y puede repetir la fila.
   - `Ctrl+Shift+E` exporta los leads de IndexedDB: en el ejecutable, a `leads/exportacion-*.csv`; en el navegador, como descarga. Un aviso abajo (`componentes/AvisoExportacion.tsx`, 3,5 s, no se toca) confirma cuántos se exportaron y dónde, o que falló. Cuando se construya la exportación de telemetría, el mismo atajo tiene que exportar las dos cosas.
   - **Son datos personales:** nunca van a la telemetría, la USB los lleva en claro y el texto de consentimiento es provisional hasta que el cliente dé su aviso de privacidad (`_pendientes` de `propuesta.json`).
-- Ejecutable aparte: «Biocaps Propuesta» (`electron-builder.propuesta.yml`, sale en `paquetes/propuesta/`), con sus propios `datos-kiosco/` y `telemetria/`. `armar:usb` sigue armando **solo** la versión del PDF.
-- `dist/` es de la última variante construida: después de `build:propuesta` o `empaquetar:*:propuesta`, volver a correr `npm run build` antes de empaquetar o probar la del PDF.
-- Netlify: la propuesta va en un sitio **propio** con `VITE_VARIANTE=propuesta`, nunca en `biocaps-screens` ni en `biocaps-screens-v2`.
-- El tag `pdf-marketing-v1` marca la versión del PDF terminada. Si se aprueba la propuesta, se cambia la variante por defecto en `leerVariante()` y después se reordenan las carpetas.
+- El ejecutable es «Biocaps» (`electron-builder.yml`, `paquetes/win-unpacked/Biocaps.exe`) y lleva la propuesta; `armar:usb` y `empaquetar:zips` arman **solo** esa. La del PDF, si hiciera falta, es «Biocaps PDF» (`electron-builder.pdf.yml`, `npm run empaquetar:win:pdf`, sale en `paquetes/pdf/`). Las dos toman el contenido de `dist/contenido` (ya superpuesto).
+- `dist/` es de la última variante construida: después de `build:pdf` o `empaquetar:*:pdf`, volver a correr `npm run build` antes de empaquetar o probar la principal.
+- Netlify: `netlify.toml` corre `npm run build`, así que cualquier despliegue ya sale con la propuesta. Sigue en pie no publicar en producción (créditos).
+- Las carpetas no se reordenaron (`marca/` sigue siendo la base que la propuesta reutiliza): moverlas ahora no aporta nada al evento y arriesga romper la build.
 
 ```
-npm run dev:propuesta             # http://localhost:5174 (a la vez que `npm run dev` en 5173)
-npm run build:propuesta           # dist/ de la propuesta; `preview:propuesta` en 4174
-npm run electron:dev:propuesta
-npm run empaquetar:win:propuesta  # paquetes/propuesta/win-unpacked/Biocaps Propuesta.exe
-npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por defecto 4174) → pruebas/visual/resultados-propuesta/
+npm run dev:pdf                   # versión del PDF en http://localhost:5174 (a la vez que `npm run dev` en 5173)
+npm run build:pdf                 # dist/ de la del PDF; `preview:pdf` en 4174
+npm run electron:dev:pdf
+npm run empaquetar:win:pdf        # paquetes/pdf/win-unpacked/Biocaps PDF.exe
+npm run visual:pdf [-- <url>]     # recorrido de la del PDF + comparación con los mockups (por defecto 4174) → pruebas/visual/resultados/
 ```
 
 ## Contenido fuera del bundle (restricción 7)
@@ -79,16 +79,16 @@ npm run visual:propuesta [-- <url>]  # recorrido completo de la propuesta (por d
   - El preload es CommonJS (`preload.cjs`) porque el sandbox está activo.
   - `userData` y `telemetria/` van junto al `.exe`.
   - Ctrl+Shift+Q cierra el kiosco.
-  - `--cursor` muestra el cursor y `KIOSCO_VENTANA=1` abre en ventana: los junta `probar-en-ventana.bat`, para probar con mouse en una laptop. `npm run empaquetar:zips` arma `paquetes/compartir/Biocaps-{Principal,Propuesta}-win.zip` (carpeta del `.exe` + `.bat` de prueba + `LEEME-PRUEBA.txt`) para compartir sin USB.
+  - `--cursor` muestra el cursor y `KIOSCO_VENTANA=1` abre en ventana: los junta `probar-en-ventana.bat`, para probar con mouse en una laptop. `npm run empaquetar:zips` arma `paquetes/compartir/Biocaps-Principal-win.zip` (carpeta del `.exe` + `.bat` de prueba + `LEEME-PRUEBA.txt`) para compartir sin USB.
   - La ventana se abre en la primera pantalla vertical que haya (laptop + táctil conectada); si no hay ninguna, en la principal.
   - Si la carpeta del ejecutable no admite escritura, `datos-kiosco/`, `telemetria/` y `leads/` van a `Documentos/<nombre del ejecutable>`.
-  - **Mac** (quizá la laptop del stand sea una MacBook): `npm run empaquetar:zips:mac` (solo en macOS) arma `Biocaps-{Principal,Propuesta}-mac.zip`: `.app` universal (Intel + Apple Silicon) con firma ad-hoc, `.command` de prueba y `LEEME-PRUEBA-MAC.txt` (`cascaras/electron/mac/`). En Mac los datos van junto al `.app`, no dentro. Sin firma de Apple: la primera vez hay que quitar la cuarentena (`xattr -dr com.apple.quarantine`). Los respaldos B/B′ siguen siendo solo de Windows. macOS no trae soporte táctil nativo: confirmar con el proveedor que el touch funcione sin driver.
+  - **Mac** (quizá la laptop del stand sea una MacBook): `npm run empaquetar:zips:mac` (solo en macOS) arma `Biocaps-Principal-mac.zip`: `.app` universal (Intel + Apple Silicon) con firma ad-hoc, `.command` de prueba y `LEEME-PRUEBA-MAC.txt` (`cascaras/electron/mac/`). En Mac los datos van junto al `.app`, no dentro. Sin firma de Apple: la primera vez hay que quitar la cuarentena (`xattr -dr com.apple.quarantine`). Los respaldos B/B′ siguen siendo solo de Windows. macOS no trae soporte táctil nativo: confirmar con el proveedor que el touch funcione sin driver.
 - **B · Caddy + Edge / B′ · PowerShell + Edge** (`cascaras/respaldo-local/`). Los servidores escuchan **solo en 127.0.0.1**: escuchar en todas las interfaces dispara el aviso del firewall de Windows, que pide admin. `servir.ps1` sirve los rangos abiertos en trozos de 4 MB porque atiende una petición a la vez.
 - Los `.bat` y el `.ps1` van con CRLF, y el `.ps1` además con BOM (lo fija `.gitattributes`). Si no, PowerShell 5.1 y cmd los leen mal.
 - **C · Netlify:** https://biocaps-screens-v2.netlify.app. `biocaps-screens.netlify.app` es el **prototipo** que ya vio el cliente: no publicar encima. El equipo protege los proyectos nuevos con inicio de sesión (`sso_login`), y en v2 se desactivó a propósito. El aviso de CSP en consola viene del script «hud» que inyecta Netlify: es inofensivo.
   - **Créditos (plan gratuito, 300 al mes):** cada despliegue de producción cuesta 15 y cada GB servido 20. Si se agotan, **se pausan todos los sitios del equipo**, incluido el prototipo del cliente, hasta el siguiente ciclo. El 23-09 se llegó al 75 %: **no publicar más en producción en Netlify**; los enlaces para enseñar van a GitHub Pages y Cloudflare Pages. Un *draft deploy* no gasta créditos.
-- **C′ · GitHub Pages** (`.github/workflows/publicar-pages.yml`): cada push a `main` pasa `npm test` y `npm run lint`, construye las dos variantes y publica https://raelvega.github.io/Biocaps_screens/ (portada `cascaras/web/portal.html`), con `principal/` y `propuesta/`. Gratis y sin límite. No lee `_headers`: el noindex y la CSP ya van como `<meta>`. Si falla una prueba, no se publica.
-- **C″ · Cloudflare Pages** (`npm run publicar:cloudflare`, sesión con `npx wrangler login`): https://biocaps-principal.pages.dev y https://biocaps-propuesta.pages.dev (cada publicación deja además una dirección propia con prefijo). Gratis, sin límite de ancho de banda y 500 publicaciones al mes. Sí lee `_headers`. Se publica a mano, no con cada push. Desde wrangler 4.138, `pages project create` intenta crear un Worker y falla con una carpeta estática: el script crea los proyectos con `--force`, que solo hace falta la primera vez.
+- **C′ · GitHub Pages** (`.github/workflows/publicar-pages.yml`): cada push a `main` pasa `npm test` y `npm run lint`, construye las dos variantes y publica https://raelvega.github.io/Biocaps_screens/ (portada `cascaras/web/portal.html`): `principal/` y `propuesta/` llevan las dos la propuesta (para no romper los enlaces ya repartidos) y `pdf/` la del PDF. Gratis y sin límite. No lee `_headers`: el noindex y la CSP ya van como `<meta>`. Si falla una prueba, no se publica.
+- **C″ · Cloudflare Pages** (`npm run publicar:cloudflare`, sesión con `npx wrangler login`): https://biocaps-principal.pages.dev y https://biocaps-propuesta.pages.dev, las dos con la propuesta (cada publicación deja además una dirección propia con prefijo). Gratis, sin límite de ancho de banda y 500 publicaciones al mes. Sí lee `_headers`. Se publica a mano, no con cada push. Desde wrangler 4.138, `pages project create` intenta crear un Worker y falla con una carpeta estática: el script crea los proyectos con `--force`, que solo hace falta la primera vez.
 - La CSP se inyecta **solo en la build** (plugin en `vite.config.ts`): el servidor de desarrollo necesita scripts en línea. Todo es `'self'`; ninguna vía puede cargar nada de fuera (restricción 1).
 
 ## Build y dependencias
@@ -157,11 +157,12 @@ npm test                       # Vitest
 npm run lint                   # oxlint
 npm run ingesta                # assets-fuente/ → contenido/img + manifiesto + referencias
 npm run electron:dev           # build + Electron en ventana (KIOSCO=1 para kiosco)
+npm run empaquetar:win         # paquetes/win-unpacked/Biocaps.exe (lo que va al evento)
 npm run armar:usb              # paquetes/Biocaps-USB con las vías A, B y B′ + LEEME
-npm run estres                 # nombres largos en los 5 estilos: ninguna línea fuera de su caja en PAG 07 ni PAG 10
-npm run visual [-- <url>]      # recorrido completo en Chrome 1080×1920 + comparación con los mockups (pruebas/visual/resultados/)
+npm run estres                 # nombres largos en los 5 estilos: ninguna línea fuera de su caja en PAG 07 ni PAG 10 (contra `npm run preview`, 4173)
+npm run visual [-- <url>]      # recorrido completo de la principal en Chrome 1080×1920 (contra 4173) → pruebas/visual/resultados-propuesta/
 npm run humo:navegador -- <url>  # prueba técnica (?humo) en Chrome contra cualquier vía
 HUMO_SALIR=1 npx electron .    # prueba técnica en Electron; imprime HUMO_RESULTADO y sale
 ```
 
-Antes de dar algo por terminado: `npm run build`, `npm test` y `npm run lint` en verde. Si hay cambios visuales, `npm run visual` (sin errores de consola, comparación con el PDF) y una captura en horizontal (1440×900). La prueba de resistencia de 8 h con toques aleatorios es criterio de entrega antes de viajar.
+Antes de dar algo por terminado: `npm run build`, `npm test` y `npm run lint` en verde. Si hay cambios visuales, `npm run visual` (sin errores de consola; y `npm run visual:pdf` si se tocó `marca/` o `motor/`) y una captura en horizontal (1440×900). La prueba de resistencia de 8 h con toques aleatorios es criterio de entrega antes de viajar.

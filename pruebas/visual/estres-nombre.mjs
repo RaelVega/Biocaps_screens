@@ -1,6 +1,7 @@
 // Prueba de estrés del nombre del producto: en los 5 estilos escribe tres palabras
 // largas y 30 «W» (la letra más ancha) y comprueba que en PAG 07 y en PAG 10 ninguna
-// línea se sale de su caja. Uso: node pruebas/visual/estres-nombre.mjs [url]
+// línea se sale de su caja. Recorre el flujo de la variante principal (la propuesta):
+// las cajas son las mismas en las dos. Uso: node pruebas/visual/estres-nombre.mjs [url]
 import { chromium } from 'playwright-core';
 const URL = process.argv[2] ?? 'http://localhost:4173/';
 const SALIDA = 'pruebas/visual/resultados';
@@ -22,18 +23,18 @@ const revisar = (p) => p.evaluate(() => [...document.querySelectorAll('[class*="
     const clic = async (nombre, exacto = false) => { await p.getByRole('button', { name: nombre, exact: exacto }).first().click(); await p.waitForTimeout(80); };
     await p.goto(URL); await p.waitForSelector('[data-paso=portada]');
     await p.mouse.click(540, 960); await p.waitForTimeout(450);
-    await clic('OMEGAS'); await clic('SIGUIENTE'); await p.waitForTimeout(400);
-    await clic('OMEGA 3 (N)'); await clic('SIGUIENTE'); await p.waitForTimeout(400);
-    await clic('SIGUIENTE'); await p.waitForTimeout(400);
+    await p.mouse.click(784, 930); await clic('SIGUIENTE'); await p.waitForTimeout(400); // cápsula oval
+    await clic('INGREDIENTES NATURALES'); await clic('SIGUIENTE'); await p.waitForTimeout(400);
+    await clic('JALEA REAL CON TIAMINA'); await clic('SIGUIENTE'); await p.waitForTimeout(400);
     await clic('30 CÁPSULAS'); await clic('SIGUIENTE'); await p.waitForTimeout(400);
     await clic(estilo, true); await clic('SIGUIENTE'); await p.waitForTimeout(400);
-    await clic('SIGUIENTE'); await p.waitForTimeout(400);
     for (const letra of texto) await clic(letra === ' ' ? 'ESPACIO' : letra, true);
     const pag07 = await revisar(p);
     await p.screenshot({ path: `${SALIDA}/estres-${clave}-${estilo}-pag07.png` });
     await clic('FINALIZAR'); await p.waitForTimeout(400);
     await p.mouse.click(316, 775); await p.waitForTimeout(100); // color transparente
-    await clic('SIGUIENTE'); await p.waitForTimeout(5200);
+    await clic('SIGUIENTE'); await p.waitForTimeout(400);
+    await clic('OMITIR'); await p.waitForTimeout(5200); // leads
     const pag10 = await revisar(p);
     await p.screenshot({ path: `${SALIDA}/estres-${clave}-${estilo}-pag10.png` });
     const r7 = pag07[0], r10 = pag10[0];

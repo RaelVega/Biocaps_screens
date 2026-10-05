@@ -1,13 +1,13 @@
-// Recorre la variante «propuesta» en Chrome a 1080×1920, como un visitante, y
+// Recorre la variante «propuesta» (la principal desde el 05-10) en Chrome a 1080×1920, como un visitante, y
 // captura cada pantalla (el PDF no dibuja la propuesta: no hay mockup con que comparar).
 // Cubre la cápsula primero, el salto de PAG 02 con una sola categoría, ATRÁS,
 // los leads con autocompletado y VOLVER AL INICIO.
-// Uso: node pruebas/visual/recorrido-propuesta.mjs [url]   (por defecto http://localhost:4174/)
+// Uso: node pruebas/visual/recorrido-propuesta.mjs [url]   (por defecto http://localhost:4173/, `npm run preview`)
 import { mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
 
-const URL = process.argv[2] ?? 'http://localhost:4174/';
+const URL = process.argv[2] ?? 'http://localhost:4173/';
 const RAIZ = path.resolve(import.meta.dirname, '../..');
 const SALIDA = path.join(RAIZ, 'pruebas/visual/resultados-propuesta');
 

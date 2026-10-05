@@ -1,4 +1,5 @@
-# Vía A: ejecutable portable. Sin instalador, sin permisos de administrador.
+# Vía A: ejecutable portable de la variante principal (la propuesta, desde el 05-10).
+# Sin instalador, sin permisos de administrador.
 appId: mx.xestionintelixente.biocaps
 productName: Biocaps
 copyright: Xestión Intelixente
@@ -10,8 +11,9 @@ files:
   - dist-electron/**/*
   - package.json
 # El contenido va fuera del asar, junto al ejecutable: se sustituye sin recompilar.
+# Sale de dist/contenido, ya superpuesto por la build (contenido/ + variantes/<variante>/contenido/).
 extraResources:
-  - from: contenido
+  - from: dist/contenido
     to: contenido
 asar: true
 compression: normal

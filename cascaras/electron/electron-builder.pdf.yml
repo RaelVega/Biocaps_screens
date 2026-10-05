@@ -1,0 +1,10 @@
+# Vía A de la versión del PDF de marketing, congelada desde el 05-10 (tag
+# pdf-marketing-v1): otro ejecutable, con su propia carpeta, sus datos del
+# navegador y su telemetría. No va al evento.
+extends: cascaras/electron/electron-builder.yml
+appId: mx.xestionintelixente.biocaps.pdf
+productName: Biocaps PDF
+directories:
+  output: paquetes/pdf
+portable:
+  artifactName: Biocaps-PDF-${version}-portable.exe

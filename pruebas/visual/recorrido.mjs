@@ -1,13 +1,13 @@
 // Recorre la experiencia completa en Chrome a 1080×1920, como un visitante,
 // y compara cada pantalla con su mockup del PDF.
-// Uso: node pruebas/visual/recorrido.mjs [url]   (por defecto http://localhost:4173/)
+// Uso: node pruebas/visual/recorrido.mjs [url]   (por defecto http://localhost:4174/, `npm run preview:pdf`)
 // Salida en pruebas/visual/resultados/: captura, lado a lado y superposición al 50 %.
 import { mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 import { chromium } from 'playwright-core';
 import sharp from 'sharp';
 
-const URL = process.argv[2] ?? 'http://localhost:4173/';
+const URL = process.argv[2] ?? 'http://localhost:4174/';
 const RAIZ = path.resolve(import.meta.dirname, '../..');
 const REFERENCIAS = path.join(RAIZ, 'pruebas/visual/referencias');
 const SALIDA = path.join(RAIZ, 'pruebas/visual/resultados');
