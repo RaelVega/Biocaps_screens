@@ -41,6 +41,11 @@ const TOPE_NOMBRE = 40;
 /** Lo que puede escribir el teclado propio de PAG 07: mayúsculas, acentos, Ñ, números y poca puntuación. */
 const CARACTERES_NOMBRE = /^[A-ZÁÉÍÓÚÜÑ0-9 &.'-]*$/;
 
+/** Caracteres que cuentan para el máximo del nombre: los espacios no cuentan (Rael, 05-10). */
+export function contarCaracteresNombre(nombre: string): number {
+  return nombre.replace(/ /g, '').length;
+}
+
 /** Normaliza lo escrito: mayúsculas en español, sin espacios al inicio ni espacios dobles. */
 export function normalizarNombre(texto: string): string {
   return texto.toLocaleUpperCase('es-MX').replace(/^\s+/, '').replace(/\s{2,}/g, ' ');
@@ -97,7 +102,7 @@ export function crearFlujoBiocaps(catalogo: Catalogo): DefinicionFlujo<PasoBioca
         tipo: 'texto',
         escribir: (s, texto) => {
           const nombre = normalizarNombre(texto);
-          if (nombre.length > maxNombre || !CARACTERES_NOMBRE.test(nombre)) return null;
+          if (contarCaracteresNombre(nombre) > maxNombre || !CARACTERES_NOMBRE.test(nombre)) return null;
           return { ...s, nombre };
         },
         puedeAvanzar: (s) => s.nombre.trim().length > 0,

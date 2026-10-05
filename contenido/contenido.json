@@ -3,7 +3,7 @@
   "_pendientes": [
     "Licencias de las tipografías de etiqueta: Surgena (Naturista) es la versión «Personal use only» y no trae acentos ni Ñ (se toman de la fuente de interfaz); Agrandir, Gleffy y Varien no declaran licencia. Marketing confirma la licencia comercial antes del evento."
   ],
-  "_rotulado": "Tipografías de marketing (TIPOGRAFÍAS/, 05-10). Fuente, color, cuerpo, interlineado y caja de rotuladoFrasco medidos sobre las muestras de cada carpeta; rotuladoPlano es la misma caja llevada a la etiqueta plana (≈1/1,7).",
+  "_rotulado": "Tipografías de marketing (TIPOGRAFÍAS/, 05-10). Fuente, color, cuerpo, interlineado y caja de rotuladoFrasco medidos sobre las muestras de cada carpeta; rotuladoPlano es la misma caja llevada a la etiqueta plana (≈1/1,7). Deportivo va a 82 px para que «SPORTS» ocupe en el frasco lo mismo que en su muestra. «espacioPalabras»: em que se suman al espacio entre palabras para que se vea (pedido de Rael, 05-10).",
   "marco": {
     "pie": "Cada elección da forma a tu producto",
     "_leyenda": "Bajo el pie en todas las pantallas con marco (pedido de Rael, 01-10). null la quita.",
@@ -145,20 +145,20 @@
   ],
   "estilos": [
     { "id": "naturista", "nombre": "NATURISTA", "etiquetaPlana": "etiqueta-plana-naturista",
-      "rotuladoPlano": {"caja": [430,148,200,91], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 44, "cuerpoMinimo": 15, "interlineado": 1.0},
-      "rotuladoFrasco": {"caja": [0,455,340,155], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 26, "interlineado": 1.0} },
+      "rotuladoPlano": {"caja": [430,148,200,91], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 44, "cuerpoMinimo": 15, "interlineado": 1.0, "espacioPalabras": 0.2},
+      "rotuladoFrasco": {"caja": [0,455,340,155], "rotacion": 0, "fuente": "Etiqueta Naturista", "peso": 600, "italica": false, "color": "#182F13", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 26, "interlineado": 1.0, "espacioPalabras": 0.2} },
     { "id": "farmaceutico", "nombre": "FARMACÉUTICO", "etiquetaPlana": "etiqueta-plana-farmaceutico",
-      "rotuladoPlano": {"caja": [392,158,200,95], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 47, "cuerpoMinimo": 14, "interlineado": 0.98},
-      "rotuladoFrasco": {"caja": [0,432,340,162], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 80, "cuerpoMinimo": 24, "interlineado": 0.98} },
+      "rotuladoPlano": {"caja": [392,158,200,95], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 47, "cuerpoMinimo": 14, "interlineado": 0.98, "espacioPalabras": 0.2},
+      "rotuladoFrasco": {"caja": [0,432,340,162], "rotacion": 0, "fuente": "Etiqueta Farmacéutico", "peso": 700, "italica": false, "color": "#0A0807", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 80, "cuerpoMinimo": 24, "interlineado": 0.98, "espacioPalabras": 0.2} },
     { "id": "moderno", "nombre": "MODERNO", "etiquetaPlana": "etiqueta-plana-moderno",
-      "rotuladoPlano": {"caja": [418,58,87,183], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 39, "cuerpoMinimo": 13, "interlineado": 1.19},
-      "rotuladoFrasco": {"caja": [-106,258,150,316], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 68, "cuerpoMinimo": 22, "interlineado": 1.19} },
+      "rotuladoPlano": {"caja": [418,58,87,183], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 39, "cuerpoMinimo": 13, "interlineado": 1.19, "espacioPalabras": 0.2},
+      "rotuladoFrasco": {"caja": [-106,258,150,316], "rotacion": -90, "fuente": "Etiqueta Moderno", "peso": 800, "italica": false, "color": "#FFFFFF", "alineacion": "izquierda", "maxLineas": 2, "cuerpoInicial": 68, "cuerpoMinimo": 22, "interlineado": 1.19, "espacioPalabras": 0.2} },
     { "id": "deportivo", "nombre": "DEPORTIVO", "etiquetaPlana": "etiqueta-plana-deportivo",
-      "rotuladoPlano": {"caja": [405,141,194,88], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 40, "cuerpoMinimo": 15, "interlineado": 1.15},
-      "rotuladoFrasco": {"caja": [0,425,330,150], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 68, "cuerpoMinimo": 26, "interlineado": 1.15} },
+      "rotuladoPlano": {"caja": [405,141,200,99], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 48, "cuerpoMinimo": 15, "interlineado": 1.03, "espacioPalabras": 0.2},
+      "rotuladoFrasco": {"caja": [0,420,340,168], "rotacion": 0, "fuente": "Etiqueta Deportivo", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 82, "cuerpoMinimo": 26, "interlineado": 1.03, "espacioPalabras": 0.2} },
     { "id": "femenino", "nombre": "FEMENINO", "etiquetaPlana": "etiqueta-plana-femenino",
-      "rotuladoPlano": {"caja": [392,130,203,93], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 45, "cuerpoMinimo": 14, "interlineado": 1.03},
-      "rotuladoFrasco": {"caja": [0,470,340,156], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 24, "interlineado": 1.03} }
+      "rotuladoPlano": {"caja": [392,130,203,93], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 45, "cuerpoMinimo": 14, "interlineado": 1.03, "espacioPalabras": 0.2},
+      "rotuladoFrasco": {"caja": [0,470,340,156], "rotacion": 0, "fuente": "Etiqueta Femenino", "peso": 400, "italica": false, "color": "#FFFFFF", "alineacion": "centro", "maxLineas": 2, "cuerpoInicial": 75, "cuerpoMinimo": 24, "interlineado": 1.03, "espacioPalabras": 0.2} }
   ],
   "colores": [
     { "id": "transparente", "nombre": "TRANSPARENTE", "imagen": "frasco-color-transparente" },

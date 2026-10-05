@@ -1,5 +1,5 @@
 import { useMemo, type CSSProperties, type ReactNode } from 'react';
-import { ajustarTexto, crearMedidorCanvas } from '../../motor/rotulado/ajustar';
+import { ajustarTexto, crearMedidorCanvas, type Medidor } from '../../motor/rotulado/ajustar';
 import type { Rotulado } from '../contenido/esquema';
 import estilos from './RotuloNombre.module.css';
 
@@ -25,6 +25,12 @@ export function fuenteDe(rotulado: Rotulado): (cuerpo: number) => string {
   return (cuerpo) => `${rotulado.italica ? 'italic ' : ''}${rotulado.peso} ${cuerpo}px ${familiaDe(rotulado)}`;
 }
 
+/** Suma a la medida el espacio extra entre palabras (el `word-spacing` del rótulo). */
+function conEspacioPalabras(medir: Medidor, extra: number): Medidor {
+  if (extra === 0) return medir;
+  return (texto, cuerpo) => medir(texto, cuerpo) + (texto.split(' ').length - 1) * extra * cuerpo;
+}
+
 /** Calcula el ajuste del nombre en la caja del estilo (lo usa también PAG 07 para rechazar teclas que ya no caben). */
 export function ajustarNombre(texto: string, rotulado: Rotulado): ReturnType<typeof ajustarTexto> {
   const [, , ancho, alto] = rotulado.caja;
@@ -37,7 +43,7 @@ export function ajustarNombre(texto: string, rotulado: Rotulado): ReturnType<typ
     cuerpoInicial: rotulado.cuerpoInicial,
     cuerpoMinimo: rotulado.cuerpoMinimo,
     interlineado: rotulado.interlineado,
-    medir: crearMedidorCanvas(fuenteDe(rotulado)),
+    medir: conEspacioPalabras(crearMedidorCanvas(fuenteDe(rotulado)), rotulado.espacioPalabras),
   });
 }
 
@@ -64,6 +70,7 @@ export function RotuloNombre({ texto, rotulado, cursor = false }: PropiedadesRot
           fontStyle: rotulado.italica ? 'italic' : 'normal',
           fontSize: ajuste.cuerpo,
           lineHeight: rotulado.interlineado,
+          wordSpacing: `${rotulado.espacioPalabras}em`,
           color: rotulado.color,
           textAlign: ALINEACION[rotulado.alineacion],
         }}

@@ -21,6 +21,8 @@ const rotulado = v.object({
   cuerpoInicial: v.pipe(v.number(), v.minValue(1)),
   cuerpoMinimo: v.pipe(v.number(), v.minValue(1)),
   interlineado: v.pipe(v.number(), v.minValue(0.5)),
+  /** Em que se suman al espacio entre palabras, para que se vea; se tienen en cuenta al medir. */
+  espacioPalabras: v.optional(v.pipe(v.number(), v.minValue(0)), 0),
 });
 
 export type Rotulado = v.InferOutput<typeof rotulado>;

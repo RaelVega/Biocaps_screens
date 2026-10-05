@@ -4,7 +4,7 @@ import { BotonPrimario } from '../componentes/BotonPrimario';
 import { ajustarNombre, RotuloNombre } from '../componentes/RotuloNombre';
 import { Titulo } from '../componentes/Titulo';
 import { useContenido, useDespachar, useFlujo, useImagen } from '../estado';
-import { normalizarNombre } from '../flujo';
+import { contarCaracteresNombre, normalizarNombre } from '../flujo';
 import estilos from './Pantallas.module.css';
 
 /**
@@ -31,7 +31,7 @@ export function Nombre(): ReactNode {
     if (candidato === nombre) return;
     const maximo = contenido.nombreProducto.maxCaracteres;
     const cabe =
-      (maximo === null || candidato.length <= maximo) &&
+      (maximo === null || contarCaracteresNombre(candidato) <= maximo) &&
       ajustarNombre(candidato, estilo.rotuladoPlano).cabe &&
       ajustarNombre(candidato, estilo.rotuladoFrasco).cabe;
     if (!cabe) {

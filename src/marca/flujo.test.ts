@@ -133,9 +133,9 @@ describe('reglas de cada paso', () => {
       expect(aplicar(enNombre, { tipo: 'escribir', texto: 'señor ácido' }).sesion.nombre).toBe('SEÑOR ÁCIDO');
     });
 
-    it('no pasa de 14 caracteres, contando espacios', () => {
-      expect(aplicar(enNombre, { tipo: 'escribir', texto: 'RELAX FLOW MAX' }).sesion.nombre).toBe('RELAX FLOW MAX');
-      expect(maquina.transicion(enNombre, { tipo: 'escribir', texto: 'RELAX FLOW MAXI' }).efecto).toBe('sinCambio');
+    it('no pasa de 14 caracteres, sin contar los espacios', () => {
+      expect(aplicar(enNombre, { tipo: 'escribir', texto: 'RELAX FLOW MAXIM' }).sesion.nombre).toBe('RELAX FLOW MAXIM');
+      expect(maquina.transicion(enNombre, { tipo: 'escribir', texto: 'RELAX FLOW MAXIMO' }).efecto).toBe('sinCambio');
     });
 
     it('rechaza caracteres que el teclado no tiene', () => {
